@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#080d18">
     <meta name="description" content="Stress & Sell: PC assemblati, testati e pronti all'uso. Scopri le configurazioni disponibili e contattami per informazioni.">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%2306b6d4'/%3E%3Cstop offset='1' stop-color='%234f46e5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='15' fill='%230b1120'/%3E%3Crect x='5' y='5' width='54' height='54' rx='12' fill='url(%23g)'/%3E%3Crect x='15' y='15' width='34' height='24' rx='3' fill='none' stroke='white' stroke-width='3'/%3E%3Cpath d='M25 47h14M32 39v8' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
-    <title>Stress &amp; Sell | PC assemblati e testati</title>
+    <title>Stress &amp; Sell | Prova grafica NZXT</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -156,7 +156,262 @@
                 transition-duration: .01ms !important;
             }
         }
+        /* Galleria dettagli: comandi freccia ben visibili e utilizzabili al mouse/tocco */
+        .group\/modalgallery button { -webkit-tap-highlight-color: transparent; }
+        #modalMainImage { user-select: none; }
+        @media (max-width: 640px) {
+            .pc-detail-image-frame button[aria-label="Immagine precedente"],
+            .pc-detail-image-frame button[aria-label="Immagine successiva"] {
+                width: 2.5rem;
+                height: 2.5rem;
+                background: rgba(2, 6, 23, .88);
+            }
+        }
     </style>
+
+    <!-- PROVA GRAFICA NZXT: palette chiara, header nero, card perla, accenti lilla e lime. Solo presentazione; logica annunci/admin invariata. -->
+    <style id="stressSellNzxtTrialTheme">
+      :root { color-scheme: light !important; }
+      body#appBody {
+        background: #f7f7f5 !important;
+        background-image: none !important;
+        color: #19191b !important;
+      }
+      body#appBody main { max-width: 1240px !important; }
+      body#appBody ::selection { background: #d9c8ff; color: #17131d; }
+      body#appBody [class~="text-white"] { color: #19191b !important; }
+      body#appBody [class~="text-slate-100"] { color: #232326 !important; }
+      body#appBody [class~="text-slate-200"] { color: #303035 !important; }
+      body#appBody [class~="text-slate-300"] { color: #494950 !important; }
+      body#appBody [class~="text-slate-400"] { color: #63636b !important; }
+      body#appBody [class~="text-slate-500"] { color: #777780 !important; }
+      body#appBody [class~="text-slate-600"] { color: #898991 !important; }
+      body#appBody [class~="text-cyan-400"],
+      body#appBody [class~="text-cyan-300"],
+      body#appBody [class~="text-indigo-300"],
+      body#appBody [class~="text-indigo-400"] { color: #8051b8 !important; }
+      body#appBody [class~="text-emerald-400"] { color: #317747 !important; }
+      body#appBody [class~="text-amber-400"] { color: #916319 !important; }
+      body#appBody [class~="text-purple-400"] { color: #8051b8 !important; }
+
+      /* Header nero ispirato al riferimento NZXT */
+      body#appBody header.sticky {
+        background: #171717 !important;
+        border-bottom: 1px solid #292929 !important;
+        box-shadow: none !important;
+        color: #f7f7f5 !important;
+        backdrop-filter: none !important;
+      }
+      body#appBody header [class~="text-white"],
+      body#appBody header [class~="text-slate-100"],
+      body#appBody header [class~="text-slate-200"],
+      body#appBody header [class~="text-slate-300"] { color: #f5f5f3 !important; }
+      body#appBody header [class~="text-slate-400"],
+      body#appBody header [class~="text-slate-500"] { color: #c1c1c1 !important; }
+      body#appBody header [class~="text-cyan-400"] { color: #c5ff9b !important; }
+      body#appBody .brand-mark {
+        background: #c5ff9b !important;
+        color: #171717 !important;
+        border: 0 !important;
+        box-shadow: none !important;
+      }
+      body#appBody #viewToggleBtn {
+        color: #171717 !important;
+        background: #c5ff9b !important;
+        border: 1px solid #c5ff9b !important;
+        box-shadow: none !important;
+      }
+      body#appBody header button[onclick="toggleTheme()"] {
+        background: #262626 !important;
+        border-color: #444 !important;
+        color: #f3f3f3 !important;
+      }
+
+      /* Hero: pannello avorio, headline nera e accento lilla */
+      body#appBody .hero-panel {
+        background: #f2f2ef !important;
+        border: 1px solid #e1e1dc !important;
+        border-radius: 12px !important;
+        box-shadow: none !important;
+        color: #19191b !important;
+      }
+      body#appBody .hero-panel::after { opacity: .035 !important; }
+      body#appBody .hero-panel .text-white { color: #19191b !important; }
+      body#appBody .hero-panel [class~="text-slate-400"],
+      body#appBody .hero-panel [class~="text-slate-500"] { color: #5e5e60 !important; }
+      body#appBody .hero-panel [class~="bg-cyan-500/10"] {
+        background: #eee5fb !important;
+        border-color: #d8c2f0 !important;
+        color: #7140a5 !important;
+      }
+      body#appBody #heroTitleColor {
+        background-image: linear-gradient(90deg, #8051b8, #a56bd2) !important;
+      }
+
+      /* Pannello filtri e ricerca in chiaro */
+      body#appBody .filter-panel,
+      body#appBody .glass-card,
+      body#appBody .glass-card-light {
+        background: #fff !important;
+        border: 1px solid #dedee0 !important;
+        box-shadow: 0 3px 12px rgba(20,20,24,.035) !important;
+        backdrop-filter: none !important;
+      }
+      body#appBody input:not([type="checkbox"]):not([type="radio"]),
+      body#appBody select,
+      body#appBody textarea {
+        background-color: #fff !important;
+        color: #19191b !important;
+        border-color: #d1d1d5 !important;
+      }
+      body#appBody input::placeholder,
+      body#appBody textarea::placeholder { color: #85858c !important; }
+      body#appBody input:focus,
+      body#appBody select:focus,
+      body#appBody textarea:focus { border-color: #9b6ed1 !important; box-shadow: 0 0 0 3px rgba(155,110,209,.14) !important; }
+
+      /* Card catalogo: superfici grigio perla e foto protagoniste */
+      body#appBody #pcGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 20px !important;
+        max-width: 1120px !important;
+        margin-inline: auto !important;
+      }
+      body#appBody .pc-card {
+        background: #eff0f2 !important;
+        border: 1px solid #dedee1 !important;
+        border-radius: 12px !important;
+        box-shadow: 0 2px 8px rgba(20,20,24,.035) !important;
+        color: #19191b !important;
+      }
+      body#appBody .pc-card:hover {
+        border-color: #bca0df !important;
+        box-shadow: 0 10px 26px rgba(58,34,87,.09) !important;
+        transform: translateY(-2px);
+      }
+      body#appBody .pc-card-image {
+        background: #e9eaec !important;
+        background-image: none !important;
+        border-bottom: 1px solid #d9d9dd !important;
+      }
+      body#appBody .pc-card-image img { filter: none !important; }
+      body#appBody .pc-card-image > .bg-gradient-to-t {
+        background-image: linear-gradient(to top, rgba(0,0,0,.03), transparent 58%) !important;
+        opacity: .15 !important;
+      }
+      body#appBody .pc-card [class~="bg-slate-950/60"],
+      body#appBody .pc-card [class~="bg-slate-950/70"] {
+        background: rgba(255,255,255,.78) !important;
+        border-color: #d8d8dc !important;
+      }
+      body#appBody .pc-card [class~="border-slate-800"],
+      body#appBody .pc-card [class~="border-slate-800/70"],
+      body#appBody .pc-card [class~="border-slate-800/80"] { border-color: #d6d6da !important; }
+      body#appBody .pc-card h3 { color: #1a1a1d !important; }
+      body#appBody .pc-card h3:hover,
+      body#appBody .pc-card button:hover { color: #8051b8 !important; }
+      body#appBody .pc-card .text-lg.font-extrabold { color: #2b2b2b !important; }
+      body#appBody .pc-card [class~="text-slate-200"] { color: #28282d !important; }
+      body#appBody .pc-card [class~="text-slate-500"] { color: #77777e !important; }
+      body#appBody .pc-card [class~="text-cyan-400"] { color: #8051b8 !important; }
+      body#appBody .pc-card [class~="bg-gradient-to-t"] { opacity: .12 !important; }
+      body#appBody #emptyCatalogState {
+        background: #fff !important;
+        border-color: #d8d8dc !important;
+      }
+
+      /* Accent lime per i principali pulsanti di azione */
+      body#appBody [class~="from-cyan-500"][class~="to-indigo-600"] {
+        background-image: none !important;
+        background-color: #c5ff9b !important;
+        color: #171717 !important;
+        box-shadow: none !important;
+      }
+      body#appBody [class~="bg-cyan-500"],
+      body#appBody [class~="bg-cyan-600"] {
+        background-color: #c5ff9b !important;
+        color: #171717 !important;
+      }
+      body#appBody [class~="hover:bg-cyan-400"]:hover { background-color: #b3ef89 !important; }
+      body#appBody [class~="border-cyan-500"],
+      body#appBody [class~="border-cyan-500/30"],
+      body#appBody [class~="border-cyan-500/40"] { border-color: #c6b2e0 !important; }
+
+      /* Pagina dettaglio prodotto: superficie chiara, galleria e contenuti ben separati */
+      body#appBody #pcDetailModal,
+      body#appBody #adminAuthModal { background: rgba(18,18,20,.62) !important; }
+      body#appBody #pcDetailModal > div,
+      body#appBody #adminAuthCard {
+        background: #fff !important;
+        color: #1a1a1d !important;
+        border: 1px solid #dedee1 !important;
+        box-shadow: 0 24px 80px rgba(0,0,0,.24) !important;
+      }
+      body#appBody #modalContent,
+      body#appBody #adminAuthCard { color: #1a1a1d !important; }
+      body#appBody #modalContent [class~="text-white"],
+      body#appBody #modalContent [class~="text-slate-100"] { color: #1a1a1d !important; }
+      body#appBody #modalContent [class~="text-slate-200"] { color: #333339 !important; }
+      body#appBody #modalContent [class~="text-slate-300"] { color: #4b4b52 !important; }
+      body#appBody #modalContent [class~="text-slate-400"],
+      body#appBody #modalContent [class~="text-slate-500"] { color: #6d6d75 !important; }
+      body#appBody #modalContent [class~="text-cyan-400"],
+      body#appBody #modalContent [class~="text-cyan-300"],
+      body#appBody #modalContent [class~="text-indigo-400"] { color: #8051b8 !important; }
+      body#appBody #modalContent [class~="bg-slate-950"],
+      body#appBody #modalContent [class~="bg-slate-950/60"],
+      body#appBody #modalContent [class~="bg-slate-900"] { background: #f3f3f4 !important; }
+      body#appBody #modalContent [class~="border-slate-800"],
+      body#appBody #modalContent [class~="border-slate-800/80"],
+      body#appBody #modalContent [class~="border-slate-700"] { border-color: #dedee1 !important; }
+      body#appBody #modalContent .pc-detail-image-frame { background: #ededef !important; border-color: #dedee1 !important; }
+      body#appBody #modalContent [data-modal-image-index] { background: #f3f3f4 !important; }
+      body#appBody #modalContent [data-modal-image-index][aria-current="true"] { border-color: #8051b8 !important; box-shadow: 0 0 0 2px rgba(128,81,184,.18) !important; }
+      body#appBody #modalContent [aria-label="Immagine precedente"],
+      body#appBody #modalContent [aria-label="Immagine successiva"] {
+        background: rgba(255,255,255,.94) !important;
+        color: #242326 !important;
+        border-color: rgba(30,30,35,.15) !important;
+      }
+      body#appBody #modalContent [aria-label="Immagine precedente"]:hover,
+      body#appBody #modalContent [aria-label="Immagine successiva"]:hover { background: #c5ff9b !important; color: #171717 !important; }
+
+      /* Pannello admin e modali in palette chiara */
+      body#appBody #adminView [class~="bg-slate-900"],
+      body#appBody #adminView [class~="bg-slate-900/80"],
+      body#appBody #adminView [class~="bg-slate-900/60"],
+      body#appBody #adminView [class~="bg-slate-950"],
+      body#appBody #adminView [class~="bg-slate-950/60"],
+      body#appBody #adminView [class~="bg-slate-800"] { background: #fff !important; }
+      body#appBody #adminView [class~="text-white"],
+      body#appBody #adminView [class~="text-slate-100"] { color: #1a1a1d !important; }
+      body#appBody #adminView [class~="text-slate-200"] { color: #333339 !important; }
+      body#appBody #adminView [class~="text-slate-300"],
+      body#appBody #adminView [class~="text-slate-400"],
+      body#appBody #adminView [class~="text-slate-500"] { color: #66666d !important; }
+      body#appBody #adminView [class~="border-slate-800"],
+      body#appBody #adminView [class~="border-slate-700"] { border-color: #dedee1 !important; }
+      body#appBody #adminAuthCard [class~="text-white"],
+      body#appBody #adminAuthCard [class~="text-slate-100"] { color: #1a1a1d !important; }
+      body#appBody #adminAuthCard [class~="bg-slate-950"] { background: #f7f7f5 !important; }
+      body#appBody #toastContainer [class~="bg-emerald-600"],
+      body#appBody #toastContainer [class~="bg-rose-600"] { color: #fff !important; }
+
+      /* Card più editoriali, angoli meno arrotondati; layout originale conservato */
+      body#appBody .pc-card { border-radius: 12px !important; }
+      body#appBody .pc-card-image-frame { border-radius: 0 !important; }
+      body#appBody .hero-panel { border-radius: 10px !important; }
+      body#appBody .filter-panel { border-radius: 10px !important; }
+      @media (max-width: 767px) {
+        body#appBody #pcGrid { grid-template-columns: minmax(0,1fr) !important; }
+        body#appBody .hero-panel { padding: 1.4rem !important; }
+        body#appBody #pcGrid .pc-card-image-frame { aspect-ratio: 3 / 4 !important; }
+      }
+      @media (min-width: 768px) and (max-width: 1023px) {
+        body#appBody #pcGrid { grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
+      }
+    </style>
+
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen transition-colors duration-300 antialiased" id="appBody">
 
@@ -1336,29 +1591,24 @@ Continua soltanto se questa copia locale contiene i prezzi e le informazioni cor
         });
 
         window.addEventListener('keydown', (e) => {
+            const detailModal = document.getElementById('pcDetailModal');
+            const detailIsOpen = detailModal && !detailModal.classList.contains('hidden') && activeModalPc;
+            const target = e.target;
+            const editingText = target && (target.matches('input, textarea, select') || target.isContentEditable);
+
+            if (detailIsOpen && !editingText && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
+                e.preventDefault();
+                setModalActiveGalleryIndex(activeModalGalleryIndex + (e.key === 'ArrowRight' ? 1 : -1));
+                return;
+            }
+
             if (e.key === 'Escape') {
                 const authModal = document.getElementById('adminAuthModal');
                 if (authModal && !authModal.classList.contains('hidden')) {
                     closeAdminAuthModal();
                 }
-                const detailModal = document.getElementById('pcDetailModal');
                 if (detailModal && !detailModal.classList.contains('hidden')) {
                     closeDetailModal();
-                }
-            }
-
-            // Navigazione immagini con frecce della tastiera mentre la scheda è aperta.
-            if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-                const detailModal = document.getElementById('pcDetailModal');
-                const target = e.target;
-                const isTyping = target && (
-                    ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName) || target.isContentEditable
-                );
-                const imageCount = activeModalPc && Array.isArray(activeModalPc.images)
-                    ? activeModalPc.images.length : 0;
-                if (detailModal && !detailModal.classList.contains('hidden') && !isTyping && imageCount > 1) {
-                    e.preventDefault();
-                    moveModalGallery(e.key === 'ArrowLeft' ? -1 : 1);
                 }
             }
         });
@@ -2309,34 +2559,24 @@ Continua soltanto se questa copia locale contiene i prezzi e le informazioni cor
             const images = Array.isArray(activeModalPc.images) && activeModalPc.images.length
                 ? activeModalPc.images
                 : ['https://placehold.co/800x500/1e293b/0ea5e9?text=Nessuna+Immagine'];
-            activeModalGalleryIndex = ((Number(index) || 0) % images.length + images.length) % images.length;
+            activeModalGalleryIndex = ((Number(index) % images.length) + images.length) % images.length;
 
-            // Aggiorna soltanto la galleria: non ricostruisce la scheda e non interrompe i video.
-            const mainImage = document.getElementById('modalMainImage');
-            if (mainImage) {
-                mainImage.src = images[activeModalGalleryIndex];
-                mainImage.alt = `${activeModalPc.title || 'PC'} - immagine ${activeModalGalleryIndex + 1}`;
-            }
-            const counter = document.getElementById('modalGalleryCounter');
-            if (counter) counter.textContent = `${activeModalGalleryIndex + 1} / ${images.length}`;
+            const imageEl = document.getElementById('modalMainImage');
+            if (imageEl) imageEl.src = images[activeModalGalleryIndex];
 
-            images.forEach((_, idx) => {
-                const thumb = document.getElementById(`modalGalleryThumb-${idx}`);
-                if (!thumb) return;
-                const isActive = idx === activeModalGalleryIndex;
-                thumb.classList.toggle('border-cyan-500', isActive);
-                thumb.classList.toggle('scale-105', isActive);
-                thumb.classList.toggle('border-slate-800', !isActive);
-                thumb.classList.toggle('opacity-60', !isActive);
-                thumb.setAttribute('aria-current', isActive ? 'true' : 'false');
+            const counterEl = document.getElementById('modalImageCounter');
+            if (counterEl) counterEl.textContent = `${activeModalGalleryIndex + 1} / ${images.length}`;
+
+            document.querySelectorAll('[data-modal-image-index]').forEach((button) => {
+                const active = Number(button.dataset.modalImageIndex) === activeModalGalleryIndex;
+                button.classList.toggle('border-cyan-400', active);
+                button.classList.toggle('ring-2', active);
+                button.classList.toggle('ring-cyan-400/30', active);
+                button.classList.toggle('border-slate-800', !active);
+                button.classList.toggle('opacity-60', !active);
+                button.classList.toggle('scale-105', active);
+                button.setAttribute('aria-current', active ? 'true' : 'false');
             });
-        }
-
-        function moveModalGallery(step) {
-            if (!activeModalPc) return;
-            const images = Array.isArray(activeModalPc.images) ? activeModalPc.images : [];
-            if (images.length <= 1) return;
-            setModalActiveGalleryIndex(activeModalGalleryIndex + step);
         }
 
         function renderModalContent() {
@@ -2428,27 +2668,27 @@ Continua soltanto se questa copia locale contiene i prezzi e le informazioni cor
                     <!-- Left Column: Interactive Image Gallery -->
                     <div class="lg:col-span-7 space-y-4">
                         <!-- Main Preview Image -->
-                        <div class="pc-detail-image-frame relative w-full bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 shadow-inner flex items-center justify-center group">
-                            <img id="modalMainImage" src="${escapeHtml(activeImg)}" alt="${escapeHtml(pc.title)} - immagine ${activeModalGalleryIndex + 1}" class="w-full h-full object-contain" onerror="this.src='https://placehold.co/800x500/1e293b/0ea5e9?text=Immagine+Non+Disponibile'">
+                        <div class="pc-detail-image-frame relative w-full bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 shadow-inner flex items-center justify-center group/modalgallery">
+                            <img id="modalMainImage" src="${escapeHtml(activeImg)}" alt="${escapeHtml(pc.title)}" class="w-full h-full object-contain" onerror="this.src='https://placehold.co/800x500/1e293b/0ea5e9?text=Immagine+Non+Disponibile'">
                             <span class="absolute top-3 left-3 z-10 px-3 py-1 rounded-full text-xs font-bold border ${badgeColor} backdrop-blur-md">
                                 ${escapeHtml(pc.status)}
                             </span>
                             ${images.length > 1 ? `
-                                <button type="button" onclick="moveModalGallery(-1)" aria-label="Mostra immagine precedente" title="Immagine precedente" class="absolute left-3 top-1/2 z-20 -translate-y-1/2 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-white/20 bg-slate-950/80 text-white shadow-xl backdrop-blur-md transition-all hover:scale-105 hover:border-cyan-400 hover:bg-cyan-500 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-cyan-400">
+                                <button type="button" onclick="event.stopPropagation(); setModalActiveGalleryIndex(activeModalGalleryIndex - 1)" aria-label="Immagine precedente" title="Immagine precedente" class="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-white/20 bg-slate-950/80 text-white shadow-xl backdrop-blur-md transition hover:bg-cyan-500 hover:text-slate-950 hover:border-cyan-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-300">
                                     <i class="fa-solid fa-chevron-left"></i>
                                 </button>
-                                <button type="button" onclick="moveModalGallery(1)" aria-label="Mostra immagine successiva" title="Immagine successiva" class="absolute right-3 top-1/2 z-20 -translate-y-1/2 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-white/20 bg-slate-950/80 text-white shadow-xl backdrop-blur-md transition-all hover:scale-105 hover:border-cyan-400 hover:bg-cyan-500 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-cyan-400">
+                                <button type="button" onclick="event.stopPropagation(); setModalActiveGalleryIndex(activeModalGalleryIndex + 1)" aria-label="Immagine successiva" title="Immagine successiva" class="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-white/20 bg-slate-950/80 text-white shadow-xl backdrop-blur-md transition hover:bg-cyan-500 hover:text-slate-950 hover:border-cyan-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-300">
                                     <i class="fa-solid fa-chevron-right"></i>
                                 </button>
-                                <span id="modalGalleryCounter" class="absolute bottom-3 right-3 z-10 rounded-full border border-white/15 bg-slate-950/85 px-3 py-1.5 text-xs font-bold text-white backdrop-blur-md">${activeModalGalleryIndex + 1} / ${images.length}</span>
+                                <span id="modalImageCounter" aria-live="polite" class="absolute bottom-3 right-3 z-10 rounded-full border border-white/15 bg-slate-950/85 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md">${activeModalGalleryIndex + 1} / ${images.length}</span>
                             ` : ''}
                         </div>
 
                         <!-- Thumbnails Row -->
                         ${images.length > 1 ? `
-                            <div class="flex items-center gap-2 overflow-x-auto pb-2" aria-label="Miniature immagini del PC">
+                            <div class="flex items-center gap-2 overflow-x-auto pb-2" aria-label="Seleziona un'immagine della galleria">
                                 ${images.map((img, idx) => `
-                                    <button id="modalGalleryThumb-${idx}" type="button" aria-label="Mostra immagine ${idx + 1}" aria-current="${idx === activeModalGalleryIndex ? 'true' : 'false'}" onclick="setModalActiveGalleryIndex(${idx})" class="relative w-20 h-16 flex-shrink-0 rounded-xl overflow-hidden border-2 transition-all ${idx === activeModalGalleryIndex ? 'border-cyan-500 scale-105' : 'border-slate-800 opacity-60 hover:opacity-100'} bg-slate-950">
+                                    <button type="button" data-modal-image-index="${idx}" aria-label="Mostra immagine ${idx + 1}" aria-current="${idx === activeModalGalleryIndex ? 'true' : 'false'}" onclick="setModalActiveGalleryIndex(${idx})" class="relative w-20 h-16 flex-shrink-0 rounded-xl overflow-hidden border-2 transition-all ${idx === activeModalGalleryIndex ? 'border-cyan-400 ring-2 ring-cyan-400/30 scale-105' : 'border-slate-800 opacity-60 hover:opacity-100'} bg-slate-950">
                                         <img src="${escapeHtml(img)}" alt="Miniatura ${idx + 1}" class="w-full h-full object-contain">
                                     </button>
                                 `).join('')}
