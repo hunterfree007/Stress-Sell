@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#080d18">
+    <meta name="theme-color" content="#171717">
     <meta name="description" content="Stress & Sell: PC assemblati, testati e pronti all'uso. Scopri le configurazioni disponibili e contattami per informazioni.">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%2306b6d4'/%3E%3Cstop offset='1' stop-color='%234f46e5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='15' fill='%230b1120'/%3E%3Crect x='5' y='5' width='54' height='54' rx='12' fill='url(%23g)'/%3E%3Crect x='15' y='15' width='34' height='24' rx='3' fill='none' stroke='white' stroke-width='3'/%3E%3Cpath d='M25 47h14M32 39v8' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
-    <title>Stress &amp; Sell | Prova grafica NZXT</title>
+    <title>Stress &amp; Sell | Prova grafica NZXT colorata</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -409,6 +409,143 @@
       }
       @media (min-width: 768px) and (max-width: 1023px) {
         body#appBody #pcGrid { grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
+      }
+    </style>
+
+
+    <!-- VARIANTE PIU COLORATA: stessa palette NZXT, meno bianco puro e piu superfici lilla/azzurre -->
+    <style id="stressSellNzxtColorfulVariant">
+      :root { color-scheme: light !important; }
+      body#appBody {
+        background-color: #eeedf5 !important;
+        background-image:
+          radial-gradient(ellipse at 6% 7%, rgba(179,143,230,.27), transparent 34rem),
+          radial-gradient(ellipse at 94% 23%, rgba(133,205,223,.22), transparent 32rem),
+          radial-gradient(ellipse at 48% 95%, rgba(197,255,155,.15), transparent 36rem),
+          linear-gradient(145deg,#f0edf6 0%,#e8edf3 48%,#f2eaf1 100%) !important;
+        background-attachment: fixed !important;
+      }
+      body#appBody main { position: relative; }
+      body#appBody main::before {
+        content: ""; position: absolute; z-index: -1; pointer-events: none;
+        top: 4rem; left: -5vw; width: 18rem; height: 18rem; border-radius: 50%;
+        background: rgba(183,151,230,.13); filter: blur(42px);
+      }
+      body#appBody header.sticky {
+        background: rgba(23,23,25,.97) !important;
+        border-bottom: 1px solid rgba(177,144,222,.42) !important;
+        box-shadow: 0 5px 22px rgba(45,30,70,.16), 0 1px 0 rgba(197,255,155,.12) !important;
+      }
+      body#appBody .brand-mark {
+        background: linear-gradient(140deg,#c5ff9b 0%,#a5edcf 48%,#c9b0f0 100%) !important;
+        box-shadow: 0 0 0 4px rgba(197,255,155,.08), 0 0 24px rgba(181,143,230,.25) !important;
+      }
+      body#appBody .hero-panel {
+        background:
+          radial-gradient(ellipse at 87% 12%,rgba(197,255,155,.42),transparent 20rem),
+          radial-gradient(ellipse at 72% 92%,rgba(176,137,227,.36),transparent 26rem),
+          linear-gradient(118deg,#e5dcf2 0%,#e2e9f0 48%,#deeee8 100%) !important;
+        border: 1px solid #cfc2e3 !important;
+        box-shadow: 0 16px 38px rgba(75,56,104,.09), inset 0 1px 0 rgba(255,255,255,.6) !important;
+      }
+      body#appBody .hero-panel::after {
+        opacity: .19 !important;
+        background-image: linear-gradient(rgba(118,85,162,.11) 1px,transparent 1px),linear-gradient(90deg,rgba(118,85,162,.11) 1px,transparent 1px) !important;
+      }
+      body#appBody .hero-panel [class~="bg-cyan-500/10"] {
+        background: #d8c6ef !important; border-color: #bda2df !important; color: #59377f !important;
+      }
+      body#appBody #heroTitleColor { background-image: linear-gradient(90deg,#7545ae 0%,#a65ec8 48%,#4f8792 100%) !important; }
+      body#appBody .filter-panel,
+      body#appBody .glass-card,
+      body#appBody .glass-card-light {
+        background: linear-gradient(120deg,rgba(231,225,242,.96),rgba(224,235,241,.96)) !important;
+        border-color: #d0c8df !important;
+        box-shadow: 0 8px 22px rgba(63,48,86,.065),inset 0 1px 0 rgba(255,255,255,.68) !important;
+      }
+      body#appBody input:not([type="checkbox"]):not([type="radio"]),
+      body#appBody select, body#appBody textarea {
+        background-color: #f6f3fa !important; border-color: #cfc5e0 !important;
+      }
+      body#appBody input:focus, body#appBody select:focus, body#appBody textarea:focus {
+        border-color: #9c6bce !important; box-shadow: 0 0 0 3px rgba(156,107,206,.2) !important;
+      }
+      body#appBody #pcGrid { gap: 22px !important; }
+      body#appBody .pc-card {
+        background: linear-gradient(145deg,#e7e0f2 0%,#e0e9f1 52%,#f0e5ef 100%) !important;
+        border-color: #d1c5e1 !important;
+        box-shadow: 0 8px 22px rgba(57,44,78,.075),inset 0 1px 0 rgba(255,255,255,.78) !important;
+      }
+      body#appBody .pc-card:hover {
+        border-color: #a785d0 !important;
+        box-shadow: 0 13px 30px rgba(96,62,133,.16),0 0 0 1px rgba(167,133,208,.12) !important;
+      }
+      body#appBody .pc-card-image {
+        background:
+          radial-gradient(ellipse at 30% 20%,rgba(201,174,239,.75),transparent 54%),
+          radial-gradient(ellipse at 80% 88%,rgba(168,224,218,.64),transparent 56%),
+          linear-gradient(135deg,#dcd7ed,#dfe8ef) !important;
+        border-bottom-color: #cfc5df !important;
+      }
+      body#appBody .pc-card [class~="bg-slate-950/60"],
+      body#appBody .pc-card [class~="bg-slate-950/70"] {
+        background: rgba(249,246,252,.82) !important; border-color: #d4c7e3 !important;
+      }
+      body#appBody .pc-card [class~="text-cyan-400"] { color: #7248a1 !important; }
+      body#appBody .pc-card .text-lg.font-extrabold { color: #2b2734 !important; }
+      body#appBody .pc-card .pc-card-image-frame { border-bottom-color: #d0c5e0 !important; }
+      body#appBody #emptyCatalogState {
+        background: linear-gradient(135deg,#e7e0f2,#e3edf1) !important; border-color: #cfc5df !important;
+      }
+      body#appBody [class~="from-cyan-500"][class~="to-indigo-600"] {
+        background-image: linear-gradient(100deg,#c5ff9b 0%,#d5fcae 55%,#d5c1ef 100%) !important;
+        color: #171717 !important; box-shadow: 0 5px 15px rgba(113,74,156,.12) !important;
+      }
+      body#appBody [class~="bg-cyan-500"],body#appBody [class~="bg-cyan-600"] {
+        background-color: #c5ff9b !important; color: #171717 !important;
+      }
+      body#appBody [class~="border-cyan-500"],
+      body#appBody [class~="border-cyan-500/30"],
+      body#appBody [class~="border-cyan-500/40"] { border-color: #bea7df !important; }
+      body#appBody #pcDetailModal > div,
+      body#appBody #adminAuthCard {
+        background: linear-gradient(145deg,#f0eaf7 0%,#e8eef4 58%,#e4f0e9 100%) !important;
+        border-color: #cab9df !important;
+      }
+      body#appBody #modalContent [class~="bg-slate-950"],
+      body#appBody #modalContent [class~="bg-slate-950/60"],
+      body#appBody #modalContent [class~="bg-slate-900"] { background: #e6e2ee !important; }
+      body#appBody #modalContent .pc-detail-image-frame {
+        background:
+          radial-gradient(ellipse at 25% 25%,rgba(196,166,235,.6),transparent 55%),
+          radial-gradient(ellipse at 80% 82%,rgba(161,219,212,.45),transparent 58%),#e2e4ee !important;
+        border-color: #cfc4df !important;
+      }
+      body#appBody #modalContent [data-modal-image-index] { background: #e2dced !important; }
+      body#appBody #modalContent [data-modal-image-index][aria-current="true"] {
+        border-color: #8658b4 !important; box-shadow: 0 0 0 2px rgba(134,88,180,.25) !important;
+      }
+      body#appBody #modalContent [aria-label="Immagine precedente"],
+      body#appBody #modalContent [aria-label="Immagine successiva"] {
+        background: rgba(241,235,249,.96) !important; border-color: #c7b4df !important; color: #352642 !important;
+      }
+      body#appBody #modalContent [aria-label="Immagine precedente"]:hover,
+      body#appBody #modalContent [aria-label="Immagine successiva"]:hover { background: #c5ff9b !important; }
+      body#appBody #adminView [class~="bg-slate-900"],
+      body#appBody #adminView [class~="bg-slate-900/80"],
+      body#appBody #adminView [class~="bg-slate-900/60"],
+      body#appBody #adminView [class~="bg-slate-950"],
+      body#appBody #adminView [class~="bg-slate-950/60"],
+      body#appBody #adminView [class~="bg-slate-800"] { background: #ebe6f3 !important; }
+      body#appBody #adminView [class~="border-slate-800"],
+      body#appBody #adminView [class~="border-slate-700"] { border-color: #d0c5df !important; }
+      body#appBody #adminView details,
+      body#appBody #adminView [role="tabpanel"] > div { box-shadow: 0 7px 20px rgba(63,48,86,.06); }
+      body#appBody #toastContainer [class~="bg-emerald-600"],
+      body#appBody #toastContainer [class~="bg-rose-600"] { color: #fff !important; }
+      @media (max-width: 767px) {
+        body#appBody .hero-panel { background: linear-gradient(150deg,#e5dcf2,#e0eaf0 62%,#dceee6) !important; }
+        body#appBody .pc-card { background: linear-gradient(160deg,#e8e1f3,#e1ebf2 70%,#f0e5ef) !important; }
       }
     </style>
 
