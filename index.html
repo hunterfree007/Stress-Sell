@@ -302,6 +302,19 @@
                 </div>
             </div>
 
+            <!-- Navigazione sezioni amministratore -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" role="tablist" aria-label="Sezioni amministratore">
+                <button id="adminListingsTab" type="button" role="tab" aria-selected="true" onclick="switchAdminWorkspace('listings')" class="rounded-xl border border-cyan-500/40 bg-cyan-500/10 px-4 py-3 text-left transition-colors">
+                    <span class="flex items-center gap-2 font-bold text-cyan-300"><i class="fa-solid fa-list-check"></i> Gestione annunci</span>
+                    <span class="mt-1 block text-xs text-slate-400">Crea, modifica o elimina i PC pubblicati.</span>
+                </button>
+                <button id="adminPreviewsTab" type="button" role="tab" aria-selected="false" onclick="switchAdminWorkspace('previews')" class="rounded-xl border border-slate-800 bg-slate-900/60 px-4 py-3 text-left transition-colors hover:border-indigo-500/40">
+                    <span class="flex items-center gap-2 font-bold text-slate-200"><i class="fa-solid fa-images text-indigo-300"></i> Anteprime homepage</span>
+                    <span class="mt-1 block text-xs text-slate-400">Personalizza copertina, titolo e quattro riquadri delle schede.</span>
+                </button>
+            </div>
+
+            <div id="adminListingsWorkspace" class="space-y-8">
             <!-- Testi e contatti del sito -->
             <details id="siteSettingsCard" class="bg-slate-900/80 rounded-2xl border border-slate-800">
                 <summary class="cursor-pointer select-none p-5 flex items-center gap-2 text-white font-bold">
@@ -590,6 +603,76 @@
                     </table>
                 </div>
             </div>
+            </div><!-- /adminListingsWorkspace -->
+
+            <!-- Schermata dedicata alla personalizzazione delle anteprime pubbliche -->
+            <section id="adminPreviewWorkspace" class="hidden space-y-6" role="tabpanel" aria-labelledby="adminPreviewsTab">
+                <div class="rounded-2xl border border-indigo-500/25 bg-gradient-to-r from-slate-900/95 to-indigo-950/25 p-5 sm:p-6">
+                    <div class="flex items-start gap-3">
+                        <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-indigo-500/15 text-indigo-300"><i class="fa-solid fa-images text-xl"></i></div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Gestione anteprime della homepage</h3>
+                            <p class="mt-1 max-w-3xl text-sm leading-relaxed text-slate-400">Scegli un annuncio e personalizza ciò che si vede nella sua scheda nella pagina iniziale. Puoi cambiare immagine di copertina, titolo mostrato e quattro riquadri tecnici, oppure nascondere la scheda dalla vetrina. Prezzo e scheda completa restano quelli dell'annuncio originale.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 gap-6 xl:grid-cols-2">
+                    <div class="space-y-5 rounded-2xl border border-slate-800 bg-slate-900/80 p-5 sm:p-6">
+                        <div>
+                            <label for="previewManagerListingSelect" class="mb-2 block text-xs font-bold uppercase tracking-wide text-slate-300">1. Seleziona l'annuncio da personalizzare</label>
+                            <select id="previewManagerListingSelect" onchange="loadHomepagePreviewControls(this.value)" class="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-3 text-sm text-white focus:border-cyan-500 focus:outline-none">
+                                <option value="">Caricamento annunci…</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="previewManagerTitle" class="mb-2 block text-xs font-bold uppercase tracking-wide text-slate-300">2. Titolo mostrato nella scheda</label>
+                            <input id="previewManagerTitle" type="text" maxlength="120" oninput="renderHomepagePreviewLive()" placeholder="Lascia vuoto per usare il titolo dell'annuncio" class="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-3 text-sm text-white placeholder-slate-500 focus:border-cyan-500 focus:outline-none">
+                            <p class="mt-1 text-[11px] text-slate-500">Questo titolo riguarda solo la scheda della homepage, non il titolo della scheda completa.</p>
+                        </div>
+
+                        <div>
+                            <label for="previewManagerImage" class="mb-2 block text-xs font-bold uppercase tracking-wide text-slate-300">3. Immagine di copertina della scheda</label>
+                            <select id="previewManagerImage" onchange="renderHomepagePreviewLive()" class="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-3 text-sm text-white focus:border-cyan-500 focus:outline-none">
+                                <option value="">Usa la prima immagine dell'annuncio</option>
+                            </select>
+                            <p class="mt-1 text-[11px] text-slate-500">La scelta cambia la copertina in homepage, senza riordinare né eliminare le foto della galleria completa.</p>
+                        </div>
+
+                        <label class="flex cursor-pointer items-start gap-3 rounded-xl border border-slate-800 bg-slate-950/60 p-3">
+                            <input id="previewManagerVisible" type="checkbox" checked onchange="renderHomepagePreviewLive()" class="mt-1 h-4 w-4 accent-cyan-400">
+                            <span><span class="block text-sm font-semibold text-slate-200">Mostra questa scheda nella homepage</span><span class="mt-0.5 block text-xs text-slate-500">Se disattivata, l'annuncio resta salvato nell'area admin ma non appare nella vetrina pubblica.</span></span>
+                        </label>
+
+                        <div class="border-t border-slate-800 pt-5">
+                            <h4 class="mb-2 flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-cyan-300"><i class="fa-solid fa-grip"></i> 4. Riquadri informativi</h4>
+                            <p class="mb-4 text-xs leading-relaxed text-slate-400">Imposta fino a quattro riquadri. Puoi usare le specifiche tecniche del PC oppure scrivere un valore personalizzato. Il valore del prezzo rimane sempre collegato al prezzo reale dell'annuncio.</p>
+                            <div id="previewManagerTilesContainer" class="grid grid-cols-1 gap-3"></div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2 border-t border-slate-800 pt-5">
+                            <button type="button" onclick="saveHomepagePreviewSettings()" class="inline-flex items-center gap-2 rounded-xl bg-cyan-500 px-4 py-3 text-sm font-bold text-slate-950 transition-colors hover:bg-cyan-400"><i class="fa-solid fa-cloud-arrow-up"></i> Salva anteprima</button>
+                            <button type="button" onclick="resetHomepagePreviewControls()" class="inline-flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-800 px-4 py-3 text-sm font-semibold text-slate-200 transition-colors hover:bg-slate-700"><i class="fa-solid fa-rotate-left"></i> Annulla modifiche</button>
+                            <button type="button" onclick="editSelectedListingFromPreview()" class="inline-flex items-center gap-2 rounded-xl border border-indigo-500/30 bg-indigo-500/10 px-4 py-3 text-sm font-semibold text-indigo-200 transition-colors hover:bg-indigo-500/20"><i class="fa-solid fa-pen-to-square"></i> Modifica annuncio completo</button>
+                        </div>
+                        <p class="text-[11px] leading-relaxed text-slate-500">Le modifiche saranno condivise solo se Firebase conferma il salvataggio. Se il collegamento online non funziona, il sito segnalerà l'errore e ripristinerà le impostazioni precedenti.</p>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between gap-3 px-1">
+                            <h4 class="font-bold text-slate-200">Anteprima in tempo reale</h4>
+                            <span class="rounded-full border border-indigo-500/25 bg-indigo-500/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-indigo-300">Solo visualizzazione</span>
+                        </div>
+                        <div id="homepagePreviewLive" class="rounded-3xl border border-dashed border-slate-700 bg-slate-900/50 p-4 sm:p-6">
+                            <div class="py-12 text-center text-sm text-slate-500"><i class="fa-solid fa-eye mb-2 block text-2xl"></i>Seleziona un annuncio per vederne l'anteprima.</div>
+                        </div>
+                        <div class="rounded-xl border border-slate-800 bg-slate-900/50 p-4 text-xs leading-relaxed text-slate-400">
+                            <i class="fa-solid fa-circle-info mr-1 text-cyan-400"></i> L'anteprima riproduce la scheda pubblica. Il formato della fotografia si adatta automaticamente allo schermo: verticale su smartphone e orizzontale su computer.
+                        </div>
+                    </div>
+                </div>
+            </section>
         </section>
 
     </main>
@@ -760,6 +843,9 @@
         let currentFormVideos = [];
         let currentFormCustomSpecs = [];
         let currentFormPreviewTiles = [];
+        let currentManagerPreviewTiles = [];
+        let currentPreviewManagerListingId = '';
+        let currentAdminWorkspace = 'listings';
 
         const DEFAULT_PREVIEW_TILES = [
             { source: 'cpu' }, { source: 'gpu' }, { source: 'ram' }, { source: 'storage' }
@@ -1346,6 +1432,30 @@ Continua soltanto se questa copia locale contiene i prezzi e le informazioni cor
             }
         }
 
+        function switchAdminWorkspace(workspace) {
+            if (!isUserAdmin()) { openAdminAuthModal(); return; }
+            currentAdminWorkspace = workspace === 'previews' ? 'previews' : 'listings';
+            const listingsWorkspace = document.getElementById('adminListingsWorkspace');
+            const previewWorkspace = document.getElementById('adminPreviewWorkspace');
+            const listingsTab = document.getElementById('adminListingsTab');
+            const previewsTab = document.getElementById('adminPreviewsTab');
+            if (listingsWorkspace) listingsWorkspace.classList.toggle('hidden', currentAdminWorkspace !== 'listings');
+            if (previewWorkspace) previewWorkspace.classList.toggle('hidden', currentAdminWorkspace !== 'previews');
+            if (listingsTab) {
+                listingsTab.setAttribute('aria-selected', String(currentAdminWorkspace === 'listings'));
+                listingsTab.className = 'rounded-xl border px-4 py-3 text-left transition-colors ' + (currentAdminWorkspace === 'listings' ? 'border-cyan-500/40 bg-cyan-500/10' : 'border-slate-800 bg-slate-900/60 hover:border-cyan-500/30');
+                const title = listingsTab.querySelector('span');
+                if (title) title.className = 'flex items-center gap-2 font-bold ' + (currentAdminWorkspace === 'listings' ? 'text-cyan-300' : 'text-slate-200');
+            }
+            if (previewsTab) {
+                previewsTab.setAttribute('aria-selected', String(currentAdminWorkspace === 'previews'));
+                previewsTab.className = 'rounded-xl border px-4 py-3 text-left transition-colors ' + (currentAdminWorkspace === 'previews' ? 'border-indigo-500/40 bg-indigo-500/10' : 'border-slate-800 bg-slate-900/60 hover:border-indigo-500/30');
+                const title = previewsTab.querySelector('span');
+                if (title) title.className = 'flex items-center gap-2 font-bold ' + (currentAdminWorkspace === 'previews' ? 'text-indigo-200' : 'text-slate-200');
+            }
+            if (currentAdminWorkspace === 'previews') renderHomepagePreviewManager();
+        }
+
         function switchView(viewName) {
             if (viewName === 'admin' && !isUserAdmin()) {
                 openAdminAuthModal();
@@ -1364,6 +1474,7 @@ Continua soltanto se questa copia locale contiene i prezzi e le informazioni cor
                 toggleBtnText.innerText = 'Torna alla Vetrina Pubblica';
                 toggleBtnIcon.className = 'fa-solid fa-store';
                 renderAdminTable();
+                switchAdminWorkspace(currentAdminWorkspace);
             } else {
                 if (!isUserAdmin()) isAdminAuthenticated = false;
                 adminView.classList.add('hidden');
@@ -1396,7 +1507,7 @@ Continua soltanto se questa copia locale contiene i prezzi e le informazioni cor
             const priceRange = document.getElementById('priceFilter').value;
             const sortBy = document.getElementById('sortBy').value;
 
-            return pcListings.filter(item => {
+            return pcListings.filter(item => item && item.showOnHomepage !== false).filter(item => {
                 // Search filter
                 const matchesSearch = !search || 
                     item.title.toLowerCase().includes(search) ||
@@ -1439,9 +1550,10 @@ Continua soltanto se questa copia locale contiene i prezzi e le informazioni cor
 
             emptyState.classList.add('hidden');
             grid.innerHTML = filtered.map(pc => {
-                const coverImage = pc.images && pc.images.length > 0 
+                const coverImage = pc.previewImage || (pc.images && pc.images.length > 0 
                     ? pc.images[0] 
-                    : 'https://placehold.co/600x400/1e293b/0ea5e9?text=Nessuna+Immagine';
+                    : 'https://placehold.co/600x400/1e293b/0ea5e9?text=Nessuna+Immagine');
+                const previewTitle = String(pc.previewTitle || '').trim() || pc.title;
 
                 const badgeColor = pc.status === 'Nuovo' 
                     ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' 
@@ -1453,7 +1565,7 @@ Continua soltanto se questa copia locale contiene i prezzi e le informazioni cor
                     <div class="pc-card glass-card rounded-3xl overflow-hidden hover:border-cyan-500/50 transition-all duration-300 flex flex-col group hover:-translate-y-1 shadow-lg">
                         <!-- Card Image Header -->
                         <div class="pc-card-image pc-card-image-frame relative bg-slate-950 overflow-hidden cursor-pointer" onclick="openDetailModal('${pc.id}')">
-                            <img src="${escapeHtml(coverImage)}" alt="${escapeHtml(pc.title)}" class="w-full h-full object-contain" onerror="this.src='https://placehold.co/600x400/1e293b/0ea5e9?text=Immagine+Non+Disponibile'">
+                            <img src="${escapeHtml(coverImage)}" alt="${escapeHtml(previewTitle)}" class="w-full h-full object-contain" onerror="this.src='https://placehold.co/600x400/1e293b/0ea5e9?text=Immagine+Non+Disponibile'">
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80"></div>
                             
                             <!-- Badges -->
@@ -1474,7 +1586,7 @@ Continua soltanto se questa copia locale contiene i prezzi e le informazioni cor
                         <div class="p-4 flex-1 flex flex-col justify-between gap-3">
                             <div class="space-y-3">
                                 <h3 class="font-bold text-lg text-white group-hover:text-cyan-400 transition-colors line-clamp-1 cursor-pointer" onclick="openDetailModal('${pc.id}')">
-                                    ${escapeHtml(pc.title)}
+                                    ${escapeHtml(previewTitle)}
                                 </h3>
 
                                 <!-- Riquadri anteprima configurabili dal pannello amministratore -->
@@ -1571,6 +1683,7 @@ Continua soltanto se questa copia locale contiene i prezzi e le informazioni cor
                 return;
             }
 
+            switchAdminWorkspace('listings');
             document.getElementById('editPcId').value = '';
             document.getElementById('pcForm').reset();
             document.getElementById('formTitle').innerHTML = `<i class="fa-solid fa-plus text-cyan-400"></i> Aggiungi Nuovo Computer`;
@@ -1600,6 +1713,7 @@ Continua soltanto se questa copia locale contiene i prezzi e le informazioni cor
                 return;
             }
 
+            switchAdminWorkspace('listings');
             const pc = pcListings.find(item => item.id === pcId);
             if (!pc) return;
 
@@ -1647,6 +1761,162 @@ Continua soltanto se questa copia locale contiene i prezzi e le informazioni cor
                 const synced = await saveListingsToStorage();
                 showToast(synced ? 'Annuncio eliminato e aggiornato online.' : 'Eliminazione solo locale: non è stata pubblicata. Controlla la connessione Firebase.', synced ? 'success' : 'error');
             }
+        }
+
+        /* ========================================================
+           DEDICATED HOMEPAGE PREVIEW MANAGER
+        ======================================================== */
+        function renderHomepagePreviewManager() {
+            const select = document.getElementById('previewManagerListingSelect');
+            if (!select) return;
+            const previousId = currentPreviewManagerListingId || select.value;
+            select.innerHTML = pcListings.length
+                ? pcListings.map(pc => `<option value="${escapeHtml(pc.id)}">${escapeHtml(pc.title || 'Annuncio senza titolo')} — € ${Number(pc.price || 0).toLocaleString('it-IT')}</option>`).join('')
+                : '<option value="">Nessun annuncio disponibile</option>';
+            if (!pcListings.length) {
+                currentPreviewManagerListingId = '';
+                ['previewManagerTitle','previewManagerImage'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+                const visible = document.getElementById('previewManagerVisible'); if (visible) visible.checked = false;
+                const tiles = document.getElementById('previewManagerTilesContainer'); if (tiles) tiles.innerHTML = '<p class="text-sm text-slate-500">Crea prima un annuncio nella sezione “Gestione annunci”.</p>';
+                const live = document.getElementById('homepagePreviewLive'); if (live) live.innerHTML = '<div class="py-12 text-center text-sm text-slate-500"><i class="fa-solid fa-box-open mb-2 block text-2xl"></i>Nessun annuncio da mostrare.</div>';
+                return;
+            }
+            currentPreviewManagerListingId = pcListings.some(pc => pc.id === previousId) ? previousId : pcListings[0].id;
+            select.value = currentPreviewManagerListingId;
+            loadHomepagePreviewControls(currentPreviewManagerListingId);
+        }
+
+        function loadHomepagePreviewControls(pcId) {
+            const pc = pcListings.find(item => item.id === pcId);
+            if (!pc) return;
+            currentPreviewManagerListingId = pcId;
+            const titleInput = document.getElementById('previewManagerTitle');
+            const imageSelect = document.getElementById('previewManagerImage');
+            const visibleInput = document.getElementById('previewManagerVisible');
+            if (titleInput) titleInput.value = pc.previewTitle || '';
+            if (visibleInput) visibleInput.checked = pc.showOnHomepage !== false;
+            if (imageSelect) {
+                const images = Array.isArray(pc.images) ? pc.images.filter(src => typeof src === 'string' && src.trim()) : [];
+                const opts = ['<option value="">Usa la prima immagine dell\'annuncio</option>'];
+                images.forEach((src, index) => {
+                    const label = `Foto ${index + 1}${index === 0 ? ' (copertina originale)' : ''}`;
+                    opts.push(`<option value="${escapeHtml(src)}">${label}</option>`);
+                });
+                const currentImage = String(pc.previewImage || '');
+                if (currentImage && !images.includes(currentImage)) opts.push(`<option value="${escapeHtml(currentImage)}">Copertina personalizzata attuale</option>`);
+                imageSelect.innerHTML = opts.join('');
+                imageSelect.value = currentImage;
+                if (imageSelect.value !== currentImage) imageSelect.value = '';
+                imageSelect.disabled = images.length === 0 && !currentImage;
+            }
+            currentManagerPreviewTiles = normalizePreviewTiles(pc.previewTiles);
+            renderManagerPreviewTileFields();
+            renderHomepagePreviewLive();
+        }
+
+        function renderManagerPreviewTileFields() {
+            const container = document.getElementById('previewManagerTilesContainer');
+            if (!container) return;
+            currentManagerPreviewTiles = normalizePreviewTiles(currentManagerPreviewTiles);
+            container.innerHTML = currentManagerPreviewTiles.map((tile, index) => {
+                const options = PREVIEW_TILE_OPTIONS.map(option => `<option value="${option.source}" ${option.source === tile.source ? 'selected' : ''}>${escapeHtml(option.label)}</option>`).join('');
+                const isCustom = tile.source === 'custom';
+                return `
+                    <div class="rounded-xl border border-slate-800 bg-slate-950/70 p-3 space-y-2">
+                        <label class="block text-[11px] font-bold uppercase tracking-wide text-slate-400">Riquadro ${index + 1}</label>
+                        <select aria-label="Informazione del riquadro ${index + 1}" onchange="updateManagerPreviewTileSource(${index}, this.value)" class="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-xs text-white focus:border-cyan-500 focus:outline-none">${options}</select>
+                        <div class="${isCustom ? '' : 'hidden'} grid grid-cols-1 gap-2 sm:grid-cols-2">
+                            <input type="text" maxlength="28" value="${escapeHtml(tile.label || '')}" placeholder="Etichetta (es. Benchmark)" oninput="updateManagerPreviewTileCustom(${index}, 'label', this.value)" class="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-xs text-white focus:border-cyan-500 focus:outline-none">
+                            <input type="text" maxlength="90" value="${escapeHtml(tile.value || '')}" placeholder="Valore (es. 120 FPS)" oninput="updateManagerPreviewTileCustom(${index}, 'value', this.value)" class="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-xs text-white focus:border-cyan-500 focus:outline-none">
+                        </div>
+                        <p class="text-[10px] text-slate-500">${isCustom ? 'Riquadro libero: scrivi etichetta e valore.' : 'Valore ricavato automaticamente dalle specifiche dell’annuncio.'}</p>
+                    </div>`;
+            }).join('');
+        }
+
+        function updateManagerPreviewTileSource(index, source) {
+            if (!PREVIEW_TILE_OPTIONS.some(option => option.source === source)) return;
+            currentManagerPreviewTiles = normalizePreviewTiles(currentManagerPreviewTiles);
+            currentManagerPreviewTiles[index] = source === 'custom' ? { source: 'custom', label: '', value: '' } : { source };
+            renderManagerPreviewTileFields();
+            renderHomepagePreviewLive();
+        }
+
+        function updateManagerPreviewTileCustom(index, field, value) {
+            currentManagerPreviewTiles = normalizePreviewTiles(currentManagerPreviewTiles);
+            if (!currentManagerPreviewTiles[index] || currentManagerPreviewTiles[index].source !== 'custom') return;
+            if (field === 'label' || field === 'value') currentManagerPreviewTiles[index][field] = value;
+            renderHomepagePreviewLive();
+        }
+
+        function renderHomepagePreviewLive() {
+            const container = document.getElementById('homepagePreviewLive');
+            if (!container) return;
+            const pc = pcListings.find(item => item.id === currentPreviewManagerListingId);
+            if (!pc) {
+                container.innerHTML = '<div class="py-12 text-center text-sm text-slate-500">Seleziona un annuncio per vederne l’anteprima.</div>';
+                return;
+            }
+            const titleInput = document.getElementById('previewManagerTitle');
+            const imageSelect = document.getElementById('previewManagerImage');
+            const visibleInput = document.getElementById('previewManagerVisible');
+            const previewTitle = String(titleInput && titleInput.value || '').trim() || pc.title;
+            const image = String(imageSelect && imageSelect.value || '').trim() || (pc.images && pc.images[0]) || 'https://placehold.co/600x400/1e293b/0ea5e9?text=Nessuna+Immagine';
+            const visible = !visibleInput || visibleInput.checked;
+            const badgeColor = pc.status === 'Nuovo' ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' : pc.status === 'Ricondizionato' ? 'bg-purple-500/10 text-purple-400 border-purple-500/30' : 'bg-amber-500/10 text-amber-400 border-amber-500/30';
+            const tiles = getPreviewTilesForListing({ ...pc, previewTiles: currentManagerPreviewTiles });
+            container.innerHTML = `
+                ${!visible ? '<div class="mb-3 rounded-lg border border-amber-500/30 bg-amber-500/10 p-3 text-xs font-semibold text-amber-200"><i class="fa-solid fa-eye-slash mr-1"></i> Questa scheda è impostata come nascosta dalla homepage.</div>' : ''}
+                <div class="mx-auto max-w-sm overflow-hidden rounded-3xl border border-slate-800 bg-slate-950 shadow-xl ${visible ? '' : 'opacity-50'}">
+                    <div class="pc-card-image pc-card-image-frame relative overflow-hidden bg-slate-950">
+                        <img src="${escapeHtml(image)}" alt="${escapeHtml(previewTitle)}" class="h-full w-full object-contain" onerror="this.src='https://placehold.co/600x400/1e293b/0ea5e9?text=Immagine+Non+Disponibile'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80"></div>
+                        <div class="absolute left-3 top-3"><span class="rounded-full border px-2.5 py-1 text-xs font-bold backdrop-blur-md ${badgeColor}">${escapeHtml(pc.status || 'Annuncio')}</span></div>
+                        <div class="absolute bottom-3 right-3 flex items-center gap-2 rounded-full border border-slate-800 bg-slate-950/70 px-2.5 py-1 text-xs font-medium text-slate-300 backdrop-blur-md"><span><i class="fa-solid fa-image text-cyan-400"></i> ${(pc.images || []).length}</span>${pc.videos && pc.videos.length ? `<span><i class="fa-solid fa-video text-indigo-400"></i> ${pc.videos.length}</span>` : ''}</div>
+                    </div>
+                    <div class="flex flex-col gap-3 p-4">
+                        <h3 class="line-clamp-2 min-h-[3.5rem] text-lg font-bold text-white">${escapeHtml(previewTitle)}</h3>
+                        <div class="grid grid-cols-2 gap-2">${tiles.map(tile => `<div class="min-w-0 rounded-xl border border-slate-800/70 bg-slate-900/70 px-2.5 py-2" title="${escapeHtml(tile.rawValue || tile.value)}"><div class="flex items-center gap-1.5 text-[10px] font-semibold text-slate-500"><i class="fa-solid ${tile.icon} ${tile.color}"></i> ${escapeHtml(tile.label)}</div><div class="mt-0.5 truncate text-xs font-medium text-slate-200">${escapeHtml(tile.value)}</div></div>`).join('')}</div>
+                        <div class="flex items-center justify-between border-t border-slate-800/80 pt-3"><span class="text-lg font-extrabold text-cyan-400">€ ${Number(pc.price || 0).toLocaleString('it-IT')}</span><span class="text-[11px] font-semibold text-slate-400">Scheda completa <i class="fa-solid fa-arrow-right text-[9px]"></i></span></div>
+                    </div>
+                </div>`;
+        }
+
+        async function saveHomepagePreviewSettings() {
+            if (!isUserAdmin()) { openAdminAuthModal(); return; }
+            const index = pcListings.findIndex(item => item.id === currentPreviewManagerListingId);
+            if (index < 0) { showToast('Seleziona prima un annuncio da modificare.', 'error'); return; }
+            if (!firebaseDatabase || !cloudDataInitialized) { showToast('Firebase non è pronto: anteprima non salvata online. Verifica lo stato nel pannello.', 'error'); return; }
+            const original = JSON.parse(JSON.stringify(pcListings[index]));
+            const title = String(document.getElementById('previewManagerTitle').value || '').trim();
+            const image = String(document.getElementById('previewManagerImage').value || '').trim();
+            const visible = document.getElementById('previewManagerVisible').checked;
+            const previewTiles = normalizePreviewTiles(currentManagerPreviewTiles);
+            pcListings[index] = { ...pcListings[index], previewTitle: title, previewImage: image, showOnHomepage: visible, previewTiles, updatedAt: new Date().toISOString() };
+            const synced = await saveListingsToStorage();
+            if (!synced) {
+                pcListings[index] = original;
+                writeLocalCache(STORAGE_KEY, pcListings);
+                renderCatalog();
+                renderAdminTable();
+                loadHomepagePreviewControls(currentPreviewManagerListingId);
+                showToast('Anteprima NON salvata online. Nessuna modifica locale è stata mantenuta.', 'error');
+                return;
+            }
+            renderCatalog();
+            renderAdminTable();
+            loadHomepagePreviewControls(currentPreviewManagerListingId);
+            showToast('Anteprima salvata e sincronizzata su Firebase.', 'success');
+        }
+
+        function resetHomepagePreviewControls() {
+            if (!isUserAdmin()) { openAdminAuthModal(); return; }
+            loadHomepagePreviewControls(currentPreviewManagerListingId);
+        }
+
+        function editSelectedListingFromPreview() {
+            if (!currentPreviewManagerListingId) return;
+            editListing(currentPreviewManagerListingId);
         }
 
         /* ========================================================
