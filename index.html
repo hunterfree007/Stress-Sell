@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="it" class="dark">
+<html lang="it" class="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#101827">
     <meta name="description" content="Stress & Sell: PC assemblati, testati e pronti all'uso. Scopri le configurazioni disponibili e contattami per informazioni.">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%2306b6d4'/%3E%3Cstop offset='1' stop-color='%234f46e5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='15' fill='%230b1120'/%3E%3Crect x='5' y='5' width='54' height='54' rx='12' fill='url(%23g)'/%3E%3Crect x='15' y='15' width='34' height='24' rx='3' fill='none' stroke='white' stroke-width='3'/%3E%3Cpath d='M25 47h14M32 39v8' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
-    <title>Stress &amp; Sell | Prova grafica blu</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%23C7A76C'/%3E%3Cstop offset='1' stop-color='%23343A40'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='15' fill='%231d1e20'/%3E%3Crect x='5' y='5' width='54' height='54' rx='12' fill='url(%23g)'/%3E%3Crect x='15' y='15' width='34' height='24' rx='3' fill='none' stroke='white' stroke-width='3'/%3E%3Cpath d='M25 47h14M32 39v8' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+    <title>Stress &amp; Sell | Prova Premium Hardware</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -169,103 +169,172 @@
         }
     </style>
 
-    <!-- PROVA GRAFICA NZXT: palette chiara, header nero, card perla, accenti lilla e lime. Solo presentazione; logica annunci/admin invariata. -->
-
-
-    <!-- VARIANTE PIU COLORATA: stessa palette NZXT, meno bianco puro e piu superfici lilla/azzurre -->
-
-\n    <!-- PALETTE BREUNOR-STYLE: prugna scuro, magenta, arancio e giallo neon. La struttura e la logica del sito restano invariate. -->
-
-
-    <!-- PROVA GRAFICA VGINFORMATICA: blu tech, fondi ghiaccio, card chiare e badge disponibilita verdi -->
-
-
-    <!-- TEMA VGI: header blu notte separato dal catalogo chiaro. Tutti gli stili sono circoscritti ai rispettivi componenti. -->
-    <style id="stressSellVgiThemeClean">
-      :root { color-scheme: light; }
-      body#appBody {
-        background: #f1f4f9 !important;
-        background-image: radial-gradient(ellipse at 8% 0%, rgba(26,135,199,.075), transparent 34rem), linear-gradient(180deg,#f2f5fa 0%,#eaf0f7 100%) !important;
-        background-attachment: fixed !important;
-        color: #172334 !important;
+    <!-- PROVA GRAFICA PREMIUM HARDWARE: grafite, avorio e oro satinato. La logica del sito resta invariata. -->
+    <style id="stressSellPremiumHardwareTheme">
+      :root {
+        color-scheme: light;
+        --ss-bg: #e9e5dd;
+        --ss-surface: #f8f6f1;
+        --ss-surface-alt: #eee8de;
+        --ss-card: #f7f4ed;
+        --ss-card-hover: #fbf9f4;
+        --ss-text: #262420;
+        --ss-muted: #69645b;
+        --ss-subtle: #898174;
+        --ss-border: #d8d0c2;
+        --ss-input: #fffdf8;
+        --ss-image: #fffdf9;
+        --ss-accent: #c7a76c;
+        --ss-accent-hover: #d8bb83;
+        --ss-accent-dark: #806437;
+        --ss-accent-soft: #f1e7d2;
+        --ss-accent-border: #ddc89f;
+        --ss-shadow: rgba(48, 42, 32, .08);
+        --ss-success: #26764b;
+        --ss-success-bg: #e5f2e7;
+        --ss-danger: #b53e46;
+        --ss-danger-bg: #fff0ef;
+        --ss-header: #1d1e20;
+        --ss-header-text: #f6f1e7;
       }
-      body#appBody ::selection { background:#c5e6fa; color:#0c2840; }
-      body#appBody main { max-width:1320px !important; }
+      html.dark {
+        color-scheme: dark;
+        --ss-bg: #191918;
+        --ss-surface: #242321;
+        --ss-surface-alt: #302d28;
+        --ss-card: #252421;
+        --ss-card-hover: #2c2a25;
+        --ss-text: #f1ece3;
+        --ss-muted: #beb6a8;
+        --ss-subtle: #958b7b;
+        --ss-border: #494236;
+        --ss-input: #252420;
+        --ss-image: #20201e;
+        --ss-accent: #c7a76c;
+        --ss-accent-hover: #ddc28b;
+        --ss-accent-dark: #e0c58d;
+        --ss-accent-soft: #3b3325;
+        --ss-accent-border: #725d38;
+        --ss-shadow: rgba(0, 0, 0, .24);
+        --ss-success: #85c89c;
+        --ss-success-bg: #203b2a;
+        --ss-danger: #f19aa0;
+        --ss-danger-bg: #482528;
+        --ss-header: #121212;
+        --ss-header-text: #f6f1e7;
+      }
 
-      /* HEADER: il blu notte e il testo chiaro vengono applicati solo alla barra superiore. */
+      body#appBody {
+        background-color: var(--ss-bg) !important;
+        background-image:
+          radial-gradient(ellipse at 7% 0%, rgba(199,167,108,.12), transparent 34rem),
+          radial-gradient(ellipse at 95% 22%, rgba(199,167,108,.055), transparent 30rem),
+          linear-gradient(180deg, var(--ss-bg) 0%, var(--ss-bg) 100%) !important;
+        background-attachment: fixed !important;
+        color: var(--ss-text) !important;
+        transition: background-color .2s ease, color .2s ease;
+      }
+      body#appBody main { max-width: 1320px !important; }
+      body#appBody ::selection { background: var(--ss-accent-soft); color: var(--ss-text); }
+      body#appBody ::-webkit-scrollbar-track { background: var(--ss-surface-alt); }
+      body#appBody ::-webkit-scrollbar-thumb { background: #b7a98e; border-radius: 8px; }
+      body#appBody ::-webkit-scrollbar-thumb:hover { background: var(--ss-accent-dark); }
+
+      /* HEADER: graphite scuro; il suo colore resta confinato alla barra superiore. */
       body#appBody header.sticky {
-        background:#101827 !important;
-        color:#f7fbff !important;
-        border-bottom:1px solid #26364b !important;
-        box-shadow:0 4px 18px rgba(17,35,57,.14) !important;
-        backdrop-filter:none !important;
+        position: sticky;
+        background: var(--ss-header) !important;
+        color: var(--ss-header-text) !important;
+        border-bottom: 1px solid rgba(199,167,108,.32) !important;
+        box-shadow: 0 5px 20px rgba(0,0,0,.13) !important;
+        backdrop-filter: none !important;
       }
       body#appBody header.sticky::before {
-        content:""; position:absolute; inset:0 0 auto; height:3px;
-        background:linear-gradient(90deg,#075f9e,#11a3d9,#56b5e9);
-        pointer-events:none;
+        content: ""; position: absolute; inset: 0 0 auto; height: 2px;
+        background: linear-gradient(90deg, transparent, #c7a76c, #ead7ad, #c7a76c, transparent);
+        pointer-events: none;
       }
       body#appBody header [class~="text-white"],
       body#appBody header [class~="text-slate-100"],
       body#appBody header [class~="text-slate-200"],
-      body#appBody header [class~="text-slate-300"] { color:#f5f8fc !important; }
+      body#appBody header [class~="text-slate-300"] { color: var(--ss-header-text) !important; }
       body#appBody header [class~="text-slate-400"],
-      body#appBody header [class~="text-slate-500"] { color:#bdc9d7 !important; }
-      body#appBody header [class~="text-cyan-400"] { color:#29b4ea !important; }
-      body#appBody header .bg-clip-text { background-image:linear-gradient(90deg,#f7fbff,#9adcf8) !important; }
+      body#appBody header [class~="text-slate-500"] { color: #c5bfb3 !important; }
+      body#appBody header [class~="text-cyan-400"],
+      body#appBody header [class~="text-indigo-400"] { color: var(--ss-accent) !important; }
+      body#appBody header .bg-clip-text {
+        background-image: linear-gradient(90deg, #f7f2e9, #dfc58f, #c7a76c) !important;
+      }
       body#appBody header .brand-mark {
-        background:linear-gradient(140deg,#087fbd,#18539a) !important;
-        color:#fff !important; border:1px solid rgba(255,255,255,.18) !important;
-        box-shadow:0 4px 14px rgba(8,127,189,.24) !important;
+        background: linear-gradient(145deg, #e0c58e, #b28f52) !important;
+        color: #211e18 !important; border: 1px solid rgba(255,255,255,.16) !important;
+        box-shadow: 0 4px 15px rgba(199,167,108,.18) !important;
       }
+      body#appBody header .brand-mark [class~="text-white"] { color: #211e18 !important; }
       body#appBody #viewToggleBtn {
-        color:#fff !important; background:linear-gradient(100deg,#087fbd,#1260a2) !important;
-        border:1px solid #168bc7 !important; box-shadow:0 5px 16px rgba(8,112,173,.22) !important;
+        color: #211e18 !important;
+        background: linear-gradient(110deg, #c7a76c, #dfc58f) !important;
+        border: 1px solid #c7a76c !important;
+        box-shadow: 0 4px 14px rgba(199,167,108,.12) !important;
       }
+      body#appBody #viewToggleBtn:hover { background: #dfc58f !important; }
       body#appBody header button[onclick="toggleTheme()"] {
-        background:#1c293b !important; border-color:#35465c !important; color:#f5f8fc !important;
+        background: #2c2b29 !important; border-color: #514a3e !important;
+        color: var(--ss-accent) !important; box-shadow: none !important;
       }
+      body#appBody header #themeIcon { color: var(--ss-accent) !important; }
 
-      /* CONTENUTO PUBBLICO: sfondo e testi neutri, senza riutilizzare il fondo dell'header. */
-      body#appBody #catalogView { color:#172334 !important; }
+      /* COLORI GENERALI DEL CONTENUTO PUBBLICO: carbone e grigi caldi, senza ereditare l'header. */
+      body#appBody #catalogView { color: var(--ss-text) !important; }
       body#appBody #catalogView [class~="text-white"],
-      body#appBody #catalogView [class~="text-slate-100"] { color:#172334 !important; }
-      body#appBody #catalogView [class~="text-slate-200"] { color:#26384c !important; }
-      body#appBody #catalogView [class~="text-slate-300"] { color:#40536a !important; }
-      body#appBody #catalogView [class~="text-slate-400"] { color:#607186 !important; }
-      body#appBody #catalogView [class~="text-slate-500"] { color:#78879a !important; }
-      body#appBody #catalogView [class~="text-slate-600"] { color:#8997a8 !important; }
+      body#appBody #catalogView [class~="text-slate-100"] { color: var(--ss-text) !important; }
+      body#appBody #catalogView [class~="text-slate-200"],
+      body#appBody #catalogView [class~="text-slate-300"] { color: var(--ss-text) !important; }
+      body#appBody #catalogView [class~="text-slate-400"] { color: var(--ss-muted) !important; }
+      body#appBody #catalogView [class~="text-slate-500"],
+      body#appBody #catalogView [class~="text-slate-600"] { color: var(--ss-subtle) !important; }
       body#appBody #catalogView [class~="text-cyan-400"],
       body#appBody #catalogView [class~="text-cyan-300"],
       body#appBody #catalogView [class~="text-indigo-300"],
-      body#appBody #catalogView [class~="text-indigo-400"] { color:#087fbd !important; }
-      body#appBody #catalogView [class~="text-emerald-400"] { color:#16814a !important; }
-      body#appBody #catalogView [class~="text-amber-400"] { color:#a66c0b !important; }
+      body#appBody #catalogView [class~="text-indigo-400"] { color: var(--ss-accent-dark) !important; }
+      body#appBody #catalogView [class~="text-emerald-400"] { color: var(--ss-success) !important; }
+      body#appBody #catalogView [class~="text-amber-400"] { color: var(--ss-accent-dark) !important; }
 
-      /* HERO: azzurro ghiaccio, distinto dalla barra di navigazione. */
+      /* HERO: avorio caldo e accento oro discreto. */
       body#appBody .hero-panel {
-        background:linear-gradient(115deg,#ffffff 0%,#e8f3fb 67%,#dcecf7 100%) !important;
-        color:#172334 !important; border:1px solid #cdddeb !important;
-        border-radius:12px !important; box-shadow:0 10px 28px rgba(24,57,88,.06) !important;
+        background:
+          radial-gradient(ellipse at 90% 8%, rgba(199,167,108,.18), transparent 24rem),
+          linear-gradient(120deg, var(--ss-surface) 0%, var(--ss-surface-alt) 100%) !important;
+        color: var(--ss-text) !important;
+        border: 1px solid var(--ss-border) !important;
+        border-radius: 14px !important;
+        box-shadow: 0 12px 32px var(--ss-shadow), inset 0 1px 0 rgba(255,255,255,.45) !important;
       }
       body#appBody .hero-panel::after {
-        opacity:.22 !important;
-        background-image:linear-gradient(rgba(8,127,189,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(8,127,189,.06) 1px,transparent 1px) !important;
+        opacity: .12 !important;
+        background-image:
+          linear-gradient(rgba(128,100,55,.08) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(128,100,55,.08) 1px, transparent 1px) !important;
       }
-      body#appBody .hero-panel .text-white { color:#152b43 !important; }
+      body#appBody .hero-panel .text-white { color: var(--ss-text) !important; }
       body#appBody .hero-panel [class~="text-slate-400"],
-      body#appBody .hero-panel [class~="text-slate-500"] { color:#5b6c80 !important; }
+      body#appBody .hero-panel [class~="text-slate-500"] { color: var(--ss-muted) !important; }
       body#appBody .hero-panel [class~="bg-cyan-500/10"] {
-        background:#d9effc !important; border-color:#b7def4 !important; color:#066da7 !important;
+        background: var(--ss-accent-soft) !important; border-color: var(--ss-accent-border) !important;
+        color: var(--ss-accent-dark) !important;
       }
-      body#appBody #heroTitleColor { background-image:linear-gradient(90deg,#087fbd,#13a3d9) !important; }
+      body#appBody #heroTitleColor {
+        background-image: linear-gradient(90deg, var(--ss-accent-dark), var(--ss-accent)) !important;
+      }
 
-      /* RICERCA E FILTRI: pannelli ghiaccio, non blu notte. */
+      /* RICERCA E FILTRI: superfici avorio, campi puliti. */
       body#appBody .filter-panel,
       body#appBody .glass-card,
       body#appBody .glass-card-light {
-        background:#f9fbfe !important; border:1px solid #d8e0e9 !important;
-        box-shadow:0 4px 15px rgba(20,47,76,.045) !important; backdrop-filter:none !important;
+        background: var(--ss-surface) !important;
+        border: 1px solid var(--ss-border) !important;
+        box-shadow: 0 5px 18px var(--ss-shadow) !important;
+        backdrop-filter: none !important;
       }
       body#appBody #catalogView input:not([type="checkbox"]):not([type="radio"]),
       body#appBody #catalogView select,
@@ -273,245 +342,278 @@
       body#appBody #adminView input:not([type="checkbox"]):not([type="radio"]),
       body#appBody #adminView select,
       body#appBody #adminView textarea {
-        background:#fff !important; color:#172334 !important; border-color:#cbd6e2 !important;
+        background: var(--ss-input) !important;
+        color: var(--ss-text) !important;
+        border-color: var(--ss-border) !important;
       }
-      body#appBody input::placeholder, body#appBody textarea::placeholder { color:#8493a4 !important; }
-      body#appBody input:focus, body#appBody select:focus, body#appBody textarea:focus {
-        border-color:#168bc7 !important; box-shadow:0 0 0 3px rgba(22,139,199,.14) !important;
+      body#appBody input::placeholder,
+      body#appBody textarea::placeholder { color: var(--ss-subtle) !important; }
+      body#appBody input:focus,
+      body#appBody select:focus,
+      body#appBody textarea:focus {
+        border-color: var(--ss-accent) !important;
+        box-shadow: 0 0 0 3px rgba(199,167,108,.18) !important;
       }
+      body#appBody input[type="checkbox"] { accent-color: var(--ss-accent-dark); }
 
-      /* ANNUNCI: card grigio perla/bianco. Il fondo dell'header non viene ereditato. */
+      /* CARD ANNUNCI: avorio/bianco con immagine neutra e oro solo come dettaglio. */
       body#appBody #pcGrid {
-        grid-template-columns:repeat(3,minmax(0,1fr)) !important;
-        gap:18px !important; max-width:none !important; margin-inline:auto !important;
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 20px !important; max-width: none !important; margin-inline: auto !important;
       }
       body#appBody #pcGrid .pc-card {
-        background:#f9fafc !important; color:#172334 !important;
-        border:1px solid #d5dde7 !important; border-radius:10px !important;
-        box-shadow:0 3px 12px rgba(20,47,76,.045) !important; overflow:hidden !important;
+        background: var(--ss-card) !important; color: var(--ss-text) !important;
+        border: 1px solid var(--ss-border) !important; border-radius: 12px !important;
+        box-shadow: 0 5px 18px var(--ss-shadow) !important; overflow: hidden !important;
       }
       body#appBody #pcGrid .pc-card:hover {
-        background:#f9fafc !important; border-color:#87bfdf !important;
-        box-shadow:0 10px 26px rgba(20,88,132,.11) !important; transform:translateY(-2px);
+        background: var(--ss-card-hover) !important;
+        border-color: var(--ss-accent) !important;
+        box-shadow: 0 12px 28px var(--ss-shadow), 0 0 0 1px rgba(199,167,108,.11) !important;
+        transform: translateY(-2px);
       }
       body#appBody #pcGrid .pc-card-image {
-        background:#fff !important; background-image:none !important;
-        border-bottom:1px solid #e0e6ed !important;
+        background: var(--ss-image) !important; background-image: none !important;
+        border-bottom: 1px solid var(--ss-border) !important;
       }
-      body#appBody #pcGrid .pc-card-image-frame { aspect-ratio:1 / 1 !important; }
-      body#appBody #pcGrid .pc-card-image img { filter:none !important; }
+      body#appBody #pcGrid .pc-card-image img { filter: none !important; }
+      body#appBody #pcGrid .pc-card-image > .bg-gradient-to-t {
+        opacity: .08 !important;
+        background-image: linear-gradient(to top, rgba(38,36,32,.12), transparent 60%) !important;
+      }
+      body#appBody #pcGrid .pc-card h3,
       body#appBody #pcGrid .pc-card [class~="text-white"],
       body#appBody #pcGrid .pc-card [class~="text-slate-100"],
-      body#appBody #pcGrid .pc-card h3 { color:#172334 !important; }
-      body#appBody #pcGrid .pc-card [class~="text-slate-200"] { color:#26384c !important; }
-      body#appBody #pcGrid .pc-card [class~="text-slate-300"] { color:#40536a !important; }
-      body#appBody #pcGrid .pc-card [class~="text-slate-400"],
-      body#appBody #pcGrid .pc-card [class~="text-slate-500"] { color:#6b7a8c !important; }
-      body#appBody #pcGrid .pc-card [class~="text-cyan-400"] { color:#087fbd !important; }
+      body#appBody #pcGrid .pc-card [class~="text-slate-200"],
+      body#appBody #pcGrid .pc-card [class~="text-slate-300"] { color: var(--ss-text) !important; }
+      body#appBody #pcGrid .pc-card [class~="text-slate-400"] { color: var(--ss-muted) !important; }
+      body#appBody #pcGrid .pc-card [class~="text-slate-500"],
+      body#appBody #pcGrid .pc-card [class~="text-slate-600"] { color: var(--ss-subtle) !important; }
+      body#appBody #pcGrid .pc-card [class~="text-cyan-400"],
+      body#appBody #pcGrid .pc-card [class~="text-indigo-400"] { color: var(--ss-accent-dark) !important; }
+      body#appBody #pcGrid .pc-card .text-lg.font-extrabold { color: var(--ss-accent-dark) !important; }
       body#appBody #pcGrid .pc-card [class~="bg-slate-950/60"],
       body#appBody #pcGrid .pc-card [class~="bg-slate-950/70"] {
-        background:#f2f6fa !important; border-color:#d9e1ea !important; color:#52647a !important;
+        background: var(--ss-surface-alt) !important; color: var(--ss-muted) !important;
+        border-color: var(--ss-border) !important;
       }
       body#appBody #pcGrid .pc-card [class~="border-slate-800"],
       body#appBody #pcGrid .pc-card [class~="border-slate-800/70"],
-      body#appBody #pcGrid .pc-card [class~="border-slate-800/80"] { border-color:#dce3eb !important; }
-      body#appBody #pcGrid .pc-card [class~="bg-emerald-500/10"] { background:#e1f5e8 !important; }
-      body#appBody #pcGrid .pc-card [class~="text-emerald-400"] { color:#16814a !important; }
-      body#appBody #pcGrid .pc-card [class~="bg-amber-500/10"] { background:#fff2d8 !important; }
-      body#appBody #pcGrid .pc-card [class~="text-amber-400"] { color:#946200 !important; }
-      body#appBody #emptyCatalogState { background:#f9fbfe !important; color:#172334 !important; border-color:#d2dce7 !important; }
+      body#appBody #pcGrid .pc-card [class~="border-slate-800/80"] { border-color: var(--ss-border) !important; }
+      body#appBody #pcGrid .pc-card [class~="bg-emerald-500/10"] { background: var(--ss-success-bg) !important; }
+      body#appBody #pcGrid .pc-card [class~="text-emerald-400"] { color: var(--ss-success) !important; }
+      body#appBody #pcGrid .pc-card [class~="border-emerald-500/30"] { border-color: #b8d9bf !important; }
+      body#appBody #pcGrid .pc-card [class~="bg-amber-500/10"] { background: var(--ss-accent-soft) !important; }
+      body#appBody #pcGrid .pc-card [class~="text-amber-400"] { color: var(--ss-accent-dark) !important; }
+      body#appBody #pcGrid .pc-card [class~="bg-purple-500/10"] { background: #eee7f0 !important; }
+      body#appBody #pcGrid .pc-card [class~="text-purple-400"] { color: #705078 !important; }
+      body#appBody #pcGrid .pc-card [class~="border-purple-500/30"] { border-color: #d4c3da !important; }
+      body#appBody #emptyCatalogState {
+        background: var(--ss-surface) !important; color: var(--ss-text) !important;
+        border-color: var(--ss-border) !important;
+      }
 
-      /* PULSANTI: blu vivace per l'azione, verde solo per disponibilità. */
+      /* AZIONI: oro satinato; stati di disponibilità e cancellazione conservano i propri colori semantici. */
       body#appBody #catalogView [class~="from-cyan-500"][class~="to-indigo-600"],
       body#appBody #adminView [class~="from-cyan-500"][class~="to-indigo-600"],
       body#appBody #modalContent [class~="from-cyan-500"][class~="to-indigo-600"] {
-        background-image:linear-gradient(100deg,#087fbd,#1269aa) !important;
-        background-color:#087fbd !important; color:#fff !important;
-        box-shadow:0 5px 14px rgba(8,127,189,.16) !important;
+        background-image: linear-gradient(110deg, var(--ss-accent), #ddc58f) !important;
+        background-color: var(--ss-accent) !important; color: #242019 !important;
+        border-color: var(--ss-accent) !important;
+        box-shadow: 0 5px 14px rgba(128,100,55,.14) !important;
       }
       body#appBody #catalogView [class~="bg-cyan-500"],
       body#appBody #catalogView [class~="bg-cyan-600"],
       body#appBody #adminView [class~="bg-cyan-500"],
       body#appBody #adminView [class~="bg-cyan-600"],
       body#appBody #modalContent [class~="bg-cyan-500"],
-      body#appBody #modalContent [class~="bg-cyan-600"] { background:#087fbd !important; color:#fff !important; }
-      body#appBody [class~="hover:bg-cyan-400"]:hover { background-color:#066da7 !important; }
-      body#appBody #catalogView [class~="bg-emerald-500/10"] { background:#e5f6eb !important; }
-      body#appBody #catalogView [class~="text-emerald-400"] { color:#16814a !important; }
+      body#appBody #modalContent [class~="bg-cyan-600"] {
+        background: var(--ss-accent) !important; color: #242019 !important;
+      }
+      body#appBody [class~="hover:bg-cyan-400"]:hover { background: var(--ss-accent-hover) !important; }
+      body#appBody #catalogView [class~="border-cyan-500"],
+      body#appBody #adminView [class~="border-cyan-500"],
+      body#appBody #modalContent [class~="border-cyan-500"] { border-color: var(--ss-accent-border) !important; }
+      body#appBody #catalogView [class~="text-cyan-400"],
+      body#appBody #adminView [class~="text-cyan-400"],
+      body#appBody #modalContent [class~="text-cyan-400"] { color: var(--ss-accent-dark) !important; }
 
-      /* SCHEDA COMPLETA: superfici chiare indipendenti, galleria neutra e controlli blu. */
-      body#appBody #pcDetailModal, body#appBody #adminAuthModal { background:rgba(11,22,37,.65) !important; }
-      body#appBody #pcDetailModal > div, body#appBody #adminAuthCard {
-        background:#f9fbfe !important; color:#172334 !important; border:1px solid #d1dce8 !important;
-        box-shadow:0 24px 70px rgba(10,30,53,.25) !important;
+      /* SCHEDA COMPLETA: pannello avorio; galleria e video su superfici neutre. */
+      body#appBody #pcDetailModal,
+      body#appBody #adminAuthModal { background: rgba(20,19,17,.64) !important; }
+      body#appBody #pcDetailModal > div,
+      body#appBody #adminAuthCard {
+        background: var(--ss-surface) !important; color: var(--ss-text) !important;
+        border: 1px solid var(--ss-border) !important;
+        box-shadow: 0 24px 80px rgba(25,22,16,.25) !important;
       }
       body#appBody #modalContent [class~="text-white"],
-      body#appBody #modalContent [class~="text-slate-100"] { color:#172334 !important; }
-      body#appBody #modalContent [class~="text-slate-200"] { color:#2f4156 !important; }
-      body#appBody #modalContent [class~="text-slate-300"] { color:#455b73 !important; }
-      body#appBody #modalContent [class~="text-slate-400"],
-      body#appBody #modalContent [class~="text-slate-500"] { color:#687b90 !important; }
+      body#appBody #modalContent [class~="text-slate-100"],
+      body#appBody #modalContent [class~="text-slate-200"],
+      body#appBody #modalContent [class~="text-slate-300"] { color: var(--ss-text) !important; }
+      body#appBody #modalContent [class~="text-slate-400"] { color: var(--ss-muted) !important; }
+      body#appBody #modalContent [class~="text-slate-500"] { color: var(--ss-subtle) !important; }
       body#appBody #modalContent [class~="text-cyan-400"],
       body#appBody #modalContent [class~="text-cyan-300"],
-      body#appBody #modalContent [class~="text-indigo-400"] { color:#087fbd !important; }
+      body#appBody #modalContent [class~="text-indigo-400"] { color: var(--ss-accent-dark) !important; }
       body#appBody #modalContent [class~="bg-slate-950"],
       body#appBody #modalContent [class~="bg-slate-950/60"],
-      body#appBody #modalContent [class~="bg-slate-900"] { background:#edf3f8 !important; }
+      body#appBody #modalContent [class~="bg-slate-900"],
+      body#appBody #modalContent [class~="bg-slate-800"] {
+        background: var(--ss-surface-alt) !important; color: var(--ss-text) !important;
+      }
       body#appBody #modalContent [class~="border-slate-800"],
       body#appBody #modalContent [class~="border-slate-800/80"],
-      body#appBody #modalContent [class~="border-slate-700"] { border-color:#d6e0ea !important; }
-      body#appBody #modalContent .pc-detail-image-frame { background:#fff !important; border-color:#d6e0ea !important; }
-      body#appBody #modalContent [data-modal-image-index] { background:#f0f5fa !important; }
-      body#appBody #modalContent [data-modal-image-index][aria-current="true"] { border-color:#087fbd !important; box-shadow:0 0 0 2px rgba(8,127,189,.18) !important; }
+      body#appBody #modalContent [class~="border-slate-700"] { border-color: var(--ss-border) !important; }
+      body#appBody #modalContent .pc-detail-image-frame {
+        background: var(--ss-image) !important; border-color: var(--ss-border) !important;
+      }
+      body#appBody #modalContent [data-modal-image-index] {
+        background: var(--ss-surface-alt) !important; border-color: var(--ss-border) !important;
+      }
+      body#appBody #modalContent [data-modal-image-index][aria-current="true"] {
+        border-color: var(--ss-accent) !important;
+        box-shadow: 0 0 0 2px rgba(199,167,108,.24) !important;
+      }
       body#appBody #modalContent [aria-label="Immagine precedente"],
-      body#appBody #modalContent [aria-label="Immagine successiva"] { background:rgba(255,255,255,.97) !important; color:#16314b !important; border-color:#ccd9e6 !important; }
+      body#appBody #modalContent [aria-label="Immagine successiva"] {
+        background: rgba(29,30,32,.92) !important; color: #f8f3e9 !important;
+        border-color: rgba(199,167,108,.55) !important;
+      }
       body#appBody #modalContent [aria-label="Immagine precedente"]:hover,
-      body#appBody #modalContent [aria-label="Immagine successiva"]:hover { background:#087fbd !important; color:#fff !important; }
+      body#appBody #modalContent [aria-label="Immagine successiva"]:hover {
+        background: var(--ss-accent) !important; color: #242019 !important;
+      }
+      body#appBody #modalContent [class~="bg-gradient-to-r"][class~="from-slate-950"] {
+        background: linear-gradient(110deg, var(--ss-surface-alt), var(--ss-surface)) !important;
+        border-color: var(--ss-border) !important;
+      }
+      body#appBody #modalContent .bg-emerald-600 { background: #26764b !important; color: #fff !important; }
+      body#appBody #modalContent .bg-emerald-500 { background: #2e8758 !important; color: #fff !important; }
+      body#appBody #modalContent .bg-black { background: #181817 !important; }
 
-      /* AMMINISTRAZIONE: pannelli grigio-azzurri chiari e campi bianchi. */
-      body#appBody #adminView { color:#172334 !important; }
+      /* ADMIN: tutte le superfici di lavoro rimangono chiare; nessun pannello eredita il colore dell'header. */
+      body#appBody #adminView { color: var(--ss-text) !important; }
       body#appBody #adminView [class~="bg-slate-900"],
+      body#appBody #adminView [class~="bg-slate-900/95"],
+      body#appBody #adminView [class~="bg-slate-900/90"],
       body#appBody #adminView [class~="bg-slate-900/80"],
       body#appBody #adminView [class~="bg-slate-900/60"],
       body#appBody #adminView [class~="bg-slate-950"],
       body#appBody #adminView [class~="bg-slate-950/60"],
-      body#appBody #adminView [class~="bg-slate-800"] { background:#f9fbfe !important; }
+      body#appBody #adminView [class~="bg-slate-800"] {
+        background: var(--ss-surface) !important;
+      }
       body#appBody #adminView [class~="text-white"],
-      body#appBody #adminView [class~="text-slate-100"] { color:#172334 !important; }
-      body#appBody #adminView [class~="text-slate-200"] { color:#30445a !important; }
-      body#appBody #adminView [class~="text-slate-300"] { color:#40536a !important; }
-      body#appBody #adminView [class~="text-slate-400"],
-      body#appBody #adminView [class~="text-slate-500"] { color:#65768a !important; }
-      body#appBody #adminView [class~="border-slate-800"],
-      body#appBody #adminView [class~="border-slate-700"] { border-color:#d7e0e9 !important; }
+      body#appBody #adminView [class~="text-slate-100"],
+      body#appBody #adminView [class~="text-slate-200"],
+      body#appBody #adminView [class~="text-slate-300"] { color: var(--ss-text) !important; }
+      body#appBody #adminView [class~="text-slate-400"] { color: var(--ss-muted) !important; }
+      body#appBody #adminView [class~="text-slate-500"],
+      body#appBody #adminView [class~="text-slate-600"] { color: var(--ss-subtle) !important; }
       body#appBody #adminView [class~="text-cyan-300"],
       body#appBody #adminView [class~="text-cyan-400"],
-      body#appBody #adminView [class~="text-indigo-300"] { color:#087fbd !important; }
-      body#appBody #adminAuthCard [class~="text-white"], body#appBody #adminAuthCard [class~="text-slate-100"] { color:#172334 !important; }
-      body#appBody #adminAuthCard [class~="bg-slate-950"] { background:#fff !important; }
-      body#appBody #toastContainer [class~="bg-emerald-600"], body#appBody #toastContainer [class~="bg-rose-600"] { color:#fff !important; }
+      body#appBody #adminView [class~="text-indigo-300"],
+      body#appBody #adminView [class~="text-indigo-400"] { color: var(--ss-accent-dark) !important; }
+      body#appBody #adminView [class~="border-slate-800"],
+      body#appBody #adminView [class~="border-slate-700"] { border-color: var(--ss-border) !important; }
+      body#appBody #adminView details,
+      body#appBody #adminView #formSection,
+      body#appBody #adminView #adminListingsTableCard,
+      body#appBody #adminView #adminPreviewWorkspace > div,
+      body#appBody #adminView [role="tabpanel"] > div {
+        box-shadow: 0 6px 22px var(--ss-shadow) !important;
+      }
+      body#appBody #adminView #adminListingsTableCard {
+        background: var(--ss-surface) !important; color: var(--ss-text) !important;
+        border: 1px solid var(--ss-border) !important; border-radius: 14px !important;
+        overflow: hidden !important;
+      }
+      body#appBody #adminView #adminListingsTableCard .admin-listings-table-heading {
+        background: var(--ss-surface-alt) !important; border-bottom: 1px solid var(--ss-border) !important;
+      }
+      body#appBody #adminView #adminListingsTableCard h3 { color: var(--ss-text) !important; }
+      body#appBody #adminView #adminListingsTableCard #adminListingsCount {
+        background: var(--ss-accent-soft) !important; color: var(--ss-accent-dark) !important;
+        border: 1px solid var(--ss-accent-border) !important;
+      }
+      body#appBody #adminView #adminListingsTableCard table { background: var(--ss-surface) !important; }
+      body#appBody #adminView #adminListingsTableCard thead,
+      body#appBody #adminView #adminListingsTableCard thead tr,
+      body#appBody #adminView #adminListingsTableCard thead th {
+        background: var(--ss-surface-alt) !important; color: var(--ss-muted) !important;
+        border-color: var(--ss-border) !important;
+      }
+      body#appBody #adminView #adminTableBody,
+      body#appBody #adminView #adminTableBody tr,
+      body#appBody #adminView #adminTableBody td {
+        background: var(--ss-surface) !important; color: var(--ss-muted) !important;
+        border-color: var(--ss-border) !important;
+      }
+      body#appBody #adminView #adminTableBody tr:hover,
+      body#appBody #adminView #adminTableBody tr:hover td { background: var(--ss-card-hover) !important; }
+      body#appBody #adminView #adminTableBody td .font-bold,
+      body#appBody #adminView #adminTableBody td .text-slate-800,
+      body#appBody #adminView #adminTableBody td .text-slate-700 { color: var(--ss-text) !important; }
+      body#appBody #adminView #adminTableBody td .text-slate-500,
+      body#appBody #adminView #adminTableBody td .text-slate-600 { color: var(--ss-muted) !important; }
+      body#appBody #adminView #adminTableBody td.text-blue-700 { color: var(--ss-accent-dark) !important; }
+      body#appBody #adminView #adminTableBody td span {
+        background: var(--ss-accent-soft) !important; color: var(--ss-text) !important;
+        border-color: var(--ss-accent-border) !important;
+      }
+      body#appBody #adminView #adminTableBody td button[title="Modifica"] {
+        background: var(--ss-accent-soft) !important; color: var(--ss-accent-dark) !important;
+        border-color: var(--ss-accent-border) !important;
+      }
+      body#appBody #adminView #adminTableBody td button[title="Modifica"]:hover {
+        background: var(--ss-accent) !important; color: #242019 !important;
+      }
+      body#appBody #adminView #adminTableBody td button[title="Elimina"] {
+        background: var(--ss-danger-bg) !important; color: var(--ss-danger) !important;
+        border-color: #e8c6c5 !important;
+      }
+      body#appBody #adminView #adminTableBody td button[title="Elimina"]:hover {
+        background: var(--ss-danger) !important; color: #fff !important;
+      }
+      body#appBody #adminView #adminTableBody td img {
+        background: var(--ss-image) !important; border-color: var(--ss-border) !important;
+      }
+      body#appBody #adminView #adminListingsTab[aria-selected="true"],
+      body#appBody #adminView #adminPreviewsTab[aria-selected="true"] {
+        background: var(--ss-accent-soft) !important; border-color: var(--ss-accent) !important;
+      }
+      body#appBody #adminAuthCard [class~="text-white"],
+      body#appBody #adminAuthCard [class~="text-slate-100"] { color: var(--ss-text) !important; }
+      body#appBody #adminAuthCard input { background: var(--ss-input) !important; color: var(--ss-text) !important; }
 
-      @media (max-width:767px) {
-        body#appBody #pcGrid { grid-template-columns:minmax(0,1fr) !important; gap:16px !important; }
-        body#appBody .hero-panel { padding:1.35rem !important; }
-        body#appBody #pcGrid .pc-card-image-frame { aspect-ratio:3 / 4 !important; }
-        body#appBody #pcGrid .pc-card { border-radius:10px !important; }
-      }
-      @media (min-width:768px) and (max-width:1023px) {
-        body#appBody #pcGrid { grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
-      }
-    </style>
+      /* TOAST: i colori verde/rosso restano funzionali e leggibili. */
+      body#appBody #toastContainer [class~="bg-emerald-600"],
+      body#appBody #toastContainer [class~="bg-rose-600"] { color: #fff !important; }
+      body#appBody [role="status"] { color: var(--ss-muted); }
+      body#appBody .text-rose-400 { color: var(--ss-danger) !important; }
+      body#appBody .text-emerald-400 { color: var(--ss-success) !important; }
 
-
-    <!-- Correzione mirata: tabella annunci admin in tema chiaro, coerente con gli altri pannelli -->
-    <style id="adminListingsTableLightFix">
-      body#appBody #adminListingsTableCard {
-        background:#f9fbfe !important;
-        border:1px solid #d4dfeb !important;
-        box-shadow:0 8px 24px rgba(25,53,83,.08) !important;
-      }
-      body#appBody #adminListingsTableCard > div:first-child {
-        background:linear-gradient(100deg,#e5eef7,#f1f6fb) !important;
-        border-bottom:1px solid #d4dfeb !important;
-      }
-      body#appBody #adminListingsTableCard h3 { color:#172334 !important; }
-      body#appBody #adminListingsTableCard #adminListingsCount {
-        background:#e0edf8 !important; color:#285675 !important; border:1px solid #ccdeed !important;
-      }
-      body#appBody #adminListingsTableCard thead tr {
-        background:#edf3f9 !important; color:#52647a !important; border-color:#d8e2ec !important;
-      }
-      body#appBody #adminListingsTableCard thead th {
-        background:transparent !important; color:#52647a !important; border-color:#d8e2ec !important;
-      }
-      body#appBody #adminListingsTableCard tbody {
-        background:#f9fbfe !important; color:#172334 !important;
-        --tw-divide-opacity:1; --tw-divide-color:#e0e7ef;
-      }
-      body#appBody #adminListingsTableCard tbody tr {
-        background:#f9fbfe !important; color:#172334 !important; border-color:#e0e7ef !important;
-      }
-      body#appBody #adminListingsTableCard tbody tr:hover { background:#edf5fc !important; }
-      body#appBody #adminListingsTableCard tbody td {
-        color:#52647a !important; border-color:#e0e7ef !important;
-      }
-      body#appBody #adminListingsTableCard tbody td .text-slate-200,
-      body#appBody #adminListingsTableCard tbody td .font-bold { color:#172334 !important; }
-      body#appBody #adminListingsTableCard tbody td .text-slate-500,
-      body#appBody #adminListingsTableCard tbody td .text-slate-400 { color:#687b90 !important; }
-      body#appBody #adminListingsTableCard tbody td.text-cyan-400 { color:#087fbd !important; }
-      body#appBody #adminListingsTableCard tbody td span.bg-slate-800,
-      body#appBody #adminListingsTableCard tbody td span[class*="bg-slate-800/80"] {
-        background:#eaf1f8 !important; color:#40536a !important; border-color:#d3deea !important;
-      }
-      body#appBody #adminListingsTableCard tbody td button.bg-slate-800 {
-        background:#e4edf7 !important; color:#087fbd !important; border:1px solid #d2deeb !important;
-      }
-      body#appBody #adminListingsTableCard tbody td button.bg-slate-800:hover {
-        background:#087fbd !important; color:#fff !important;
-      }
-      body#appBody #adminListingsTableCard tbody td img {
-        background:#edf3f9 !important; border-color:#d5e0eb !important;
-      }
-    </style>
-
-    <style id="forceAdminListingsLightPalette">
-      /* Solo l'header globale resta scuro. Tabella admin con palette chiara esplicita. */
-      body#appBody #adminListingsTableCard,
-      body#appBody #adminListingsTableCard * {
-        --admin-table-light-bg: #ffffff;
-      }
-      body#appBody #adminListingsTableCard {
-        background: #ffffff !important;
-        color: #23364b !important;
-        border-color: #d8e2ec !important;
-        box-shadow: 0 8px 24px rgba(25,53,83,.07) !important;
-      }
-      body#appBody #adminListingsTableCard > .admin-listings-table-heading {
-        background: linear-gradient(105deg,#e8f2fb 0%,#f4f8fc 100%) !important;
-        border-color: #d8e2ec !important;
-      }
-      body#appBody #adminListingsTableCard h3 { color: #20354b !important; }
-      body#appBody #adminListingsTableCard #adminListingsCount {
-        background: #e6f1fa !important; color: #315a7b !important; border-color: #cbdfee !important;
-      }
-      body#appBody #adminListingsTableCard table { background: #fff !important; }
-      body#appBody #adminListingsTableCard thead,
-      body#appBody #adminListingsTableCard thead tr,
-      body#appBody #adminListingsTableCard thead th {
-        background: #edf3f8 !important; color: #5c6d7f !important; border-color: #dce5ee !important;
-      }
-      body#appBody #adminListingsTableCard tbody,
-      body#appBody #adminListingsTableCard tbody tr,
-      body#appBody #adminListingsTableCard tbody td {
-        background: #ffffff !important; color: #485d73 !important; border-color: #e0e7ef !important;
-      }
-      body#appBody #adminListingsTableCard tbody tr:hover,
-      body#appBody #adminListingsTableCard tbody tr:hover td { background: #f0f7fd !important; }
-      body#appBody #adminListingsTableCard tbody td .font-bold,
-      body#appBody #adminListingsTableCard tbody td .text-slate-200,
-      body#appBody #adminListingsTableCard tbody td div { color: #253a50 !important; }
-      body#appBody #adminListingsTableCard tbody td .text-slate-500 { color: #728195 !important; }
-      body#appBody #adminListingsTableCard tbody td.text-blue-700 { color: #086da8 !important; }
-      body#appBody #adminListingsTableCard tbody td span {
-        background-color: #edf4fa !important; color: #43596f !important; border-color: #d6e3ef !important;
-      }
-      body#appBody #adminListingsTableCard tbody td button[title="Modifica"] {
-        background: #e7f2fb !important; color: #087fbd !important; border-color: #d1e4f3 !important;
-      }
-      body#appBody #adminListingsTableCard tbody td button[title="Elimina"] {
-        background: #fff0f0 !important; color: #c13b4b !important; border-color: #f4d2d6 !important;
-      }
-      body#appBody #adminListingsTableCard tbody td button[title="Modifica"]:hover { background:#087fbd !important; color:#fff !important; }
-      body#appBody #adminListingsTableCard tbody td button[title="Elimina"]:hover { background:#c13b4b !important; color:#fff !important; }
-      body#appBody #adminListingsTableCard tbody td img { background:#eef3f8 !important; border-color:#d8e2ec !important; }
-      @media (max-width: 640px) {
-        body#appBody #adminListingsTableCard .overflow-x-auto { background:#fff !important; }
+      /* Adattamento agli schermi più piccoli. */
+      @media (max-width: 767px) {
+        body#appBody main { padding-left: 1rem !important; padding-right: 1rem !important; }
+        body#appBody #pcGrid { grid-template-columns: minmax(0,1fr) !important; gap: 16px !important; }
+        body#appBody .hero-panel { padding: 1.35rem !important; }
+        body#appBody #pcGrid .pc-card-image-frame { aspect-ratio: 3 / 4 !important; }
+        body#appBody #pcGrid .pc-card { border-radius: 12px !important; }
+        body#appBody #adminListingsTableCard .overflow-x-auto { background: var(--ss-surface) !important; }
         body#appBody #adminListingsTableCard th,
         body#appBody #adminListingsTableCard td { padding: .7rem .55rem !important; }
       }
+      @media (min-width: 768px) and (max-width: 1023px) {
+        body#appBody #pcGrid { grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        body#appBody *, body#appBody *::before, body#appBody *::after {
+          animation-duration: .01ms !important; transition-duration: .01ms !important;
+        }
+      }
     </style>
-
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen transition-colors duration-300 antialiased" id="appBody">
 
@@ -539,7 +641,7 @@
 
                 <!-- Dark/Light Theme Toggle -->
                 <button onclick="toggleTheme()" class="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors border border-slate-700/60" title="Cambia Tema">
-                    <i id="themeIcon" class="fa-solid fa-sun text-amber-400"></i>
+                    <i id="themeIcon" class="fa-solid fa-moon"></i>
                 </button>
             </div>
         </div>
