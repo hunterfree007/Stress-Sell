@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechRig Studio - Gestione & Vetrina PC Custom</title>
+    <title>Stress &amp; Sell PC - PC assemblati e testati</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -81,8 +81,8 @@
                     <i class="fa-solid fa-desktop text-xl"></i>
                 </div>
                 <div>
-                    <span class="text-2xl font-black tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400">TechRig</span>
-                    <span class="text-xs uppercase font-semibold text-cyan-400 block tracking-widest -mt-1">Studio Custom PC</span>
+                    <span class="text-2xl font-black tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400">Stress &amp; Sell</span>
+                    <span class="text-xs uppercase font-semibold text-cyan-400 block tracking-widest -mt-1">PC assemblati e testati</span>
                 </div>
             </div>
 
@@ -116,13 +116,13 @@
                 
                 <div class="relative z-10 max-w-3xl space-y-4">
                     <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
-                        <i class="fa-solid fa-bolt text-xs"></i> Postazioni & Build Pronte Consegna
+                        <i class="fa-solid fa-bolt text-xs"></i> Pronta consegna
                     </span>
                     <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-                        Trova la tua prossima <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-indigo-400">Macchina da War-Machine</span>
+                        Li costruisco, li testo <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-indigo-400">e poi li vendo</span>
                     </h1>
                     <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
-                        Esplora i nostri PC assemblati, testati e certificati. Ogni build include report di benchmark, test delle temperature e specifiche complete e dettagliate.
+                        Ogni PC è stato assemblato e testato con diversi benchmark specifici, sia in ottica gaming sia sull'hardware, come Time Spy e OCCT.
                     </p>
                 </div>
             </div>
@@ -418,7 +418,7 @@
     <!-- MODAL: DETTAGLIO COMPLETO ANNUNCIO PC      -->
     <!-- ========================================== -->
     <div id="pcDetailModal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6" onclick="closeDetailModal()">
-        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-5xl w-full max-h-[92vh] overflow-y-auto shadow-2xl relative transition-all" onclick="event.stopPropagation()">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-6xl w-full max-h-[92vh] overflow-y-auto shadow-2xl relative transition-all" onclick="event.stopPropagation()">
             <!-- Close Modal Button -->
             <button onclick="closeDetailModal()" class="absolute top-4 right-4 z-20 w-10 h-10 bg-slate-950/80 hover:bg-slate-800 text-slate-300 hover:text-white rounded-full flex items-center justify-center border border-slate-700 transition-colors">
                 <i class="fa-solid fa-xmark text-lg"></i>
@@ -1520,7 +1520,7 @@
                     <!-- Left Column: Interactive Image Gallery -->
                     <div class="lg:col-span-7 space-y-4">
                         <!-- Main Preview Image -->
-                        <div class="relative h-80 sm:h-96 bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 shadow-inner flex items-center justify-center">
+                        <div class="relative w-full aspect-[4/3] bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 shadow-inner flex items-center justify-center">
                             <img src="${escapeHtml(activeImg)}" alt="${escapeHtml(pc.title)}" class="w-full h-full object-contain" onerror="this.src='https://placehold.co/800x500/1e293b/0ea5e9?text=Immagine+Non+Disponibile'">
                             <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold border ${badgeColor} backdrop-blur-md">
                                 ${escapeHtml(pc.status)}
@@ -1532,7 +1532,7 @@
                             <div class="flex items-center gap-2 overflow-x-auto pb-2">
                                 ${images.map((img, idx) => `
                                     <button onclick="setModalActiveGalleryIndex(${idx})" class="relative w-20 h-16 flex-shrink-0 rounded-xl overflow-hidden border-2 transition-all ${idx === activeModalGalleryIndex ? 'border-cyan-500 scale-105' : 'border-slate-800 opacity-60 hover:opacity-100'} bg-slate-950">
-                                        <img src="${escapeHtml(img)}" class="w-full h-full object-cover">
+                                        <img src="${escapeHtml(img)}" class="w-full h-full object-contain">
                                     </button>
                                 `).join('')}
                             </div>
