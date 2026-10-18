@@ -1054,8 +1054,8 @@
                 return `
                     <div class="glass-card rounded-3xl overflow-hidden hover:border-cyan-500/50 transition-all duration-300 flex flex-col group hover:-translate-y-1 shadow-lg">
                         <!-- Card Image Header -->
-                        <div class="relative h-56 bg-slate-950 overflow-hidden cursor-pointer" onclick="openDetailModal('${pc.id}')">
-                            <img src="${escapeHtml(coverImage)}" alt="${escapeHtml(pc.title)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/1e293b/0ea5e9?text=Immagine+Non+Disponibile'">
+                        <div class="relative aspect-[3/4] bg-slate-950 overflow-hidden cursor-pointer" onclick="openDetailModal('${pc.id}')">
+                            <img src="${escapeHtml(coverImage)}" alt="${escapeHtml(pc.title)}" class="w-full h-full object-contain" onerror="this.src='https://placehold.co/600x400/1e293b/0ea5e9?text=Immagine+Non+Disponibile'">
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80"></div>
                             
                             <!-- Badges -->
