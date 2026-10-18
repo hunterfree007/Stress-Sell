@@ -124,6 +124,11 @@
                     <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
                         Ogni PC è stato assemblato e testato con diversi benchmark specifici, sia in ottica gaming sia sull'hardware, come Time Spy e OCCT.
                     </p>
+                    <p class="text-xs text-slate-500 flex flex-wrap items-center gap-x-1.5 gap-y-1">
+                        <i class="fa-solid fa-truck-fast"></i>
+                        <span>Spedizione tramite Subito oppure consegna a mano in zona.</span>
+                        <a id="subitoHeroLink" href="#" target="_blank" rel="noopener" class="hidden text-cyan-400 hover:underline font-semibold">Guarda le mie recensioni su Subito</a>
+                    </p>
                 </div>
             </div>
 
@@ -498,6 +503,10 @@
         ======================================================== */
         const STORAGE_KEY = 'techrig_pc_listings_v1';
 
+        // Incolla qui il link al tuo profilo Subito (tra gli apici).
+        // Finche' e' vuoto, la scritta "Guarda le mie recensioni" non compare.
+        const SUBITO_URL = '';
+
         // Updated single initial PC build based on request specifications
         const sampleListings = [
             {
@@ -752,6 +761,11 @@
            INITIALIZATION & LOCALSTORAGE MANAGEMENT
         ======================================================== */
         window.addEventListener('DOMContentLoaded', () => {
+            const subitoHeroLink = document.getElementById('subitoHeroLink');
+            if (subitoHeroLink && SUBITO_URL) {
+                subitoHeroLink.href = SUBITO_URL;
+                subitoHeroLink.classList.remove('hidden');
+            }
             loadListingsFromStorage();
             renderCatalog();
             renderAdminTable();
@@ -1565,6 +1579,10 @@
                                         <i class="fa-solid fa-envelope text-sm"></i> Contatta
                                     </a>
                                 </div>
+                                <p class="text-[11px] text-slate-500 leading-snug">
+                                    Spedizione tramite Subito oppure consegna a mano in zona.
+                                    ${SUBITO_URL ? `<a href="${escapeHtml(SUBITO_URL)}" target="_blank" rel="noopener" class="text-cyan-400 hover:underline font-semibold">Guarda le mie recensioni su Subito</a>` : ''}
+                                </p>
                             </div>
                         </div>
                     </div>
