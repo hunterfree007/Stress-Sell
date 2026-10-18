@@ -116,17 +116,15 @@
                 
                 <div class="relative z-10 max-w-3xl space-y-4">
                     <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
-                        <i class="fa-solid fa-bolt text-xs"></i> Pronta consegna
+                        <i id="heroBadgeIcon" class="fa-solid fa-bolt text-xs"></i> <span id="heroBadgeText">Pronta consegna</span>
                     </span>
                     <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-                        Li costruisco, li testo <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-indigo-400">e poi li vendo</span>
+                        <span id="heroTitleWhite">Li costruisco, li testo</span> <span id="heroTitleColor" class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-indigo-400">e poi li vendo</span>
                     </h1>
-                    <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
-                        Ogni PC è stato assemblato e testato con diversi benchmark specifici, sia in ottica gaming sia sull'hardware, come Time Spy e OCCT.
-                    </p>
+                    <p id="heroIntro" class="text-slate-400 text-sm sm:text-base leading-relaxed"></p>
                     <p class="text-xs text-slate-500 flex flex-wrap items-center gap-x-1.5 gap-y-1">
                         <i class="fa-solid fa-truck-fast"></i>
-                        <span>Spedizione tramite Subito oppure consegna a mano in zona.</span>
+                        <span id="heroShipping"></span>
                         <a id="subitoHeroLink" href="#" target="_blank" rel="noopener" class="hidden text-cyan-400 hover:underline font-semibold">Guarda le mie recensioni su Subito</a>
                     </p>
                 </div>
@@ -208,6 +206,79 @@
                     </button>
                 </div>
             </div>
+
+            <!-- Testi e contatti del sito -->
+            <details id="siteSettingsCard" class="bg-slate-900/80 rounded-2xl border border-slate-800">
+                <summary class="cursor-pointer select-none p-5 flex items-center gap-2 text-white font-bold">
+                    <i class="fa-solid fa-pen-to-square text-cyan-400"></i> Testi e contatti del sito
+                    <span class="text-xs font-normal text-slate-500">titolo, testo di benvenuto, spedizione, Subito, WhatsApp, email</span>
+                </summary>
+                <div class="px-5 pb-5 space-y-4 border-t border-slate-800 pt-4">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Icona dell'etichetta</label>
+                            <select id="setBadgeIcon" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500">
+                                <option value="fa-bolt">Fulmine</option>
+                                <option value="fa-truck-fast">Spedizione</option>
+                                <option value="fa-shield-halved">Garanzia</option>
+                                <option value="fa-circle-check">Spunta</option>
+                                <option value="fa-fire">Fuoco</option>
+                                <option value="fa-star">Stella</option>
+                                <option value="fa-microchip">Chip</option>
+                                <option value="fa-gamepad">Gaming</option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Etichetta in alto</label>
+                            <input id="setBadgeText" type="text" maxlength="60" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Titolo grande (parte bianca)</label>
+                            <input id="setTitleWhite" type="text" maxlength="80" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Titolo grande (parte colorata)</label>
+                            <input id="setTitleColor" type="text" maxlength="80" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Nota su spedizione / consegna</label>
+                            <input id="setShipping" type="text" maxlength="120" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Testo di benvenuto</label>
+                        <textarea id="setIntro" rows="3" maxlength="300" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500"></textarea>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Link profilo Subito</label>
+                            <input id="setSubito" type="url" placeholder="https://www.subito.it/utente/..." class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Numero WhatsApp <span class="font-normal text-slate-500">(con prefisso, es. 39333...)</span></label>
+                            <input id="setWhatsapp" type="text" inputmode="tel" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Email di contatto</label>
+                            <input id="setEmail" type="email" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500">
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-2 pt-1">
+                        <button type="button" onclick="saveSiteSettings()" class="px-4 py-2.5 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold rounded-xl text-xs transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-floppy-disk"></i> Salva e guarda l'anteprima
+                        </button>
+                        <button type="button" onclick="downloadUpdatedIndex()" class="px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-100 font-bold rounded-xl text-xs transition-all border border-slate-700 flex items-center gap-2">
+                            <i class="fa-solid fa-download"></i> Scarica index.html aggiornato
+                        </button>
+                        <button type="button" onclick="resetSiteSettings()" class="px-3 py-2.5 text-slate-400 hover:text-white text-xs font-semibold">
+                            Ripristina i testi del file
+                        </button>
+                    </div>
+                    <p class="text-[11px] text-slate-500 leading-relaxed">
+                        <b class="text-slate-400">Salva</b> mostra le modifiche solo in questo browser. Per farle vedere a tutti, clicca <b class="text-slate-400">Scarica index.html aggiornato</b> e carica quel file su GitHub al posto del vecchio.
+                    </p>
+                </div>
+            </details>
 
             <!-- Form Container (Hidden by default, shown when creating or editing) -->
             <div id="formSection" class="hidden bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl transition-all">
@@ -503,9 +574,22 @@
         ======================================================== */
         const STORAGE_KEY = 'techrig_pc_listings_v1';
 
-        // Incolla qui il link al tuo profilo Subito (tra gli apici).
-        // Finche' e' vuoto, la scritta "Guarda le mie recensioni" non compare.
-        const SUBITO_URL = 'https://www.subito.it/utente/102544535';
+        // Testi e contatti del sito: si modificano dal Pannello Admin ("Testi e contatti del sito").
+        /*SITE_SETTINGS_START*/
+        const SITE_DEFAULTS = {
+            "badgeIcon": "fa-bolt",
+            "badgeText": "Pronta consegna",
+            "titleWhite": "Li costruisco, li testo",
+            "titleColor": "e poi li vendo",
+            "intro": "Ogni PC è stato assemblato e testato con diversi benchmark specifici, sia in ottica gaming sia sull'hardware, come Time Spy e OCCT.",
+            "shippingNote": "Spedizione tramite Subito oppure consegna a mano in zona.",
+            "subitoUrl": "https://www.subito.it/utente/102544535",
+            "whatsapp": "",
+            "email": "info@techrigstudio.it"
+        };
+        /*SITE_SETTINGS_END*/
+        const SETTINGS_KEY = 'stresssell_site_settings_v1';
+        let siteSettings = { ...SITE_DEFAULTS };
 
         // Updated single initial PC build based on request specifications
         const sampleListings = [
@@ -761,11 +845,9 @@
            INITIALIZATION & LOCALSTORAGE MANAGEMENT
         ======================================================== */
         window.addEventListener('DOMContentLoaded', () => {
-            const subitoHeroLink = document.getElementById('subitoHeroLink');
-            if (subitoHeroLink && SUBITO_URL) {
-                subitoHeroLink.href = SUBITO_URL;
-                subitoHeroLink.classList.remove('hidden');
-            }
+            loadSiteSettings();
+            applySiteSettings();
+            renderSettingsForm();
             loadListingsFromStorage();
             renderCatalog();
             renderAdminTable();
@@ -1572,16 +1654,16 @@
                             <div class="p-4 rounded-2xl bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 border border-slate-800 space-y-3">
                                 <span class="text-xs font-bold text-slate-300 block">Ti interessa questa configurazione?</span>
                                 <div class="grid grid-cols-2 gap-2">
-                                    <a href="https://wa.me/?text=${encodeURIComponent('Salve, sarei interessato all\'acquisto del PC: ' + pc.title + ' (Prezzo: €' + pc.price + ')')}" target="_blank" class="py-2.5 px-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold transition-colors flex items-center justify-center gap-2">
+                                    <a href="https://wa.me/${waNumber()}?text=${encodeURIComponent('Salve, sarei interessato all\'acquisto del PC: ' + pc.title + ' (Prezzo: €' + pc.price + ')')}" target="_blank" class="py-2.5 px-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold transition-colors flex items-center justify-center gap-2">
                                         <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
                                     </a>
-                                    <a href="mailto:info@techrigstudio.it?subject=${encodeURIComponent('Info Acquisto PC: ' + pc.title)}" class="py-2.5 px-3 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-bold transition-colors flex items-center justify-center gap-2 border border-slate-700">
+                                    <a href="mailto:${escapeHtml(siteSettings.email)}?subject=${encodeURIComponent('Info Acquisto PC: ' + pc.title)}" class="py-2.5 px-3 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-bold transition-colors flex items-center justify-center gap-2 border border-slate-700">
                                         <i class="fa-solid fa-envelope text-sm"></i> Contatta
                                     </a>
                                 </div>
                                 <p class="text-[11px] text-slate-500 leading-snug">
-                                    Spedizione tramite Subito oppure consegna a mano in zona.
-                                    ${SUBITO_URL ? `<a href="${escapeHtml(SUBITO_URL)}" target="_blank" rel="noopener" class="text-cyan-400 hover:underline font-semibold">Guarda le mie recensioni su Subito</a>` : ''}
+                                    ${escapeHtml(siteSettings.shippingNote)}
+                                    ${siteSettings.subitoUrl ? `<a href="${escapeHtml(siteSettings.subitoUrl)}" target="_blank" rel="noopener" class="text-cyan-400 hover:underline font-semibold">Guarda le mie recensioni su Subito</a>` : ''}
                                 </p>
                             </div>
                         </div>
@@ -1675,6 +1757,115 @@
         /* ========================================================
            HELPER FUNCTIONS & TOAST MESSAGES
         ======================================================== */
+        /* ========================================================
+           TESTI E CONTATTI DEL SITO (modificabili dal pannello admin)
+        ======================================================== */
+        function loadSiteSettings() {
+            siteSettings = { ...SITE_DEFAULTS };
+            try {
+                const saved = JSON.parse(localStorage.getItem(SETTINGS_KEY) || 'null');
+                if (saved && typeof saved === 'object') siteSettings = { ...SITE_DEFAULTS, ...saved };
+            } catch (err) { /* ignora: restano i testi del file */ }
+        }
+
+        function waNumber() {
+            let n = String(siteSettings.whatsapp || '').replace(/\D/g, '');
+            if (n.startsWith('00')) n = n.slice(2);
+            if (n.length === 10 && n.startsWith('3')) n = '39' + n; // cellulare italiano senza prefisso
+            return n;
+        }
+
+        function applySiteSettings() {
+            const set = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
+            set('heroBadgeText', siteSettings.badgeText);
+            set('heroTitleWhite', siteSettings.titleWhite);
+            set('heroTitleColor', siteSettings.titleColor);
+            set('heroIntro', siteSettings.intro);
+            set('heroShipping', siteSettings.shippingNote);
+            const icon = document.getElementById('heroBadgeIcon');
+            if (icon) icon.className = 'fa-solid ' + (siteSettings.badgeIcon || 'fa-bolt') + ' text-xs';
+            const link = document.getElementById('subitoHeroLink');
+            if (link) {
+                if (siteSettings.subitoUrl) { link.href = siteSettings.subitoUrl; link.classList.remove('hidden'); }
+                else link.classList.add('hidden');
+            }
+        }
+
+        function renderSettingsForm() {
+            const val = (id, v) => { const el = document.getElementById(id); if (el) el.value = v || ''; };
+            val('setBadgeIcon', siteSettings.badgeIcon);
+            val('setBadgeText', siteSettings.badgeText);
+            val('setTitleWhite', siteSettings.titleWhite);
+            val('setTitleColor', siteSettings.titleColor);
+            val('setShipping', siteSettings.shippingNote);
+            val('setIntro', siteSettings.intro);
+            val('setSubito', siteSettings.subitoUrl);
+            val('setWhatsapp', siteSettings.whatsapp);
+            val('setEmail', siteSettings.email);
+        }
+
+        function readSettingsForm() {
+            const get = id => (document.getElementById(id).value || '').trim();
+            return {
+                badgeIcon: get('setBadgeIcon') || 'fa-bolt',
+                badgeText: get('setBadgeText'),
+                titleWhite: get('setTitleWhite'),
+                titleColor: get('setTitleColor'),
+                intro: get('setIntro'),
+                shippingNote: get('setShipping'),
+                subitoUrl: get('setSubito'),
+                whatsapp: get('setWhatsapp'),
+                email: get('setEmail')
+            };
+        }
+
+        function saveSiteSettings(silent) {
+            siteSettings = { ...SITE_DEFAULTS, ...readSettingsForm() };
+            try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(siteSettings)); } catch (err) {
+                showToast('Non riesco a salvare in questo browser.', 'error');
+                return;
+            }
+            applySiteSettings();
+            renderCatalog();
+            if (!silent) showToast('Testi salvati: li vedi nell\'anteprima qui sopra.', 'success');
+        }
+
+        function resetSiteSettings() {
+            try { localStorage.removeItem(SETTINGS_KEY); } catch (err) { /* ignora */ }
+            siteSettings = { ...SITE_DEFAULTS };
+            applySiteSettings();
+            renderSettingsForm();
+            renderCatalog();
+            showToast('Ripristinati i testi presenti nel file.', 'info');
+        }
+
+        async function downloadUpdatedIndex() {
+            saveSiteSettings(true);
+            try {
+                const res = await fetch(location.href.split('#')[0], { cache: 'no-store' });
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const html = await res.text();
+                const startMark = '/*SITE_SETTINGS_' + 'START*/';
+                const endMark = '/*SITE_SETTINGS_' + 'END*/';
+                const i = html.indexOf(startMark);
+                const j = html.indexOf(endMark);
+                if (i < 0 || j < i) throw new Error('marker');
+                const json = JSON.stringify(siteSettings, null, 12).replace(/</g, '\\u003c');
+                const out = html.slice(0, i) + startMark + '\n        const SITE_DEFAULTS = ' + json + ';\n        ' + html.slice(j);
+                const blob = new Blob([out], { type: 'text/html' });
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = 'index.html';
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+                showToast('File scaricato: caricalo su GitHub al posto del vecchio index.html.', 'success');
+            } catch (err) {
+                showToast('Per scaricare il file apri il sito online (non il file dal computer) e riprova.', 'error');
+            }
+        }
+
         /* Versione corta delle specifiche, solo per le card del catalogo.
            La scheda di dettaglio continua a mostrare i testi completi. */
         function shortSpec(key, value) {
