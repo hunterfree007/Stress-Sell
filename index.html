@@ -284,6 +284,13 @@
                         <i class="fa-solid fa-sliders text-cyan-400"></i> Pannello di Controllo Annunci
                     </h2>
                     <p class="text-slate-400 text-sm mt-1">Aggiungi, modifica o elimina le schede dei computer nel catalogo.</p>
+                    <div id="cloudSyncStatus" class="mt-3 inline-flex items-center rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1.5 text-xs font-semibold text-slate-300" role="status" aria-live="polite">Verifica collegamento al database condiviso…</div>
+                    <div id="localBackupPanel" class="hidden mt-3 max-w-2xl rounded-xl border border-amber-500/25 bg-amber-500/[0.06] p-3">
+                        <p id="localBackupDescription" class="text-xs text-amber-200 leading-relaxed"></p>
+                        <button type="button" onclick="publishLocalBackupToCloud()" class="mt-2 px-3 py-2 rounded-lg bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-bold transition-colors">
+                            <i class="fa-solid fa-cloud-arrow-up mr-1"></i> Pubblica il backup locale su Firebase
+                        </button>
+                    </div>
                 </div>
                 <div class="flex items-center gap-3 w-full sm:w-auto justify-end">
                     <button onclick="logoutAdmin()" class="px-4 py-3 bg-slate-800 hover:bg-rose-950/40 hover:text-rose-400 hover:border-rose-700/50 text-slate-300 font-semibold rounded-xl transition-all border border-slate-700 flex items-center gap-2 text-sm shadow-sm" title="Esci dalla sessione amministratore">
@@ -363,7 +370,7 @@
                         </button>
                     </div>
                     <p class="text-[11px] text-slate-500 leading-relaxed">
-                        <b class="text-slate-400">Salva</b> mostra le modifiche solo in questo browser. Per farle vedere a tutti, clicca <b class="text-slate-400">Scarica index.html aggiornato</b> e carica quel file su GitHub al posto del vecchio.
+                        Le modifiche devono essere salvate nel database condiviso Firebase per essere visibili anche da smartphone e altri computer. Controlla sempre lo stato della sincronizzazione nel pannello amministratore: se il salvataggio online fallisce, il sito lo segnalerà chiaramente.
                     </p>
                 </div>
             </details>
@@ -449,12 +456,21 @@
                         </div>
                     </div>
 
-                    <!-- 3. DYNAMIC CUSTOM SPECIFICATIONS / SECTIONS -->
+                    <!-- 3. HOMEPAGE PREVIEW TILES: scegli quali dati appaiono nei piccoli riquadri della scheda -->
+                    <div class="rounded-2xl border border-indigo-500/25 bg-indigo-500/[0.04] p-4 sm:p-5">
+                        <h4 class="text-xs uppercase font-bold text-cyan-400 tracking-wider mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-grip"></i> 3. Riquadri piccoli nell'anteprima della homepage
+                        </h4>
+                        <p class="text-xs text-slate-400 mb-4">Scegli fino a quattro informazioni da mostrare nella scheda del PC in homepage. Per CPU, GPU, RAM e altre componenti il valore viene preso automaticamente dalle specifiche qui sopra. Scegli “Personalizzato” per scrivere un'etichetta e un valore indipendenti.</p>
+                        <div id="previewTilesContainer" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+                    </div>
+
+                    <!-- 4. DYNAMIC CUSTOM SPECIFICATIONS / SECTIONS -->
                     <div>
                         <div class="flex justify-between items-center mb-4">
                             <div>
                                 <h4 class="text-xs uppercase font-bold text-cyan-400 tracking-wider flex items-center gap-2">
-                                    <i class="fa-solid fa-layer-group"></i> 3. Specifiche e Riquadri Personalizzati
+                                    <i class="fa-solid fa-layer-group"></i> 4. Specifiche complete e Riquadri Personalizzati
                                 </h4>
                                 <p class="text-slate-400 text-xs mt-0.5">Aggiungi sezioni custom a piacimento (es. Scheda Wi-Fi, Benchmark Score, Garanzia, Sistema Operativo, Cavi Sleeve, ecc.)</p>
                             </div>
@@ -472,7 +488,7 @@
                     <!-- 4. GALLERY IMAGES -->
                     <div>
                         <h4 class="text-xs uppercase font-bold text-cyan-400 tracking-wider mb-2 flex items-center gap-2">
-                            <i class="fa-solid fa-images"></i> 4. Galleria Immagini Multipla
+                            <i class="fa-solid fa-images"></i> 5. Galleria Immagini Multipla
                         </h4>
                         <p class="text-xs text-slate-400 mb-3">Carica immagini dal tuo dispositivo o inserisci URL diretti. Puoi impostare la copertina principale.</p>
 
@@ -505,7 +521,7 @@
                     <!-- 5. BENCHMARK / CONFIGURATION VIDEOS -->
                     <div>
                         <h4 class="text-xs uppercase font-bold text-cyan-400 tracking-wider mb-2 flex items-center gap-2">
-                            <i class="fa-solid fa-film"></i> 5. Video di Benchmark / Stress Test
+                            <i class="fa-solid fa-film"></i> 6. Video di Benchmark / Stress Test
                         </h4>
                         <p class="text-xs text-slate-400 mb-3">Inserisci link video (YouTube, Vimeo, MP4 direct) o carica file video di test/gameplay registrati.</p>
 
@@ -693,7 +709,7 @@
           "titleColor": "e poi li vendo",
           "intro": "Ogni PC è stato assemblato e testato, tramite benchmark di gioco e specifici hardware (TimeSpy, OCCT)",
           "shippingNote": "Spedizione tramite Subito oppure consegna a mano in zona Palermo.",
-          "subitoUrl": "https://www.subito.it/utente/102544535#Recensioni",
+          "subitoUrl": "https://www.subito.it/utente/102544535",
           "whatsapp": "",
           "telegram": "@DarioPCStressSell"
 };
@@ -743,6 +759,21 @@
         let currentFormImages = [];
         let currentFormVideos = [];
         let currentFormCustomSpecs = [];
+        let currentFormPreviewTiles = [];
+
+        const DEFAULT_PREVIEW_TILES = [
+            { source: 'cpu' }, { source: 'gpu' }, { source: 'ram' }, { source: 'storage' }
+        ];
+        const PREVIEW_TILE_OPTIONS = [
+            { source: 'cpu', label: 'CPU', icon: 'fa-microchip', color: 'text-indigo-400' },
+            { source: 'gpu', label: 'GPU', icon: 'fa-vr-cardboard', color: 'text-pink-400' },
+            { source: 'ram', label: 'RAM', icon: 'fa-memory', color: 'text-cyan-400' },
+            { source: 'storage', label: 'Archiviazione', icon: 'fa-hard-drive', color: 'text-amber-400' },
+            { source: 'motherboard', label: 'Scheda madre', icon: 'fa-chess-board', color: 'text-emerald-400' },
+            { source: 'psu', label: 'Alimentatore', icon: 'fa-plug', color: 'text-red-400' },
+            { source: 'case', label: 'Case / raffreddamento', icon: 'fa-box', color: 'text-sky-400' },
+            { source: 'custom', label: 'Personalizzato', icon: 'fa-tag', color: 'text-violet-400' }
+        ];
 
         // Firebase condiviso: la lettura degli annunci è pubblica, le modifiche richiedono
         // l'accesso Firebase dell'unico UID amministratore autorizzato dalle Rules.
@@ -766,6 +797,8 @@
         let cloudBootstrapPromise = null;
         let applyingCloudSnapshot = false;
         let firebaseInitializationError = null;
+        // Copia protetta dei dati già presenti in questo browser prima che Firebase carichi la versione online.
+        let localBackupBeforeCloudSync = null;
 
         function isUserAdmin() {
             return !!(firebaseAuth && firebaseAuth.currentUser && firebaseAuth.currentUser.uid === FIREBASE_ADMIN_UID);
@@ -794,20 +827,34 @@
             catch (err) { console.warn('Impossibile aggiornare la cache locale:', err); }
         }
 
+        function setCloudSyncStatus(message, state = 'info') {
+            const el = document.getElementById('cloudSyncStatus');
+            if (!el) return;
+            const classes = {
+                ok: 'border-emerald-500/30 bg-emerald-500/10 text-emerald-300',
+                pending: 'border-amber-500/30 bg-amber-500/10 text-amber-300',
+                error: 'border-rose-500/30 bg-rose-500/10 text-rose-300',
+                info: 'border-slate-700 bg-slate-950/60 text-slate-300'
+            };
+            el.className = 'mt-3 inline-flex items-center rounded-full border px-3 py-1.5 text-xs font-semibold ' + (classes[state] || classes.info);
+            el.textContent = message;
+        }
+
         function applyCloudSiteData(cloud) {
             if (!cloud || typeof cloud !== 'object') {
                 cloudDataInitialized = false;
+                setCloudSyncStatus('Database condiviso vuoto: accedi come amministratore per inizializzarlo.', 'pending');
                 return;
             }
             applyingCloudSnapshot = true;
             try {
                 const hasListingsField = Object.prototype.hasOwnProperty.call(cloud, 'listings');
                 const hasSettingsField = Object.prototype.hasOwnProperty.call(cloud, 'settings');
-                if (hasListingsField || hasSettingsField) {
+                if (hasListingsField) {
                     pcListings = normalizeFirebaseListings(cloud.listings);
                     writeLocalCache(STORAGE_KEY, pcListings);
                 }
-                if (cloud.settings && typeof cloud.settings === 'object') {
+                if (hasSettingsField && cloud.settings && typeof cloud.settings === 'object') {
                     siteSettings = { ...SITE_DEFAULTS, ...cloud.settings };
                     writeLocalCache(SETTINGS_KEY, siteSettings);
                     applySiteSettings();
@@ -816,6 +863,9 @@
                 cloudDataInitialized = hasListingsField || hasSettingsField || !!cloud.initializedAt;
                 renderCatalog();
                 renderAdminTable();
+                if (cloudDataInitialized) setCloudSyncStatus('Database condiviso collegato: dati caricati online.', 'ok');
+                else setCloudSyncStatus('Database trovato ma non ancora inizializzato.', 'pending');
+                updateLocalBackupPanel(cloud);
             } finally {
                 applyingCloudSnapshot = false;
             }
@@ -825,6 +875,7 @@
             if (!firebaseDatabase || !isUserAdmin()) return 'not-admin';
             if (cloudBootstrapPromise) return cloudBootstrapPromise;
             cloudBootstrapPromise = (async () => {
+                setCloudSyncStatus('Controllo i dati nel database condiviso…', 'pending');
                 const siteRef = firebaseDatabase.ref(FIREBASE_SITE_PATH);
                 const snapshot = await siteRef.once('value');
                 const current = snapshot.val();
@@ -837,7 +888,8 @@
 
 Procedi soltanto se sei sul computer dove vedi i dati corretti. Questa operazione inizializza il database condiviso per tutti i dispositivi.`;
                 if (!window.confirm(message)) {
-                    showToast('Importazione rimandata: gli annunci restano locali finché il database non viene inizializzato.', 'info');
+                    setCloudSyncStatus('Database non inizializzato: nessuna modifica sarà condivisa finché non importi i dati.', 'error');
+                    showToast('Sincronizzazione non attivata. Accedi di nuovo e conferma l’importazione dal computer con i dati corretti.', 'error');
                     return 'cancelled';
                 }
 
@@ -846,20 +898,29 @@ Procedi soltanto se sei sul computer dove vedi i dati corretti. Questa operazion
                     const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
                     if (Array.isArray(stored)) localListings = stored;
                 } catch (err) { /* usa la lista già caricata in memoria */ }
-                const localSettings = { ...SITE_DEFAULTS, ...siteSettings };
+                let localSettings = { ...SITE_DEFAULTS, ...siteSettings };
+                try {
+                    const storedSettings = JSON.parse(localStorage.getItem(SETTINGS_KEY) || 'null');
+                    if (storedSettings && typeof storedSettings === 'object') localSettings = { ...SITE_DEFAULTS, ...storedSettings };
+                } catch (err) { /* usa le impostazioni in memoria */ }
+                const now = new Date().toISOString();
                 const payload = {
                     listings: listingsToFirebaseObject(localListings),
                     settings: localSettings,
-                    initializedAt: new Date().toISOString(),
-                    updatedAt: new Date().toISOString()
+                    initializedAt: now,
+                    updatedAt: now
                 };
                 await siteRef.set(payload);
                 cloudDataInitialized = true;
+                if (localBackupBeforeCloudSync) localBackupBeforeCloudSync.used = true;
+                applyCloudSiteData(payload);
+                setCloudSyncStatus('Database inizializzato e dati pubblicati online.', 'ok');
                 showToast('Dati trasferiti nel database condiviso: ora saranno uguali su tutti i dispositivi.', 'success');
                 return 'uploaded';
             })().catch(err => {
                 console.error('Errore durante l’inizializzazione del database condiviso:', err);
-                showToast('Non riesco a leggere o inizializzare Firebase. Controlla le Rules del database e riprova.', 'error');
+                setCloudSyncStatus('Errore di sincronizzazione: verifica URL e regole Firebase.', 'error');
+                showToast('Non riesco a leggere o inizializzare Firebase. Controlla che le regole consentano la lettura pubblica e la scrittura solo al tuo UID.', 'error');
                 return 'error';
             }).finally(() => {
                 cloudBootstrapPromise = null;
@@ -867,26 +928,111 @@ Procedi soltanto se sei sul computer dove vedi i dati corretti. Questa operazion
             return cloudBootstrapPromise;
         }
 
+        function stableStringify(value) {
+            if (Array.isArray(value)) return '[' + value.map(stableStringify).join(',') + ']';
+            if (value && typeof value === 'object') {
+                return '{' + Object.keys(value).sort().map(key => JSON.stringify(key) + ':' + stableStringify(value[key])).join(',') + '}';
+            }
+            return JSON.stringify(value);
+        }
+
+        function updateLocalBackupPanel(cloud = null) {
+            const panel = document.getElementById('localBackupPanel');
+            const text = document.getElementById('localBackupDescription');
+            if (!panel || !text) return;
+            const backup = localBackupBeforeCloudSync;
+            if (!backup || !backup.hadLocalListings || backup.used) {
+                panel.classList.add('hidden');
+                return;
+            }
+            // Mostra l'opzione di recupero solo se la copia locale è diversa da quella online.
+            if (cloud && (Object.prototype.hasOwnProperty.call(cloud, 'listings') || Object.prototype.hasOwnProperty.call(cloud, 'settings'))) {
+                const localListingsObject = listingsToFirebaseObject(backup.listings);
+                const remoteListingsObject = listingsToFirebaseObject(normalizeFirebaseListings(cloud.listings));
+                const localSettingsObject = { ...SITE_DEFAULTS, ...(backup.settings || {}) };
+                const remoteSettingsObject = { ...SITE_DEFAULTS, ...((cloud.settings && typeof cloud.settings === 'object') ? cloud.settings : {}) };
+                const sameListings = stableStringify(localListingsObject) === stableStringify(remoteListingsObject);
+                const sameSettings = stableStringify(localSettingsObject) === stableStringify(remoteSettingsObject);
+                if (sameListings && sameSettings) {
+                    panel.classList.add('hidden');
+                    return;
+                }
+            }
+            const count = Array.isArray(backup.listings) ? backup.listings.length : 0;
+            const firstTitle = count ? String(backup.listings[0].title || 'Annuncio senza titolo') : 'nessun annuncio';
+            text.textContent = `Ho conservato una copia dei dati che erano già in questo browser prima della sincronizzazione: ${count} annuncio/i. Primo annuncio: “${firstTitle}”. Usa il pulsante soltanto se questa è la versione corretta: sostituirà gli annunci e i testi attualmente online.`;
+            panel.classList.remove('hidden');
+        }
+
+        async function publishLocalBackupToCloud() {
+            if (!isUserAdmin() || !firebaseDatabase) {
+                showToast('Accedi con l’account amministratore per pubblicare i dati.', 'error');
+                openAdminAuthModal();
+                return;
+            }
+            const backup = localBackupBeforeCloudSync;
+            if (!backup || !backup.hadLocalListings || backup.used || !Array.isArray(backup.listings)) {
+                showToast('Non è disponibile un backup locale precedente da pubblicare.', 'error');
+                return;
+            }
+            const count = backup.listings.length;
+            const firstTitle = count ? String(backup.listings[0].title || 'Annuncio senza titolo') : 'nessun annuncio';
+            const message = `ATTENZIONE: stai per sostituire i dati online di Stress & Sell con la copia trovata in questo browser.
+
+Annunci da pubblicare: ${count}
+Primo annuncio: ${firstTitle}
+
+Continua soltanto se questa copia locale contiene i prezzi e le informazioni corretti.`;
+            if (!window.confirm(message)) return;
+            try {
+                setCloudSyncStatus('Pubblicazione del backup locale…', 'pending');
+                const now = new Date().toISOString();
+                const currentSnapshot = await firebaseDatabase.ref(FIREBASE_SITE_PATH).once('value');
+                const current = currentSnapshot.val() || {};
+                const payload = {
+                    ...current,
+                    listings: listingsToFirebaseObject(backup.listings),
+                    settings: { ...SITE_DEFAULTS, ...(backup.settings || {}) },
+                    initializedAt: current.initializedAt || now,
+                    updatedAt: now
+                };
+                await firebaseDatabase.ref(FIREBASE_SITE_PATH).set(payload);
+                backup.used = true;
+                applyCloudSiteData(payload);
+                updateLocalBackupPanel();
+                showToast('Backup locale pubblicato. Ora i dispositivi leggeranno questi dati condivisi.', 'success');
+            } catch (err) {
+                console.error('Errore pubblicazione backup locale:', err);
+                setCloudSyncStatus('Backup NON pubblicato: Firebase ha rifiutato la scrittura.', 'error');
+                showToast('Non sono riuscito a pubblicare il backup. Controlla le regole Firebase e riprova.', 'error');
+            }
+        }
+
         function initializeFirebaseSync() {
             if (!window.firebase || typeof firebase.initializeApp !== 'function') {
                 firebaseInitializationError = new Error('SDK Firebase non disponibile');
                 console.error(firebaseInitializationError);
-                showToast('Connessione Firebase non disponibile. Controlla la connessione Internet.', 'error');
+                setCloudSyncStatus('Firebase non disponibile: controlla la connessione Internet.', 'error');
                 return;
             }
             try {
                 if (!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
                 firebaseAuth = firebase.auth();
                 firebaseDatabase = firebase.database();
+                setCloudSyncStatus('Collegamento al database condiviso…', 'pending');
 
                 firebaseDatabase.ref(FIREBASE_SITE_PATH).on('value', snapshot => {
                     const cloud = snapshot.val();
-                    if (cloud) applyCloudSiteData(cloud);
-                    else cloudDataInitialized = false;
+                    if (cloud && typeof cloud === 'object') applyCloudSiteData(cloud);
+                    else {
+                        cloudDataInitialized = false;
+                        setCloudSyncStatus('Database condiviso vuoto: accedi come amministratore per inizializzarlo.', 'pending');
+                    }
                 }, error => {
                     console.error('Errore lettura Firebase:', error);
+                    setCloudSyncStatus('Lettura Firebase negata: controlla le regole del database.', 'error');
                     if (error && error.code === 'PERMISSION_DENIED') {
-                        showToast('Firebase blocca la lettura: applica le regole indicate nella guida.', 'error');
+                        showToast('Firebase blocca la lettura. Controlla le regole del database.', 'error');
                     } else {
                         showToast('Non riesco a leggere gli annunci online in questo momento.', 'error');
                     }
@@ -901,24 +1047,35 @@ Procedi soltanto se sei sul computer dove vedi i dati corretti. Questa operazion
                         return;
                     }
                     if (isAdminAuthenticated) {
-                        await ensureSharedDatabaseInitializedFromThisBrowser();
+                        const result = await ensureSharedDatabaseInitializedFromThisBrowser();
+                        if (result === 'error' || result === 'cancelled' || result === 'not-admin') {
+                            setCloudSyncStatus('Accesso admin presente, ma sincronizzazione non attiva.', 'error');
+                        }
                     }
                 });
             } catch (err) {
                 firebaseInitializationError = err;
                 console.error('Errore inizializzazione Firebase:', err);
+                setCloudSyncStatus('Errore nella configurazione Firebase. Verifica i dati del progetto.', 'error');
                 showToast('Errore nella configurazione Firebase. Verifica i dati del progetto.', 'error');
             }
         }
 
         async function persistSiteSettingsToCloud() {
-            if (!firebaseDatabase || !cloudDataInitialized || !isUserAdmin() || applyingCloudSnapshot) return;
+            if (applyingCloudSnapshot) return true;
+            if (!firebaseDatabase || !isUserAdmin() || !cloudDataInitialized) {
+                setCloudSyncStatus('Modifiche non pubblicate: database condiviso non pronto o accesso admin assente.', 'error');
+                return false;
+            }
             try {
                 await firebaseDatabase.ref(FIREBASE_SITE_PATH + '/settings').set(siteSettings);
                 await firebaseDatabase.ref(FIREBASE_SITE_PATH + '/updatedAt').set(new Date().toISOString());
+                setCloudSyncStatus('Impostazioni salvate nel database condiviso.', 'ok');
+                return true;
             } catch (err) {
                 console.error('Errore salvataggio impostazioni cloud:', err);
-                showToast('Impostazioni salvate solo su questo browser: Firebase ha rifiutato il salvataggio.', 'error');
+                setCloudSyncStatus('Impostazioni NON pubblicate: Firebase ha rifiutato il salvataggio.', 'error');
+                return false;
             }
         }
 
@@ -1006,10 +1163,18 @@ Procedi soltanto se sei sul computer dove vedi i dati corretti. Questa operazion
                 }
 
                 isAdminAuthenticated = true;
-                await ensureSharedDatabaseInitializedFromThisBrowser();
+                const syncResult = await ensureSharedDatabaseInitializedFromThisBrowser();
+                if (!['uploaded', 'already-exists'].includes(syncResult)) {
+                    await firebaseAuth.signOut();
+                    isAdminAuthenticated = false;
+                    const syncError = new Error('firebase-sync-not-ready');
+                    syncError.code = syncResult;
+                    throw syncError;
+                }
                 closeAdminAuthModal();
                 switchView('admin');
-                showToast('Accesso amministratore effettuato.', 'success');
+                setCloudSyncStatus('Amministratore connesso · dati condivisi online.', 'ok');
+                showToast('Accesso amministratore effettuato e sincronizzazione attiva.', 'success');
             } catch (err) {
                 console.error('Errore accesso amministratore:', err);
                 let message = 'Accesso non riuscito. Controlla email e password.';
@@ -1023,6 +1188,10 @@ Procedi soltanto se sei sul computer dove vedi i dati corretti. Questa operazion
                     message = 'Connessione assente: controlla Internet e riprova.';
                 } else if (err && ['auth/unauthorized-domain'].includes(err.code)) {
                     message = 'Dominio del sito non autorizzato in Firebase. Aggiungilo in Authentication > Impostazioni > Domini autorizzati.';
+                } else if (err && err.message === 'firebase-sync-not-ready') {
+                    message = err.code === 'cancelled'
+                        ? 'Hai annullato l’importazione. Per evitare modifiche solo locali, accedi di nuovo e conferma dal computer con i dati corretti.'
+                        : 'Accesso effettuato ma database non collegato. Controlla le regole Firebase e riprova.';
                 }
                 if (errorText) errorText.textContent = message;
                 if (errorDiv) errorDiv.classList.remove('hidden');
@@ -1059,10 +1228,22 @@ Procedi soltanto se sei sul computer dove vedi i dati corretti. Questa operazion
            INITIALIZATION & LOCALSTORAGE MANAGEMENT
         ======================================================== */
         window.addEventListener('DOMContentLoaded', () => {
+            const hadLocalListings = !!localStorage.getItem(STORAGE_KEY);
+            const hadLocalSettings = !!localStorage.getItem(SETTINGS_KEY);
             loadSiteSettings();
             applySiteSettings();
             renderSettingsForm();
             loadListingsFromStorage();
+            // Salva una copia prima che l'eventuale listener Firebase sostituisca la cache locale con quella online.
+            localBackupBeforeCloudSync = {
+                hadLocalListings,
+                hadLocalSettings,
+                listings: JSON.parse(JSON.stringify(pcListings)),
+                settings: JSON.parse(JSON.stringify(siteSettings)),
+                capturedAt: new Date().toISOString(),
+                used: false
+            };
+            updateLocalBackupPanel();
             renderCatalog();
             renderAdminTable();
             initializeFirebaseSync();
@@ -1108,19 +1289,26 @@ Procedi soltanto se sei sul computer dove vedi i dati corretti. Questa operazion
             }
         }
 
-        function saveListingsToStorage() {
+        async function saveListingsToStorage() {
             try {
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(pcListings));
             } catch (e) {
-                showToast('Spazio in local storage quasi esaurito o errore di salvataggio.', 'error');
+                showToast('Spazio in memoria locale quasi esaurito o errore di salvataggio.', 'error');
             }
-            if (firebaseDatabase && cloudDataInitialized && isUserAdmin() && !applyingCloudSnapshot) {
-                firebaseDatabase.ref(FIREBASE_SITE_PATH + '/listings').set(listingsToFirebaseObject(pcListings))
-                    .then(() => firebaseDatabase.ref(FIREBASE_SITE_PATH + '/updatedAt').set(new Date().toISOString()))
-                    .catch(err => {
-                        console.error('Errore salvataggio annunci cloud:', err);
-                        showToast('Modifiche salvate solo in questo browser: Firebase ha rifiutato il salvataggio.', 'error');
-                    });
+            // La cache locale è solo una copia di emergenza; per pubblicare occorre Firebase.
+            if (applyingCloudSnapshot) return true;
+            if (!firebaseDatabase || !isUserAdmin() || !cloudDataInitialized) {
+                return false;
+            }
+            try {
+                await firebaseDatabase.ref(FIREBASE_SITE_PATH + '/listings').set(listingsToFirebaseObject(pcListings));
+                await firebaseDatabase.ref(FIREBASE_SITE_PATH + '/updatedAt').set(new Date().toISOString());
+                setCloudSyncStatus('Annunci salvati nel database condiviso.', 'ok');
+                return true;
+            } catch (err) {
+                console.error('Errore salvataggio annunci cloud:', err);
+                setCloudSyncStatus('Annunci NON pubblicati: Firebase ha rifiutato il salvataggio.', 'error');
+                return false;
             }
         }
 
@@ -1289,19 +1477,14 @@ Procedi soltanto se sei sul computer dove vedi i dati corretti. Questa operazion
                                     ${escapeHtml(pc.title)}
                                 </h3>
 
-                                <!-- Riquadri specifiche essenziali -->
+                                <!-- Riquadri anteprima configurabili dal pannello amministratore -->
                                 <div class="grid grid-cols-2 gap-2">
-                                    ${[
-                                        ['cpu', 'CPU', 'fa-microchip', 'text-indigo-400'],
-                                        ['gpu', 'GPU', 'fa-vr-cardboard', 'text-pink-400'],
-                                        ['ram', 'RAM', 'fa-memory', 'text-cyan-400'],
-                                        ['storage', 'Archiviazione', 'fa-hard-drive', 'text-amber-400']
-                                    ].filter(([key]) => pc.specs[key] && shortSpec(key, pc.specs[key])).map(([key, label, icon, color]) => `
-                                        <div class="bg-slate-950/60 border border-slate-800/70 rounded-xl px-2.5 py-2 min-w-0">
+                                    ${getPreviewTilesForListing(pc).map(tile => `
+                                        <div class="bg-slate-950/60 border border-slate-800/70 rounded-xl px-2.5 py-2 min-w-0" title="${escapeHtml(tile.rawValue || tile.value)}">
                                             <div class="flex items-center gap-1.5 text-[10px] font-semibold text-slate-500">
-                                                <i class="fa-solid ${icon} ${color}"></i> ${label}
+                                                <i class="fa-solid ${tile.icon} ${tile.color}"></i> ${escapeHtml(tile.label)}
                                             </div>
-                                            <div class="text-xs text-slate-200 font-medium truncate mt-0.5" title="${escapeHtml(pc.specs[key])}">${escapeHtml(shortSpec(key, pc.specs[key]))}</div>
+                                            <div class="text-xs text-slate-200 font-medium truncate mt-0.5">${escapeHtml(tile.value)}</div>
                                         </div>
                                     `).join('')}
                                 </div>
@@ -1395,10 +1578,12 @@ Procedi soltanto se sei sul computer dove vedi i dati corretti. Questa operazion
             currentFormImages = [];
             currentFormVideos = [];
             currentFormCustomSpecs = [];
+            currentFormPreviewTiles = normalizePreviewTiles(null);
 
             renderFormImages();
             renderFormVideos();
             renderCustomSpecFields();
+            renderPreviewTileFields();
 
             document.getElementById('formSection').classList.remove('hidden');
             document.getElementById('formSection').scrollIntoView({ behavior: 'smooth' });
@@ -1437,17 +1622,19 @@ Procedi soltanto se sei sul computer dove vedi i dati corretti. Questa operazion
             currentFormImages = pc.images ? [...pc.images] : [];
             currentFormVideos = pc.videos ? [...pc.videos] : [];
             currentFormCustomSpecs = pc.customSpecs ? JSON.parse(JSON.stringify(pc.customSpecs)) : [];
+            currentFormPreviewTiles = normalizePreviewTiles(pc.previewTiles);
 
             renderFormImages();
             renderFormVideos();
             renderCustomSpecFields();
+            renderPreviewTileFields();
 
             document.getElementById('formTitle').innerHTML = `<i class="fa-solid fa-pen-to-square text-cyan-400"></i> Modifica Computer: ${escapeHtml(pc.title)}`;
             document.getElementById('formSection').classList.remove('hidden');
             document.getElementById('formSection').scrollIntoView({ behavior: 'smooth' });
         }
 
-        function deleteListing(pcId) {
+        async function deleteListing(pcId) {
             if (!isUserAdmin()) {
                 openAdminAuthModal();
                 return;
@@ -1455,11 +1642,87 @@ Procedi soltanto se sei sul computer dove vedi i dati corretti. Questa operazion
 
             if (confirm('Sei sicuro di voler eliminare definitivamente questo annuncio PC?')) {
                 pcListings = pcListings.filter(item => item.id !== pcId);
-                saveListingsToStorage();
                 renderAdminTable();
                 renderCatalog();
-                showToast('Annuncio eliminato con successo.', 'info');
+                const synced = await saveListingsToStorage();
+                showToast(synced ? 'Annuncio eliminato e aggiornato online.' : 'Eliminazione solo locale: non è stata pubblicata. Controlla la connessione Firebase.', synced ? 'success' : 'error');
             }
+        }
+
+        /* ========================================================
+           HOMEPAGE PREVIEW TILE EDITOR
+        ======================================================== */
+        function normalizePreviewTiles(tiles) {
+            const sourceTiles = Array.isArray(tiles) ? tiles : [];
+            return Array.from({ length: 4 }, (_, index) => {
+                const candidate = sourceTiles[index] && typeof sourceTiles[index] === 'object'
+                    ? sourceTiles[index]
+                    : DEFAULT_PREVIEW_TILES[index];
+                const source = PREVIEW_TILE_OPTIONS.some(option => option.source === candidate.source)
+                    ? candidate.source : DEFAULT_PREVIEW_TILES[index].source;
+                if (source === 'custom') {
+                    return { source: 'custom', label: String(candidate.label || ''), value: String(candidate.value || '') };
+                }
+                return { source };
+            });
+        }
+
+        function renderPreviewTileFields() {
+            const container = document.getElementById('previewTilesContainer');
+            if (!container) return;
+            currentFormPreviewTiles = normalizePreviewTiles(currentFormPreviewTiles);
+            container.innerHTML = currentFormPreviewTiles.map((tile, index) => {
+                const options = PREVIEW_TILE_OPTIONS.map(option => `<option value="${option.source}" ${option.source === tile.source ? 'selected' : ''}>${escapeHtml(option.label)}</option>`).join('');
+                const customFields = tile.source === 'custom' ? '' : 'hidden';
+                return `
+                    <div class="rounded-xl border border-slate-800 bg-slate-950/70 p-3 space-y-2">
+                        <label class="block text-[11px] font-bold uppercase tracking-wide text-slate-400">Riquadro ${index + 1}</label>
+                        <select aria-label="Informazione del riquadro ${index + 1}" onchange="updatePreviewTileSource(${index}, this.value)" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500">${options}</select>
+                        <div id="previewTileCustomFields${index}" class="${customFields} grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <input type="text" maxlength="28" value="${escapeHtml(tile.label || '')}" placeholder="Etichetta (es. Benchmark)" oninput="updatePreviewTileCustom(${index}, 'label', this.value)" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500">
+                            <input type="text" maxlength="90" value="${escapeHtml(tile.value || '')}" placeholder="Valore (es. 120 FPS)" oninput="updatePreviewTileCustom(${index}, 'value', this.value)" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500">
+                        </div>
+                        <p class="text-[10px] text-slate-500">${tile.source === 'custom' ? 'Il riquadro usa l’etichetta e il valore personalizzati.' : 'Il valore viene aggiornato automaticamente dalla specifica tecnica selezionata.'}</p>
+                    </div>`;
+            }).join('');
+        }
+
+        function updatePreviewTileSource(index, source) {
+            if (!PREVIEW_TILE_OPTIONS.some(option => option.source === source)) return;
+            currentFormPreviewTiles = normalizePreviewTiles(currentFormPreviewTiles);
+            currentFormPreviewTiles[index] = source === 'custom'
+                ? { source: 'custom', label: '', value: '' }
+                : { source };
+            renderPreviewTileFields();
+        }
+
+        function updatePreviewTileCustom(index, field, value) {
+            currentFormPreviewTiles = normalizePreviewTiles(currentFormPreviewTiles);
+            if (!currentFormPreviewTiles[index] || currentFormPreviewTiles[index].source !== 'custom') return;
+            if (field === 'label' || field === 'value') currentFormPreviewTiles[index][field] = value;
+        }
+
+        function getPreviewTilesForListing(pc) {
+            const specs = pc && pc.specs && typeof pc.specs === 'object' ? pc.specs : {};
+            return normalizePreviewTiles(pc && pc.previewTiles).map(tile => {
+                if (tile.source === 'custom') {
+                    return {
+                        label: String(tile.label || '').trim(),
+                        value: String(tile.value || '').trim(),
+                        rawValue: String(tile.value || '').trim(),
+                        icon: 'fa-tag', color: 'text-violet-400'
+                    };
+                }
+                const meta = PREVIEW_TILE_OPTIONS.find(option => option.source === tile.source) || PREVIEW_TILE_OPTIONS[0];
+                const rawValue = String(specs[tile.source] || '').trim();
+                return {
+                    label: meta.label,
+                    value: shortSpec(tile.source, rawValue),
+                    rawValue,
+                    icon: meta.icon,
+                    color: meta.color
+                };
+            }).filter(tile => tile.label && tile.value).slice(0, 4);
         }
 
         /* ========================================================
@@ -1661,7 +1924,7 @@ Procedi soltanto se sei sul computer dove vedi i dati corretti. Questa operazion
         /* ========================================================
            SAVE FORM DATA
         ======================================================== */
-        function handleFormSubmit(e) {
+        async function handleFormSubmit(e) {
             e.preventDefault();
 
             if (!isUserAdmin()) {
@@ -1685,8 +1948,9 @@ Procedi soltanto se sei sul computer dove vedi i dati corretti. Questa operazion
                 case: document.getElementById('specCase').value.trim()
             };
 
-            // Filter valid custom specs
+            // Filter valid custom specs and save the four configurable homepage preview tiles.
             const validCustomSpecs = currentFormCustomSpecs.filter(s => s.title.trim() !== '' || s.value.trim() !== '');
+            const previewTiles = normalizePreviewTiles(currentFormPreviewTiles);
 
             if (editId) {
                 // Update existing
@@ -1699,12 +1963,12 @@ Procedi soltanto se sei sul computer dove vedi i dati corretti. Questa operazion
                         status,
                         description,
                         specs,
+                        previewTiles,
                         images: currentFormImages,
                         videos: currentFormVideos,
                         customSpecs: validCustomSpecs,
                         updatedAt: new Date().toISOString()
                     };
-                    showToast('Annuncio PC aggiornato con successo!', 'success');
                 }
             } else {
                 // Create new
@@ -1715,19 +1979,20 @@ Procedi soltanto se sei sul computer dove vedi i dati corretti. Questa operazion
                     status,
                     description,
                     specs,
+                    previewTiles,
                     images: currentFormImages,
                     videos: currentFormVideos,
                     customSpecs: validCustomSpecs,
                     createdAt: new Date().toISOString()
                 };
                 pcListings.unshift(newPc);
-                showToast('Nuovo annuncio PC creato e pubblicato!', 'success');
             }
 
-            saveListingsToStorage();
+            const synced = await saveListingsToStorage();
             closeForm();
             renderAdminTable();
             renderCatalog();
+            showToast(synced ? 'Annuncio salvato e pubblicato nel database condiviso.' : 'Modifica salvata solo in questo browser: NON è visibile agli altri dispositivi. Controlla lo stato Firebase nel pannello.', synced ? 'success' : 'error');
         }
 
         /* ========================================================
@@ -2060,30 +2325,37 @@ Procedi soltanto se sei sul computer dove vedi i dati corretti. Questa operazion
             };
         }
 
-        function saveSiteSettings(silent) {
+        async function saveSiteSettings(silent = false) {
+            if (!isUserAdmin()) {
+                if (!silent) showToast('Accedi come amministratore prima di modificare i testi del sito.', 'error');
+                openAdminAuthModal();
+                return false;
+            }
             siteSettings = { ...SITE_DEFAULTS, ...readSettingsForm() };
             try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(siteSettings)); } catch (err) {
-                showToast('Non riesco a salvare in questo browser.', 'error');
-                return;
+                if (!silent) showToast('Non riesco a salvare in questo browser.', 'error');
+                return false;
             }
             applySiteSettings();
             renderCatalog();
-            persistSiteSettingsToCloud();
-            if (!silent) showToast('Testi salvati.', 'success');
+            const synced = await persistSiteSettingsToCloud();
+            if (!silent) showToast(synced ? 'Testi salvati online e condivisi con tutti i dispositivi.' : 'Testi salvati solo localmente: NON sono stati pubblicati. Controlla lo stato Firebase.', synced ? 'success' : 'error');
+            return synced;
         }
 
-        function resetSiteSettings() {
-            try { localStorage.removeItem(SETTINGS_KEY); } catch (err) { /* ignora */ }
+        async function resetSiteSettings() {
+            if (!isUserAdmin()) { openAdminAuthModal(); return; }
             siteSettings = { ...SITE_DEFAULTS };
+            writeLocalCache(SETTINGS_KEY, siteSettings);
             applySiteSettings();
             renderSettingsForm();
             renderCatalog();
-            persistSiteSettingsToCloud();
-            showToast('Ripristinati i testi predefiniti.', 'info');
+            const synced = await persistSiteSettingsToCloud();
+            showToast(synced ? 'Testi predefiniti ripristinati e pubblicati online.' : 'Ripristino solo locale: Firebase non ha ricevuto la modifica.', synced ? 'success' : 'error');
         }
 
         async function downloadUpdatedIndex() {
-            saveSiteSettings(true);
+            await saveSiteSettings(true);
             try {
                 const res = await fetch(location.href.split('#')[0], { cache: 'no-store' });
                 if (!res.ok) throw new Error('HTTP ' + res.status);
