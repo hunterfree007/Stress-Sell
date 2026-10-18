@@ -130,7 +130,14 @@
             background-image: radial-gradient(ellipse at center, rgba(30, 41, 59, .64), rgba(2, 6, 23, .98));
             border-bottom: 1px solid rgba(148, 163, 184, .12);
         }
+        /* Schede immagini: landscape su computer, portrait su smartphone. */
+        .pc-card-image-frame { aspect-ratio: 4 / 3; }
+        .pc-detail-image-frame { aspect-ratio: 4 / 3; }
         .pc-card-image img { filter: saturate(1.035) contrast(1.015); }
+        @media screen and (max-width: 767px) {
+            .pc-card-image-frame,
+            .pc-detail-image-frame { aspect-ratio: 3 / 4; }
+        }
         input:not([type="checkbox"]):not([type="radio"]), select, textarea {
             transition: border-color .18s ease, box-shadow .18s ease, background-color .18s ease;
         }
@@ -1134,7 +1141,7 @@
                 return `
                     <div class="pc-card glass-card rounded-3xl overflow-hidden hover:border-cyan-500/50 transition-all duration-300 flex flex-col group hover:-translate-y-1 shadow-lg">
                         <!-- Card Image Header -->
-                        <div class="pc-card-image relative aspect-[3/4] bg-slate-950 overflow-hidden cursor-pointer" onclick="openDetailModal('${pc.id}')">
+                        <div class="pc-card-image pc-card-image-frame relative bg-slate-950 overflow-hidden cursor-pointer" onclick="openDetailModal('${pc.id}')">
                             <img src="${escapeHtml(coverImage)}" alt="${escapeHtml(pc.title)}" class="w-full h-full object-contain" onerror="this.src='https://placehold.co/600x400/1e293b/0ea5e9?text=Immagine+Non+Disponibile'">
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80"></div>
                             
@@ -1718,7 +1725,7 @@
                     <!-- Left Column: Interactive Image Gallery -->
                     <div class="lg:col-span-7 space-y-4">
                         <!-- Main Preview Image -->
-                        <div class="relative w-full aspect-[4/3] bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 shadow-inner flex items-center justify-center">
+                        <div class="pc-detail-image-frame relative w-full bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 shadow-inner flex items-center justify-center">
                             <img src="${escapeHtml(activeImg)}" alt="${escapeHtml(pc.title)}" class="w-full h-full object-contain" onerror="this.src='https://placehold.co/800x500/1e293b/0ea5e9?text=Immagine+Non+Disponibile'">
                             <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold border ${badgeColor} backdrop-blur-md">
                                 ${escapeHtml(pc.status)}
