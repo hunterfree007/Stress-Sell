@@ -156,6 +156,321 @@
                 transition-duration: .01ms !important;
             }
         }
+
+
+        /* =========================================================
+           ALIENWARE-INSPIRED ART DIRECTION — STRESS & SELL
+           Palette charcoal / ultraviolet with restrained cyan details.
+           This styles the existing UI; catalog data and behavior stay intact.
+        ========================================================= */
+        :root {
+            color-scheme: dark;
+            --ss-bg: #101013;
+            --ss-surface: #19171f;
+            --ss-purple: #8f4eff;
+            --ss-purple-bright: #b875ff;
+            --ss-lavender: #d9c9ff;
+            --ss-cyan: #45e6e8;
+        }
+        html { scroll-behavior: smooth; }
+        body#appBody {
+            background-color: var(--ss-bg) !important;
+            background-image:
+                radial-gradient(ellipse 58% 38% at 52% 108%, rgba(101, 39, 225, .55), transparent 70%),
+                radial-gradient(ellipse 42% 35% at 92% 76%, rgba(126, 56, 214, .22), transparent 73%),
+                radial-gradient(ellipse 42% 25% at 6% 0%, rgba(115, 115, 130, .07), transparent 68%),
+                linear-gradient(180deg, #111113 0%, #101013 48%, #121019 100%) !important;
+            background-attachment: fixed !important;
+            color: #f7f5fb;
+        }
+        header.sticky {
+            background: rgba(15, 15, 18, .94) !important;
+            border-bottom: 1px solid rgba(255,255,255,.075) !important;
+            box-shadow: 0 12px 38px rgba(0,0,0,.27) !important;
+            backdrop-filter: blur(18px) saturate(130%);
+        }
+        header .max-w-7xl { min-height: 76px; }
+        .brand-mark {
+            background: linear-gradient(145deg, #6d32c6, #24143f 76%) !important;
+            border-color: rgba(203, 165, 255, .42) !important;
+            border-radius: 15px !important;
+            box-shadow: 0 0 26px rgba(133, 67, 255, .27), inset 0 1px 0 rgba(255,255,255,.2) !important;
+        }
+        header .bg-gradient-to-r.from-cyan-400.via-sky-300.to-indigo-400 {
+            background-image: linear-gradient(100deg, #fff 0%, #e2d5ff 50%, #b983ff 100%) !important;
+        }
+        .bg-gradient-to-r.from-cyan-500.to-indigo-600,
+        .bg-gradient-to-tr.from-cyan-500.to-indigo-600 {
+            background-image: linear-gradient(115deg, #7138bd 0%, #8d45e7 52%, #bd74ff 100%) !important;
+        }
+        #appBody .text-cyan-400, #appBody .text-cyan-300 { color: #bfa0ff !important; }
+        #appBody .text-cyan-500 { color: #b68aff !important; }
+        #appBody .border-cyan-500\/20, #appBody .border-cyan-500\/30,
+        #appBody .border-cyan-500\/40, #appBody .border-cyan-500\/50 {
+            border-color: rgba(174, 113, 255, .28) !important;
+        }
+        #appBody .bg-cyan-500\/10 { background-color: rgba(150, 82, 255, .12) !important; }
+        #appBody .bg-cyan-500\/\[0\.06\] { background-color: rgba(150, 82, 255, .07) !important; }
+        #appBody .shadow-cyan-500\/10, #appBody .shadow-cyan-500\/20, #appBody .shadow-cyan-500\/25 {
+            --tw-shadow-color: rgba(142, 67, 255, .22) !important;
+            --tw-shadow: var(--tw-shadow-colored) !important;
+        }
+        #appBody .hover\:border-cyan-500\/50:hover { border-color: rgba(185, 129, 255, .65) !important; }
+        #appBody .focus\:border-cyan-500:focus { border-color: #ad71ff !important; }
+        #appBody .focus\:ring-cyan-500:focus { --tw-ring-color: rgba(173,113,255,.55) !important; }
+        .hero-panel {
+            min-height: 390px;
+            padding: clamp(1.5rem, 4vw, 3.3rem) !important;
+            background-color: #111014 !important;
+            background-image:
+                radial-gradient(ellipse 48% 83% at 86% 112%, rgba(120, 57, 237, .43), transparent 77%),
+                radial-gradient(ellipse 32% 72% at 100% 56%, rgba(86, 40, 141, .18), transparent 75%),
+                linear-gradient(108deg, #111113 0%, #121116 53%, #17131e 100%) !important;
+            border: 1px solid rgba(255,255,255,.09) !important;
+            border-radius: 26px !important;
+            box-shadow: 0 28px 90px rgba(0,0,0,.42), inset 0 1px 0 rgba(255,255,255,.035) !important;
+            isolation: isolate;
+        }
+        .hero-panel::after {
+            opacity: .23;
+            background-image: linear-gradient(rgba(210,194,255,.055) 1px, transparent 1px), linear-gradient(90deg, rgba(210,194,255,.055) 1px, transparent 1px) !important;
+            background-size: 42px 42px !important;
+            mask-image: linear-gradient(105deg, transparent 2%, rgba(0,0,0,.3) 45%, black 100%) !important;
+        }
+        .hero-panel::before {
+            content: "";
+            position: absolute;
+            z-index: 0;
+            width: min(47vw, 570px);
+            height: min(47vw, 570px);
+            right: -5%;
+            bottom: -64%;
+            border-radius: 50%;
+            border: 1px dashed rgba(199,160,255,.22);
+            box-shadow: 0 0 0 18px rgba(175,119,255,.025), 0 0 0 44px rgba(175,119,255,.018), inset 0 0 85px rgba(133,63,255,.15);
+            transform: rotate(-12deg);
+            pointer-events: none;
+        }
+        .hero-content-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(270px, .86fr);
+            align-items: center;
+            gap: clamp(1.5rem, 4vw, 4rem);
+            min-height: 315px;
+        }
+        .hero-copy { position: relative; z-index: 2; max-width: 640px; }
+        .hero-eyebrow {
+            color: #d8c7ff !important;
+            background: rgba(132,70,221,.15) !important;
+            border: 1px solid rgba(181,129,255,.26) !important;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+            letter-spacing: .045em;
+            text-transform: uppercase;
+        }
+        .hero-heading { letter-spacing: -.045em !important; text-wrap: balance; }
+        #heroTitleColor {
+            background-image: linear-gradient(100deg, #d8c3ff, #a06aff 68%, #7e48db) !important;
+        }
+        #heroIntro { max-width: 38rem; color: #b4b0bf !important; line-height: 1.8 !important; }
+        .hero-shipping { color: #918b9e !important; }
+        .hero-showcase {
+            position: relative;
+            min-width: 0;
+            align-self: stretch;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 14px 8px 6px;
+            isolation: isolate;
+        }
+        .hero-showcase-glow {
+            position: absolute;
+            z-index: -1;
+            width: 92%;
+            height: 73%;
+            left: 4%;
+            top: 11%;
+            background: radial-gradient(ellipse at center, rgba(130,58,255,.26), rgba(81,42,143,.09) 44%, transparent 73%);
+            filter: blur(18px);
+            pointer-events: none;
+        }
+        .hero-orbit {
+            pointer-events: none;
+            position: absolute;
+            z-index: -1;
+            border: 1px dashed rgba(195,169,255,.3);
+            border-radius: 50%;
+            transform: rotate(-12deg) scaleY(.33);
+        }
+        .hero-orbit-back { width: 112%; height: 88%; left: -6%; bottom: 16%; opacity: .58; }
+        .hero-orbit-front { width: 100%; height: 74%; left: 0; bottom: 14%; opacity: .26; transform: rotate(11deg) scaleY(.36); }
+        .hero-showcase-device {
+            position: relative;
+            min-height: 245px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid rgba(210,194,255,.12);
+            border-radius: 20px;
+            background: linear-gradient(145deg, rgba(38,32,48,.8), rgba(15,14,19,.8) 70%);
+            box-shadow: 0 20px 60px rgba(0,0,0,.27), inset 0 1px 0 rgba(255,255,255,.045);
+            backdrop-filter: blur(8px);
+        }
+        .hero-showcase-topline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px 0;
+            color: #9086a6;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: .18em;
+        }
+        .hero-status-dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: #b98aff; box-shadow: 0 0 13px rgba(185,138,255,.9);
+        }
+        #heroProductImage {
+            display: block;
+            width: 100%;
+            height: clamp(190px, 22vw, 278px);
+            padding: 10px 22px 0;
+            object-fit: contain;
+            filter: drop-shadow(0 14px 24px rgba(0,0,0,.38)) saturate(1.06);
+            position: relative;
+            z-index: 1;
+        }
+        .hero-image-sheen {
+            position: absolute;
+            inset: 35% -15% -36%;
+            pointer-events: none;
+            background: radial-gradient(ellipse at center, rgba(108,45,209,.25), transparent 66%);
+        }
+        .hero-showcase-caption {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            margin-top: 15px;
+            padding: 0 3px;
+        }
+        .hero-product-kicker { color: #aa84e9; font-size: 9px; font-weight: 800; letter-spacing: .18em; }
+        .hero-product-title { color: #faf8ff; font-size: clamp(1.05rem, 1.9vw, 1.55rem); font-weight: 850; letter-spacing: -.035em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%; }
+        .hero-product-price { color: #c3b8d9; font-size: 13px; margin-top: 2px; }
+        .hero-product-open {
+            flex: 0 0 auto; width: 43px; height: 43px; border-radius: 50%;
+            display: grid; place-items: center; color: #21122e;
+            background: linear-gradient(135deg, #eee3ff, #bb85ff);
+            box-shadow: 0 0 24px rgba(167,96,255,.25);
+        }
+        .alienware-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 0 23px;
+            border: 1px solid rgba(221,206,255,.55);
+            border-radius: 999px;
+            color: #22152f !important;
+            background: linear-gradient(115deg, #f6f1ff 0%, #d9c2ff 58%, #bd8aff 100%) !important;
+            font-size: 12px;
+            font-weight: 850;
+            letter-spacing: .025em;
+            box-shadow: 0 9px 28px rgba(116,52,211,.22), inset 0 1px 0 rgba(255,255,255,.8);
+            transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+        }
+        .alienware-cta:hover { transform: translateY(-2px); filter: brightness(1.045); box-shadow: 0 14px 35px rgba(116,52,211,.33); }
+        .filter-panel {
+            background: rgba(24,22,29,.86) !important;
+            border: 1px solid rgba(255,255,255,.085) !important;
+            border-radius: 17px !important;
+            box-shadow: 0 16px 48px rgba(0,0,0,.21), inset 0 1px 0 rgba(255,255,255,.025) !important;
+            backdrop-filter: blur(16px);
+        }
+        .glass-card, .glass-card-light {
+            background-color: rgba(25,23,31,.84) !important;
+            border-color: rgba(255,255,255,.08) !important;
+            box-shadow: 0 16px 45px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.025) !important;
+        }
+        .pc-card {
+            background: linear-gradient(160deg, rgba(35,29,47,.98) 0%, rgba(23,21,29,.99) 54%, rgba(18,17,22,.99) 100%) !important;
+            border: 1px solid rgba(201,177,245,.12) !important;
+            border-radius: 20px !important;
+            box-shadow: 0 18px 55px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.035) !important;
+            transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease !important;
+        }
+        .pc-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(176,119,255,.48) !important;
+            box-shadow: 0 26px 68px rgba(0,0,0,.39), 0 0 35px rgba(110,48,205,.13) !important;
+        }
+        .pc-card-image {
+            background-image:
+                radial-gradient(ellipse at 50% 48%, rgba(98,52,151,.48), rgba(49,35,70,.65) 47%, rgba(18,17,24,.98) 100%) !important;
+            border-bottom: 1px solid rgba(203,174,255,.14) !important;
+        }
+        .pc-card-image img { filter: saturate(1.04) contrast(1.04) drop-shadow(0 11px 18px rgba(0,0,0,.23)); }
+        .pc-card .bg-slate-950\/60 { background: rgba(10,9,14,.42) !important; border-color: rgba(217,201,255,.11) !important; }
+        .pc-card .border-t { border-color: rgba(217,201,255,.12) !important; }
+        .pc-card h3 { transition: color .2s ease; }
+        .pc-card:hover h3 { color: #d0b3ff !important; }
+        #listingsCount { color: #a7a0b2 !important; letter-spacing: .025em; }
+        #searchInput, #statusFilter, #priceFilter, #sortBy {
+            background-color: #16141b !important;
+            border-color: rgba(216,197,255,.13) !important;
+            color: #eeeaf5 !important;
+            border-radius: 12px !important;
+        }
+        #searchInput:focus, #statusFilter:focus, #priceFilter:focus, #sortBy:focus {
+            border-color: rgba(179,125,255,.7) !important;
+            box-shadow: 0 0 0 3px rgba(154,86,255,.11) !important;
+        }
+        #adminView .bg-slate-900\/80, #adminView .bg-slate-900\/90,
+        #adminView .bg-slate-900\/60, #adminView .bg-slate-950\/60 {
+            border-color: rgba(211,187,255,.11) !important;
+        }
+        #adminView input:not([type="checkbox"]):not([type="radio"]), #adminView select, #adminView textarea {
+            background-color: #100f14 !important;
+            border-color: rgba(211,187,255,.15) !important;
+        }
+        #adminView input:focus, #adminView select:focus, #adminView textarea:focus {
+            border-color: rgba(175,117,255,.7) !important;
+            box-shadow: 0 0 0 3px rgba(151,81,243,.12) !important;
+        }
+        #pcDetailModal > div, #adminAuthCard {
+            background: linear-gradient(145deg, #201b29, #121116 78%) !important;
+            border-color: rgba(201,177,245,.16) !important;
+            box-shadow: 0 35px 110px rgba(0,0,0,.62), 0 0 45px rgba(111,54,205,.1) !important;
+        }
+        #toastContainer > div { border: 1px solid rgba(226,209,255,.12); box-shadow: 0 14px 36px rgba(0,0,0,.4); }
+        .hero-panel .bg-cyan-500\/10, .hero-panel .border-cyan-500\/20 { border-color: rgba(185,137,255,.28) !important; }
+        .hero-panel .bg-cyan-500\/10 { background-color: rgba(145,80,239,.15) !important; }
+        .hero-panel .text-cyan-400 { color: #d2baff !important; }
+        .hero-panel > .absolute.rounded-full { opacity: .6; }
+        @media (max-width: 800px) {
+            .hero-content-layout { grid-template-columns: minmax(0,1fr); gap: 1.3rem; }
+            .hero-panel { min-height: unset; padding: 1.35rem !important; }
+            .hero-copy { max-width: none; }
+            .hero-showcase { min-height: 0; padding: 4px 0 0; }
+            .hero-showcase-device { min-height: 200px; }
+            #heroProductImage { height: 215px; padding: 6px 18px 0; }
+            .hero-orbit-back { width: 100%; height: 75%; left: 0; bottom: 20%; }
+            .hero-orbit-front { width: 95%; height: 65%; left: 2.5%; bottom: 19%; }
+            .hero-product-title { font-size: 1.05rem; }
+        }
+        @media (max-width: 480px) {
+            header .max-w-7xl { min-height: 68px; }
+            .brand-mark { width: 2.5rem !important; height: 2.5rem !important; }
+            header .text-2xl { font-size: 1.05rem !important; letter-spacing: .08em !important; }
+            .hero-heading { font-size: 2rem !important; }
+            .hero-actions { width: 100%; }
+            .alienware-cta { width: 100%; }
+            .pc-card { border-radius: 18px !important; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .pc-card, .alienware-cta { transition: none !important; }
+        }
+
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen transition-colors duration-300 antialiased" id="appBody">
@@ -202,19 +517,44 @@
                 <div class="absolute -right-10 -bottom-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
                 <div class="absolute -left-10 -top-10 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
                 
-                <div class="relative z-10 max-w-3xl space-y-4">
-                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
-                        <i id="heroBadgeIcon" class="fa-solid fa-bolt text-xs"></i> <span id="heroBadgeText">Pronta consegna</span>
-                    </span>
-                    <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-                        <span id="heroTitleWhite">Li costruisco, li testo</span> <span id="heroTitleColor" class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-indigo-400">e poi li vendo</span>
-                    </h1>
-                    <p id="heroIntro" class="text-slate-400 text-sm sm:text-base leading-relaxed"></p>
-                    <p class="text-xs text-slate-500 flex flex-wrap items-center gap-x-1.5 gap-y-1">
-                        <i class="fa-solid fa-truck-fast"></i>
-                        <span id="heroShipping"></span>
-                        <a id="subitoHeroLink" href="#" target="_blank" rel="noopener" class="hidden text-cyan-400 hover:underline font-semibold">Guarda le mie recensioni su Subito</a>
-                    </p>
+                <div class="hero-content-layout relative z-10">
+                    <div class="hero-copy space-y-4">
+                        <span class="hero-eyebrow inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold">
+                            <i id="heroBadgeIcon" class="fa-solid fa-bolt text-xs"></i> <span id="heroBadgeText">Pronta consegna</span>
+                        </span>
+                        <h1 class="hero-heading text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+                            <span id="heroTitleWhite">Li costruisco, li testo</span> <span id="heroTitleColor" class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-indigo-400">e poi li vendo</span>
+                        </h1>
+                        <p id="heroIntro" class="text-slate-400 text-sm sm:text-base leading-relaxed"></p>
+                        <p class="hero-shipping text-xs text-slate-500 flex flex-wrap items-center gap-x-1.5 gap-y-1">
+                            <i class="fa-solid fa-truck-fast"></i>
+                            <span id="heroShipping"></span>
+                            <a id="subitoHeroLink" href="#" target="_blank" rel="noopener" class="hidden text-cyan-400 hover:underline font-semibold">Guarda le mie recensioni su Subito</a>
+                        </p>
+                        <div class="hero-actions flex flex-wrap items-center gap-3 pt-2">
+                            <button type="button" class="alienware-cta" onclick="document.getElementById('pcGrid').scrollIntoView({behavior:'smooth',block:'start'})">
+                                Scopri i PC disponibili <i class="fa-solid fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hero-showcase" aria-label="Anteprima del PC disponibile">
+                        <div class="hero-orbit hero-orbit-back"></div>
+                        <div class="hero-orbit hero-orbit-front"></div>
+                        <div class="hero-showcase-glow"></div>
+                        <div class="hero-showcase-device">
+                            <div class="hero-showcase-topline"><span>STRESS &amp; SELL / IN VETRINA</span><span class="hero-status-dot"></span></div>
+                            <img id="heroProductImage" src="https://placehold.co/700x650/201632/e9ddff?text=PC+GAMING" alt="PC disponibile in vetrina" loading="eager" onerror="this.onerror=null;this.src='https://placehold.co/700x650/201632/e9ddff?text=PC+GAMING'">
+                            <div class="hero-image-sheen"></div>
+                        </div>
+                        <div class="hero-showcase-caption">
+                            <div class="min-w-0">
+                                <span id="heroProductStatus" class="hero-product-kicker">BUILD IN EVIDENZA</span>
+                                <h2 id="heroProductTitle" class="hero-product-title">Scopri le configurazioni</h2>
+                                <p id="heroProductPrice" class="hero-product-price">PC disponibili in vetrina</p>
+                            </div>
+                            <button type="button" class="hero-product-open" onclick="openHeroFeaturedListing()" aria-label="Apri i dettagli del PC in evidenza"><i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -788,11 +1128,11 @@
         const SITE_DEFAULTS = {
           "badgeIcon": "fa-bolt",
           "badgeText": "Pronta consegna",
-          "titleWhite": "Li costruisco, li testo",
+          "titleWhite": "Li assemblo, li testo",
           "titleColor": "e poi li vendo",
           "intro": "Ogni PC è stato assemblato e testato, tramite benchmark di gioco e specifici hardware (TimeSpy, OCCT)",
           "shippingNote": "Spedizione tramite Subito oppure consegna a mano in zona Palermo.",
-          "subitoUrl": "https://www.subito.it/utente/102544535",
+          "subitoUrl": "https://www.subito.it/utente/102544535#Recensioni",
           "whatsapp": "",
           "telegram": "@DarioPCStressSell"
 };
@@ -1534,11 +1874,47 @@ Continua soltanto se questa copia locale contiene i prezzi e le informazioni cor
             });
         }
 
+        let heroFeaturedListingId = '';
+
+        function renderHeroShowcase() {
+            const imageEl = document.getElementById('heroProductImage');
+            const titleEl = document.getElementById('heroProductTitle');
+            const priceEl = document.getElementById('heroProductPrice');
+            const statusEl = document.getElementById('heroProductStatus');
+            if (!imageEl || !titleEl || !priceEl || !statusEl) return;
+            const featured = (Array.isArray(pcListings) ? pcListings : []).find(item => item && item.showOnHomepage !== false) || null;
+            if (!featured) {
+                heroFeaturedListingId = '';
+                imageEl.src = 'https://placehold.co/700x650/201632/e9ddff?text=PC+GAMING';
+                imageEl.alt = 'Scopri i PC disponibili';
+                titleEl.textContent = 'Scopri le configurazioni';
+                priceEl.textContent = 'Consulta il catalogo';
+                statusEl.textContent = 'IN VETRINA';
+                return;
+            }
+            heroFeaturedListingId = String(featured.id || '');
+            const cover = featured.previewImage || (Array.isArray(featured.images) && featured.images[0]) || 'https://placehold.co/700x650/201632/e9ddff?text=PC+GAMING';
+            if (imageEl.src !== cover) imageEl.src = cover;
+            imageEl.alt = String(featured.previewTitle || featured.title || 'PC disponibile');
+            titleEl.textContent = String(featured.previewTitle || featured.title || 'PC disponibile');
+            priceEl.textContent = '€ ' + (Number(featured.price) || 0).toLocaleString('it-IT', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+            statusEl.textContent = String(featured.status || 'IN VETRINA').toUpperCase();
+        }
+
+        function openHeroFeaturedListing() {
+            if (heroFeaturedListingId) {
+                openDetailModal(heroFeaturedListingId);
+            } else {
+                document.getElementById('pcGrid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
         function renderCatalog() {
             const grid = document.getElementById('pcGrid');
             const emptyState = document.getElementById('emptyCatalogState');
             const listingsCount = document.getElementById('listingsCount');
             const filtered = getFilteredListings();
+            renderHeroShowcase();
 
             listingsCount.innerText = `${filtered.length} computer disponibil${filtered.length === 1 ? 'e' : 'i'} in vetrina`;
 
