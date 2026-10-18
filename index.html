@@ -611,13 +611,22 @@
                     <i class="fa-solid fa-shield-halved"></i>
                 </div>
                 <h3 class="text-xl font-bold text-white">Accesso Riservato Admin</h3>
-                <p class="text-xs sm:text-sm text-slate-400">Inserisci la password di sicurezza per accedere al pannello di gestione annunci.</p>
+                <p class="text-xs sm:text-sm text-slate-400">Accedi con l'email e la password dell'utente amministratore registrato in Firebase.</p>
             </div>
 
-            <!-- Auth Form -->
+            <!-- Auth Form: Firebase email/password -->
             <form id="adminAuthForm" onsubmit="handleAdminAuthSubmit(event)" class="space-y-4">
                 <div>
-                    <label for="adminPasswordInput" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Password Amministratore</label>
+                    <label for="adminEmailInput" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Email amministratore</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-500">
+                            <i class="fa-solid fa-envelope"></i>
+                        </span>
+                        <input type="email" id="adminEmailInput" required autocomplete="username" placeholder="La tua email Firebase" class="w-full pl-10 pr-4 py-3 bg-slate-950 border border-slate-700 rounded-xl text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-all">
+                    </div>
+                </div>
+                <div>
+                    <label for="adminPasswordInput" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Password</label>
                     <div class="relative">
                         <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-500">
                             <i class="fa-solid fa-key"></i>
@@ -627,16 +636,16 @@
                             <i id="passwordVisibilityIcon" class="fa-solid fa-eye"></i>
                         </button>
                     </div>
-                    <div id="adminAuthError" class="hidden text-rose-400 text-xs font-semibold flex items-center gap-1.5 mt-2 bg-rose-500/10 border border-rose-500/20 px-3 py-2 rounded-lg">
-                        <i class="fa-solid fa-circle-exclamation flex-shrink-0"></i>
-                        <span>Password non corretta. Riprova.</span>
-                    </div>
+                </div>
+                <div id="adminAuthError" class="hidden text-rose-400 text-xs font-semibold flex items-start gap-1.5 mt-2 bg-rose-500/10 border border-rose-500/20 px-3 py-2 rounded-lg">
+                    <i class="fa-solid fa-circle-exclamation flex-shrink-0 mt-0.5"></i>
+                    <span id="adminAuthErrorText">Accesso non riuscito. Controlla i dati inseriti.</span>
                 </div>
 
                 <div class="pt-1">
                     <label class="flex items-center gap-2.5 text-xs text-slate-400 cursor-pointer select-none hover:text-slate-300 transition-colors">
                         <input type="checkbox" id="rememberAdminSession" class="w-4 h-4 rounded bg-slate-950 border-slate-700 text-cyan-500 focus:ring-cyan-500 focus:ring-offset-slate-900">
-                        <span>Rimani autenticato per questa sessione</span>
+                        <span>Mantieni l'accesso su questo dispositivo</span>
                     </label>
                 </div>
 
@@ -654,6 +663,11 @@
 
     <!-- TOAST NOTIFICATION CONTAINER -->
     <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- Firebase SDK (compat) per database condiviso e autenticazione admin -->
+    <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-database-compat.js"></script>
 
     <!-- MAIN JAVASCRIPT APPLICATION LOGIC -->
     <script>
@@ -679,7 +693,7 @@
           "titleColor": "e poi li vendo",
           "intro": "Ogni PC è stato assemblato e testato, tramite benchmark di gioco e specifici hardware (TimeSpy, OCCT)",
           "shippingNote": "Spedizione tramite Subito oppure consegna a mano in zona Palermo.",
-          "subitoUrl": "https://www.subito.it/utente/102544535#Recensioni",
+          "subitoUrl": "https://www.subito.it/utente/102544535",
           "whatsapp": "",
           "telegram": "@DarioPCStressSell"
 };
@@ -730,105 +744,190 @@
         let currentFormVideos = [];
         let currentFormCustomSpecs = [];
 
-        // Security & Authentication State
-        // SHA-256 hash of the administrative access password
-        const ADMIN_PASSWORD_HASH = 'cc81241f92c70199cf00c3b218f6fee6c62366ef2f0a5f278b4295c8cfdac116';
-        const ADMIN_SESSION_KEY = 'techrig_admin_session';
+        // Firebase condiviso: la lettura degli annunci è pubblica, le modifiche richiedono
+        // l'accesso Firebase dell'unico UID amministratore autorizzato dalle Rules.
+        const FIREBASE_CONFIG = {
+            apiKey: "AIzaSyDF-PYgIa6lh0oPHS6LBIJIXCRfe1NRGBI",
+            authDomain: "stress-sell.firebaseapp.com",
+            databaseURL: "https://stress-sell-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "stress-sell",
+            storageBucket: "stress-sell.firebasestorage.app",
+            messagingSenderId: "927804218644",
+            appId: "1:927804218644:web:8a65914d0e1adf91f2b601",
+            measurementId: "G-D5XZJC8EHQ"
+        };
+        const FIREBASE_ADMIN_UID = 'P5dvEsHJWOXh9YjtzLZYAz318Us2';
+        const FIREBASE_SITE_PATH = 'site';
+        let firebaseAuth = null;
+        let firebaseDatabase = null;
+        let firebaseUser = null;
         let isAdminAuthenticated = false;
+        let cloudDataInitialized = false;
+        let cloudBootstrapPromise = null;
+        let applyingCloudSnapshot = false;
+        let firebaseInitializationError = null;
 
         function isUserAdmin() {
-            return isAdminAuthenticated || sessionStorage.getItem(ADMIN_SESSION_KEY) === 'true';
+            return !!(firebaseAuth && firebaseAuth.currentUser && firebaseAuth.currentUser.uid === FIREBASE_ADMIN_UID);
         }
 
-        /* ========================================================
-           CRYPTOGRAPHIC UTILITY (SHA-256)
-        ======================================================== */
-        function sha256Fallback(ascii) {
-            function rightRotate(value, amount) {
-                return (value >>> amount) | (value << (32 - amount));
-            }
-            const mathPow = Math.pow;
-            const maxWord = mathPow(2, 32);
-            let result = '';
-            const words = [];
-            const asciiBitLength = ascii.length * 8;
-            const hash = sha256Fallback.h = sha256Fallback.h || [];
-            const k = sha256Fallback.k = sha256Fallback.k || [];
-            let primeCounter = k.length;
-            const isComposite = {};
-            for (let candidate = 2; primeCounter < 64; candidate++) {
-                if (!isComposite[candidate]) {
-                    for (let i = 0; i < 313; i += candidate) {
-                        isComposite[i] = candidate;
-                    }
-                    hash[primeCounter] = (mathPow(candidate, 0.5) * maxWord) | 0;
-                    k[primeCounter++] = (mathPow(candidate, 1 / 3) * maxWord) | 0;
-                }
-            }
-            ascii += '\x80';
-            while (ascii.length % 64 - 56) ascii += '\x00';
-            for (let i = 0; i < ascii.length; i++) {
-                const j = ascii.charCodeAt(i);
-                if (j >> 8) return '';
-                words[i >> 2] |= j << ((3 - i) % 4) * 8;
-            }
-            words[words.length] = ((asciiBitLength / maxWord) | 0);
-            words[words.length] = (asciiBitLength);
-            for (let j = 0; j < words.length;) {
-                const w = words.slice(j, j += 16);
-                const oldHash = hash;
-                hash = hash.slice(0, 8);
-                for (let i = 0; i < 64; i++) {
-                    const w15 = w[i - 15], w2 = w[i - 2];
-                    const a = hash[0], e = hash[4];
-                    const temp1 = hash[7]
-                        + (rightRotate(e, 6) ^ rightRotate(e, 11) ^ rightRotate(e, 25))
-                        + ((e & hash[5]) ^ ((~e) & hash[6]))
-                        + k[i]
-                        + (w[i] = (i < 16) ? w[i] : (
-                                w[i - 16]
-                                + (rightRotate(w15, 7) ^ rightRotate(w15, 18) ^ (w15 >>> 3))
-                                + w[i - 7]
-                                + (rightRotate(w2, 17) ^ rightRotate(w2, 19) ^ (w2 >>> 10))
-                            ) | 0
-                        );
-                    const temp2 = (rightRotate(a, 2) ^ rightRotate(a, 13) ^ rightRotate(a, 22))
-                        + ((a & hash[1]) ^ (a & hash[2]) ^ (hash[1] & hash[2]));
-                    hash = [(temp1 + temp2) | 0].concat(hash);
-                    hash[4] = (hash[4] + temp1) | 0;
-                }
-                for (let i = 0; i < 8; i++) {
-                    hash[i] = (hash[i] + oldHash[i]) | 0;
-                }
-            }
-            for (let i = 0; i < 8; i++) {
-                for (let j = 3; j + 1; j--) {
-                    const b = (hash[i] >> (j * 8)) & 255;
-                    result += ((b < 16) ? '0' : '') + b.toString(16);
-                }
-            }
+        function normalizeFirebaseListings(raw) {
+            if (Array.isArray(raw)) return raw.filter(item => item && typeof item === 'object');
+            if (!raw || typeof raw !== 'object') return [];
+            return Object.entries(raw)
+                .filter(([, item]) => item && typeof item === 'object')
+                .map(([key, item]) => ({ ...item, id: item.id || key }));
+        }
+
+        function listingsToFirebaseObject(listings) {
+            const result = {};
+            (Array.isArray(listings) ? listings : []).forEach((item, index) => {
+                if (!item || typeof item !== 'object') return;
+                const id = String(item.id || ('pc-' + Date.now() + '-' + index)).replace(/[.#$\/\[\]]/g, '_');
+                result[id] = { ...item, id };
+            });
             return result;
         }
 
-        async function computeSHA256(message) {
-            if (window.crypto && window.crypto.subtle && window.crypto.subtle.digest) {
-                try {
-                    const msgBuffer = new TextEncoder().encode(message);
-                    const hashBuffer = await window.crypto.subtle.digest('SHA-256', msgBuffer);
-                    const hashArray = Array.from(new Uint8Array(hashBuffer));
-                    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-                } catch (e) {
-                    console.warn('Web Crypto API failed, using fallback:', e);
-                }
+        function writeLocalCache(key, value) {
+            try { localStorage.setItem(key, JSON.stringify(value)); }
+            catch (err) { console.warn('Impossibile aggiornare la cache locale:', err); }
+        }
+
+        function applyCloudSiteData(cloud) {
+            if (!cloud || typeof cloud !== 'object') {
+                cloudDataInitialized = false;
+                return;
             }
-            return sha256Fallback(message);
+            applyingCloudSnapshot = true;
+            try {
+                const hasListingsField = Object.prototype.hasOwnProperty.call(cloud, 'listings');
+                const hasSettingsField = Object.prototype.hasOwnProperty.call(cloud, 'settings');
+                if (hasListingsField || hasSettingsField) {
+                    pcListings = normalizeFirebaseListings(cloud.listings);
+                    writeLocalCache(STORAGE_KEY, pcListings);
+                }
+                if (cloud.settings && typeof cloud.settings === 'object') {
+                    siteSettings = { ...SITE_DEFAULTS, ...cloud.settings };
+                    writeLocalCache(SETTINGS_KEY, siteSettings);
+                    applySiteSettings();
+                    renderSettingsForm();
+                }
+                cloudDataInitialized = hasListingsField || hasSettingsField || !!cloud.initializedAt;
+                renderCatalog();
+                renderAdminTable();
+            } finally {
+                applyingCloudSnapshot = false;
+            }
+        }
+
+        async function ensureSharedDatabaseInitializedFromThisBrowser() {
+            if (!firebaseDatabase || !isUserAdmin()) return 'not-admin';
+            if (cloudBootstrapPromise) return cloudBootstrapPromise;
+            cloudBootstrapPromise = (async () => {
+                const siteRef = firebaseDatabase.ref(FIREBASE_SITE_PATH);
+                const snapshot = await siteRef.once('value');
+                const current = snapshot.val();
+                if (current && (Object.prototype.hasOwnProperty.call(current, 'listings') || Object.prototype.hasOwnProperty.call(current, 'settings') || current.initializedAt)) {
+                    applyCloudSiteData(current);
+                    return 'already-exists';
+                }
+
+                const message = `Il database condiviso è vuoto. Vuoi trasferire su Firebase gli annunci e i testi salvati in QUESTO browser?
+
+Procedi soltanto se sei sul computer dove vedi i dati corretti. Questa operazione inizializza il database condiviso per tutti i dispositivi.`;
+                if (!window.confirm(message)) {
+                    showToast('Importazione rimandata: gli annunci restano locali finché il database non viene inizializzato.', 'info');
+                    return 'cancelled';
+                }
+
+                let localListings = pcListings;
+                try {
+                    const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+                    if (Array.isArray(stored)) localListings = stored;
+                } catch (err) { /* usa la lista già caricata in memoria */ }
+                const localSettings = { ...SITE_DEFAULTS, ...siteSettings };
+                const payload = {
+                    listings: listingsToFirebaseObject(localListings),
+                    settings: localSettings,
+                    initializedAt: new Date().toISOString(),
+                    updatedAt: new Date().toISOString()
+                };
+                await siteRef.set(payload);
+                cloudDataInitialized = true;
+                showToast('Dati trasferiti nel database condiviso: ora saranno uguali su tutti i dispositivi.', 'success');
+                return 'uploaded';
+            })().catch(err => {
+                console.error('Errore durante l’inizializzazione del database condiviso:', err);
+                showToast('Non riesco a leggere o inizializzare Firebase. Controlla le Rules del database e riprova.', 'error');
+                return 'error';
+            }).finally(() => {
+                cloudBootstrapPromise = null;
+            });
+            return cloudBootstrapPromise;
+        }
+
+        function initializeFirebaseSync() {
+            if (!window.firebase || typeof firebase.initializeApp !== 'function') {
+                firebaseInitializationError = new Error('SDK Firebase non disponibile');
+                console.error(firebaseInitializationError);
+                showToast('Connessione Firebase non disponibile. Controlla la connessione Internet.', 'error');
+                return;
+            }
+            try {
+                if (!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
+                firebaseAuth = firebase.auth();
+                firebaseDatabase = firebase.database();
+
+                firebaseDatabase.ref(FIREBASE_SITE_PATH).on('value', snapshot => {
+                    const cloud = snapshot.val();
+                    if (cloud) applyCloudSiteData(cloud);
+                    else cloudDataInitialized = false;
+                }, error => {
+                    console.error('Errore lettura Firebase:', error);
+                    if (error && error.code === 'PERMISSION_DENIED') {
+                        showToast('Firebase blocca la lettura: applica le regole indicate nella guida.', 'error');
+                    } else {
+                        showToast('Non riesco a leggere gli annunci online in questo momento.', 'error');
+                    }
+                });
+
+                firebaseAuth.onAuthStateChanged(async user => {
+                    firebaseUser = user;
+                    isAdminAuthenticated = !!(user && user.uid === FIREBASE_ADMIN_UID);
+                    if (user && user.uid !== FIREBASE_ADMIN_UID) {
+                        await firebaseAuth.signOut();
+                        showToast('Questo account non è autorizzato al pannello amministratore.', 'error');
+                        return;
+                    }
+                    if (isAdminAuthenticated) {
+                        await ensureSharedDatabaseInitializedFromThisBrowser();
+                    }
+                });
+            } catch (err) {
+                firebaseInitializationError = err;
+                console.error('Errore inizializzazione Firebase:', err);
+                showToast('Errore nella configurazione Firebase. Verifica i dati del progetto.', 'error');
+            }
+        }
+
+        async function persistSiteSettingsToCloud() {
+            if (!firebaseDatabase || !cloudDataInitialized || !isUserAdmin() || applyingCloudSnapshot) return;
+            try {
+                await firebaseDatabase.ref(FIREBASE_SITE_PATH + '/settings').set(siteSettings);
+                await firebaseDatabase.ref(FIREBASE_SITE_PATH + '/updatedAt').set(new Date().toISOString());
+            } catch (err) {
+                console.error('Errore salvataggio impostazioni cloud:', err);
+                showToast('Impostazioni salvate solo su questo browser: Firebase ha rifiutato il salvataggio.', 'error');
+            }
         }
 
         /* ========================================================
-           ADMIN AUTHENTICATION & MODAL CONTROLS
+           AUTHENTICATION AND DATA SYNCHRONIZATION
         ======================================================== */
         function openAdminAuthModal() {
             const modal = document.getElementById('adminAuthModal');
+            const emailInput = document.getElementById('adminEmailInput');
             const pwdInput = document.getElementById('adminPasswordInput');
             const errorDiv = document.getElementById('adminAuthError');
             const card = document.getElementById('adminAuthCard');
@@ -839,38 +938,28 @@
                 pwdInput.type = 'password';
                 pwdInput.classList.remove('border-rose-500', 'focus:ring-rose-500');
             }
-            if (visibilityIcon) {
-                visibilityIcon.className = 'fa-solid fa-eye';
-            }
-            if (errorDiv) {
-                errorDiv.classList.add('hidden');
-            }
-            if (card) {
-                card.classList.remove('animate-shake');
-            }
+            if (emailInput) emailInput.classList.remove('border-rose-500', 'focus:ring-rose-500');
+            if (visibilityIcon) visibilityIcon.className = 'fa-solid fa-eye';
+            if (errorDiv) errorDiv.classList.add('hidden');
+            if (card) card.classList.remove('animate-shake');
 
             modal.classList.remove('hidden');
             setTimeout(() => {
-                if (pwdInput) pwdInput.focus();
+                if (emailInput) emailInput.focus();
             }, 60);
         }
 
         function closeAdminAuthModal() {
             const modal = document.getElementById('adminAuthModal');
-            if (modal) {
-                modal.classList.add('hidden');
-            }
+            if (modal) modal.classList.add('hidden');
             const pwdInput = document.getElementById('adminPasswordInput');
-            if (pwdInput) {
-                pwdInput.value = '';
-            }
+            if (pwdInput) pwdInput.value = '';
         }
 
         function togglePasswordVisibility() {
             const pwdInput = document.getElementById('adminPasswordInput');
             const icon = document.getElementById('passwordVisibilityIcon');
             if (!pwdInput || !icon) return;
-
             if (pwdInput.type === 'password') {
                 pwdInput.type = 'text';
                 icon.className = 'fa-solid fa-eye-slash text-cyan-400';
@@ -882,45 +971,61 @@
 
         async function handleAdminAuthSubmit(e) {
             e.preventDefault();
+            const emailInput = document.getElementById('adminEmailInput');
             const pwdInput = document.getElementById('adminPasswordInput');
             const errorDiv = document.getElementById('adminAuthError');
+            const errorText = document.getElementById('adminAuthErrorText');
             const card = document.getElementById('adminAuthCard');
             const rememberCheckbox = document.getElementById('rememberAdminSession');
             const submitBtn = document.getElementById('adminAuthSubmitBtn');
+            const email = emailInput ? emailInput.value.trim() : '';
+            const password = pwdInput ? pwdInput.value : '';
 
-            const enteredPassword = pwdInput ? pwdInput.value : '';
-            if (!enteredPassword) {
-                if (pwdInput) pwdInput.focus();
+            if (!firebaseAuth) {
+                if (errorText) errorText.textContent = 'Firebase non è pronto. Ricarica la pagina e riprova.';
+                if (errorDiv) errorDiv.classList.remove('hidden');
                 return;
             }
-
+            if (!email || !password) return;
+            if (errorDiv) errorDiv.classList.add('hidden');
             if (submitBtn) {
                 submitBtn.disabled = true;
                 submitBtn.classList.add('opacity-75');
+                submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Accesso...';
             }
 
-            const hash = await computeSHA256(enteredPassword);
-
-            if (submitBtn) {
-                submitBtn.disabled = false;
-                submitBtn.classList.remove('opacity-75');
-            }
-
-            if (hash === ADMIN_PASSWORD_HASH) {
-                isAdminAuthenticated = true;
-                if (rememberCheckbox && rememberCheckbox.checked) {
-                    sessionStorage.setItem(ADMIN_SESSION_KEY, 'true');
-                } else {
-                    sessionStorage.removeItem(ADMIN_SESSION_KEY);
+            try {
+                const persistence = rememberCheckbox && rememberCheckbox.checked
+                    ? firebase.auth.Auth.Persistence.LOCAL
+                    : firebase.auth.Auth.Persistence.SESSION;
+                await firebaseAuth.setPersistence(persistence);
+                const credential = await firebaseAuth.signInWithEmailAndPassword(email, password);
+                if (!credential.user || credential.user.uid !== FIREBASE_ADMIN_UID) {
+                    await firebaseAuth.signOut();
+                    throw new Error('admin-not-authorized');
                 }
 
+                isAdminAuthenticated = true;
+                await ensureSharedDatabaseInitializedFromThisBrowser();
                 closeAdminAuthModal();
                 switchView('admin');
-                showToast('Accesso Amministratore confermato con successo.', 'success');
-            } else {
-                if (errorDiv) {
-                    errorDiv.classList.remove('hidden');
+                showToast('Accesso amministratore effettuato.', 'success');
+            } catch (err) {
+                console.error('Errore accesso amministratore:', err);
+                let message = 'Accesso non riuscito. Controlla email e password.';
+                if (err && err.message === 'admin-not-authorized') {
+                    message = 'Questo account Firebase non è l’amministratore autorizzato.';
+                } else if (err && ['auth/invalid-email'].includes(err.code)) {
+                    message = 'L’indirizzo email non è valido.';
+                } else if (err && ['auth/too-many-requests'].includes(err.code)) {
+                    message = 'Troppi tentativi. Attendi qualche minuto e riprova.';
+                } else if (err && ['auth/network-request-failed'].includes(err.code)) {
+                    message = 'Connessione assente: controlla Internet e riprova.';
+                } else if (err && ['auth/unauthorized-domain'].includes(err.code)) {
+                    message = 'Dominio del sito non autorizzato in Firebase. Aggiungilo in Authentication > Impostazioni > Domini autorizzati.';
                 }
+                if (errorText) errorText.textContent = message;
+                if (errorDiv) errorDiv.classList.remove('hidden');
                 if (pwdInput) {
                     pwdInput.classList.add('border-rose-500', 'focus:ring-rose-500');
                     pwdInput.select();
@@ -930,12 +1035,22 @@
                     void card.offsetWidth;
                     card.classList.add('animate-shake');
                 }
+            } finally {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('opacity-75');
+                    submitBtn.innerHTML = '<i class="fa-solid fa-unlock"></i> Accedi';
+                }
             }
         }
 
-        function logoutAdmin() {
+        async function logoutAdmin() {
+            try {
+                if (firebaseAuth) await firebaseAuth.signOut();
+            } catch (err) {
+                console.error('Errore durante la disconnessione:', err);
+            }
             isAdminAuthenticated = false;
-            sessionStorage.removeItem(ADMIN_SESSION_KEY);
             switchView('catalog');
             showToast('Disconnessione amministratore eseguita.', 'info');
         }
@@ -950,6 +1065,7 @@
             loadListingsFromStorage();
             renderCatalog();
             renderAdminTable();
+            initializeFirebaseSync();
         });
 
         window.addEventListener('keydown', (e) => {
@@ -997,6 +1113,14 @@
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(pcListings));
             } catch (e) {
                 showToast('Spazio in local storage quasi esaurito o errore di salvataggio.', 'error');
+            }
+            if (firebaseDatabase && cloudDataInitialized && isUserAdmin() && !applyingCloudSnapshot) {
+                firebaseDatabase.ref(FIREBASE_SITE_PATH + '/listings').set(listingsToFirebaseObject(pcListings))
+                    .then(() => firebaseDatabase.ref(FIREBASE_SITE_PATH + '/updatedAt').set(new Date().toISOString()))
+                    .catch(err => {
+                        console.error('Errore salvataggio annunci cloud:', err);
+                        showToast('Modifiche salvate solo in questo browser: Firebase ha rifiutato il salvataggio.', 'error');
+                    });
             }
         }
 
@@ -1053,9 +1177,7 @@
                 toggleBtnIcon.className = 'fa-solid fa-store';
                 renderAdminTable();
             } else {
-                if (sessionStorage.getItem(ADMIN_SESSION_KEY) !== 'true') {
-                    isAdminAuthenticated = false;
-                }
+                if (!isUserAdmin()) isAdminAuthenticated = false;
                 adminView.classList.add('hidden');
                 catalogView.classList.remove('hidden');
                 toggleBtnText.innerText = 'Pannello Gestione Admin';
@@ -1946,7 +2068,8 @@
             }
             applySiteSettings();
             renderCatalog();
-            if (!silent) showToast('Testi salvati: li vedi nell\'anteprima qui sopra.', 'success');
+            persistSiteSettingsToCloud();
+            if (!silent) showToast('Testi salvati.', 'success');
         }
 
         function resetSiteSettings() {
@@ -1955,7 +2078,8 @@
             applySiteSettings();
             renderSettingsForm();
             renderCatalog();
-            showToast('Ripristinati i testi presenti nel file.', 'info');
+            persistSiteSettingsToCloud();
+            showToast('Ripristinati i testi predefiniti.', 'info');
         }
 
         async function downloadUpdatedIndex() {
