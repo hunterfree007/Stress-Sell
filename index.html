@@ -402,6 +402,116 @@
       }
     </style>
 
+
+    <!-- Correzione mirata: tabella annunci admin in tema chiaro, coerente con gli altri pannelli -->
+    <style id="adminListingsTableLightFix">
+      body#appBody #adminListingsTableCard {
+        background:#f9fbfe !important;
+        border:1px solid #d4dfeb !important;
+        box-shadow:0 8px 24px rgba(25,53,83,.08) !important;
+      }
+      body#appBody #adminListingsTableCard > div:first-child {
+        background:linear-gradient(100deg,#e5eef7,#f1f6fb) !important;
+        border-bottom:1px solid #d4dfeb !important;
+      }
+      body#appBody #adminListingsTableCard h3 { color:#172334 !important; }
+      body#appBody #adminListingsTableCard #adminListingsCount {
+        background:#e0edf8 !important; color:#285675 !important; border:1px solid #ccdeed !important;
+      }
+      body#appBody #adminListingsTableCard thead tr {
+        background:#edf3f9 !important; color:#52647a !important; border-color:#d8e2ec !important;
+      }
+      body#appBody #adminListingsTableCard thead th {
+        background:transparent !important; color:#52647a !important; border-color:#d8e2ec !important;
+      }
+      body#appBody #adminListingsTableCard tbody {
+        background:#f9fbfe !important; color:#172334 !important;
+        --tw-divide-opacity:1; --tw-divide-color:#e0e7ef;
+      }
+      body#appBody #adminListingsTableCard tbody tr {
+        background:#f9fbfe !important; color:#172334 !important; border-color:#e0e7ef !important;
+      }
+      body#appBody #adminListingsTableCard tbody tr:hover { background:#edf5fc !important; }
+      body#appBody #adminListingsTableCard tbody td {
+        color:#52647a !important; border-color:#e0e7ef !important;
+      }
+      body#appBody #adminListingsTableCard tbody td .text-slate-200,
+      body#appBody #adminListingsTableCard tbody td .font-bold { color:#172334 !important; }
+      body#appBody #adminListingsTableCard tbody td .text-slate-500,
+      body#appBody #adminListingsTableCard tbody td .text-slate-400 { color:#687b90 !important; }
+      body#appBody #adminListingsTableCard tbody td.text-cyan-400 { color:#087fbd !important; }
+      body#appBody #adminListingsTableCard tbody td span.bg-slate-800,
+      body#appBody #adminListingsTableCard tbody td span[class*="bg-slate-800/80"] {
+        background:#eaf1f8 !important; color:#40536a !important; border-color:#d3deea !important;
+      }
+      body#appBody #adminListingsTableCard tbody td button.bg-slate-800 {
+        background:#e4edf7 !important; color:#087fbd !important; border:1px solid #d2deeb !important;
+      }
+      body#appBody #adminListingsTableCard tbody td button.bg-slate-800:hover {
+        background:#087fbd !important; color:#fff !important;
+      }
+      body#appBody #adminListingsTableCard tbody td img {
+        background:#edf3f9 !important; border-color:#d5e0eb !important;
+      }
+    </style>
+
+    <style id="forceAdminListingsLightPalette">
+      /* Solo l'header globale resta scuro. Tabella admin con palette chiara esplicita. */
+      body#appBody #adminListingsTableCard,
+      body#appBody #adminListingsTableCard * {
+        --admin-table-light-bg: #ffffff;
+      }
+      body#appBody #adminListingsTableCard {
+        background: #ffffff !important;
+        color: #23364b !important;
+        border-color: #d8e2ec !important;
+        box-shadow: 0 8px 24px rgba(25,53,83,.07) !important;
+      }
+      body#appBody #adminListingsTableCard > .admin-listings-table-heading {
+        background: linear-gradient(105deg,#e8f2fb 0%,#f4f8fc 100%) !important;
+        border-color: #d8e2ec !important;
+      }
+      body#appBody #adminListingsTableCard h3 { color: #20354b !important; }
+      body#appBody #adminListingsTableCard #adminListingsCount {
+        background: #e6f1fa !important; color: #315a7b !important; border-color: #cbdfee !important;
+      }
+      body#appBody #adminListingsTableCard table { background: #fff !important; }
+      body#appBody #adminListingsTableCard thead,
+      body#appBody #adminListingsTableCard thead tr,
+      body#appBody #adminListingsTableCard thead th {
+        background: #edf3f8 !important; color: #5c6d7f !important; border-color: #dce5ee !important;
+      }
+      body#appBody #adminListingsTableCard tbody,
+      body#appBody #adminListingsTableCard tbody tr,
+      body#appBody #adminListingsTableCard tbody td {
+        background: #ffffff !important; color: #485d73 !important; border-color: #e0e7ef !important;
+      }
+      body#appBody #adminListingsTableCard tbody tr:hover,
+      body#appBody #adminListingsTableCard tbody tr:hover td { background: #f0f7fd !important; }
+      body#appBody #adminListingsTableCard tbody td .font-bold,
+      body#appBody #adminListingsTableCard tbody td .text-slate-200,
+      body#appBody #adminListingsTableCard tbody td div { color: #253a50 !important; }
+      body#appBody #adminListingsTableCard tbody td .text-slate-500 { color: #728195 !important; }
+      body#appBody #adminListingsTableCard tbody td.text-blue-700 { color: #086da8 !important; }
+      body#appBody #adminListingsTableCard tbody td span {
+        background-color: #edf4fa !important; color: #43596f !important; border-color: #d6e3ef !important;
+      }
+      body#appBody #adminListingsTableCard tbody td button[title="Modifica"] {
+        background: #e7f2fb !important; color: #087fbd !important; border-color: #d1e4f3 !important;
+      }
+      body#appBody #adminListingsTableCard tbody td button[title="Elimina"] {
+        background: #fff0f0 !important; color: #c13b4b !important; border-color: #f4d2d6 !important;
+      }
+      body#appBody #adminListingsTableCard tbody td button[title="Modifica"]:hover { background:#087fbd !important; color:#fff !important; }
+      body#appBody #adminListingsTableCard tbody td button[title="Elimina"]:hover { background:#c13b4b !important; color:#fff !important; }
+      body#appBody #adminListingsTableCard tbody td img { background:#eef3f8 !important; border-color:#d8e2ec !important; }
+      @media (max-width: 640px) {
+        body#appBody #adminListingsTableCard .overflow-x-auto { background:#fff !important; }
+        body#appBody #adminListingsTableCard th,
+        body#appBody #adminListingsTableCard td { padding: .7rem .55rem !important; }
+      }
+    </style>
+
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen transition-colors duration-300 antialiased" id="appBody">
 
@@ -825,15 +935,15 @@
             </div>
 
             <!-- Table List of Existing Listings in Admin Mode -->
-            <div class="bg-slate-900/90 border border-slate-800 rounded-3xl overflow-hidden shadow-xl">
-                <div class="p-4 sm:p-6 border-b border-slate-800 flex justify-between items-center">
-                    <h3 class="font-bold text-slate-200">Elenco Annunci Pubblicati</h3>
-                    <span id="adminListingsCount" class="text-xs font-semibold text-slate-400 bg-slate-800 px-3 py-1 rounded-full">0 PC totali</span>
+            <div id="adminListingsTableCard" class="admin-listings-table-card bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+                <div class="admin-listings-table-heading p-4 sm:p-6 border-b border-slate-200 flex justify-between items-center">
+                    <h3 class="font-bold text-slate-800">Elenco Annunci Pubblicati</h3>
+                    <span id="adminListingsCount" class="text-xs font-semibold text-slate-700 bg-blue-50 border border-blue-100 px-3 py-1 rounded-full">0 PC totali</span>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse">
                         <thead>
-                            <tr class="bg-slate-950/60 text-slate-400 text-xs uppercase tracking-wider border-b border-slate-800">
+                            <tr class="admin-listings-table-columns bg-slate-100 text-slate-600 text-xs uppercase tracking-wider border-b border-slate-200">
                                 <th class="p-4">PC Build</th>
                                 <th class="p-4">Stato</th>
                                 <th class="p-4">Prezzo</th>
@@ -842,7 +952,7 @@
                                 <th class="p-4 text-right">Azioni</th>
                             </tr>
                         </thead>
-                        <tbody id="adminTableBody" class="divide-y divide-slate-800 text-sm">
+                        <tbody id="adminTableBody" class="admin-listings-table-body divide-y divide-slate-200 text-sm">
                             <!-- Dynamic Table Rows -->
                         </tbody>
                     </table>
@@ -1892,38 +2002,38 @@ Continua soltanto se questa copia locale contiene i prezzi e le informazioni cor
             tbody.innerHTML = pcListings.map(pc => {
                 const cover = pc.images && pc.images[0] ? pc.images[0] : 'https://placehold.co/100x100/1e293b/0ea5e9?text=No+Img';
                 return `
-                    <tr class="hover:bg-slate-900/40 transition-colors">
+                    <tr class="admin-listing-row bg-white hover:bg-blue-50 transition-colors">
                         <td class="p-4">
                             <div class="flex items-center gap-3">
-                                <img src="${escapeHtml(cover)}" class="w-12 h-12 object-cover rounded-lg bg-slate-950 border border-slate-800" onerror="this.src='https://placehold.co/100x100/1e293b/0ea5e9?text=No+Img'">
+                                <img src="${escapeHtml(cover)}" class="w-12 h-12 object-cover rounded-lg bg-slate-100 border border-slate-200" onerror="this.src='https://placehold.co/100x100/1e293b/0ea5e9?text=No+Img'">
                                 <div>
-                                    <div class="font-bold text-slate-200 line-clamp-1">${escapeHtml(pc.title)}</div>
+                                    <div class="font-bold text-slate-800 line-clamp-1">${escapeHtml(pc.title)}</div>
                                     <div class="text-xs text-slate-500">ID: ${pc.id}</div>
                                 </div>
                             </div>
                         </td>
                         <td class="p-4">
-                            <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-800 border border-slate-700 text-slate-300">
+                            <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-50 border border-blue-100 text-slate-700">
                                 ${escapeHtml(pc.status)}
                             </span>
                         </td>
-                        <td class="p-4 font-bold text-cyan-400">
+                        <td class="p-4 font-bold text-blue-700">
                             € ${parseFloat(pc.price).toLocaleString('it-IT')}
                         </td>
-                        <td class="p-4 text-xs text-slate-400">
+                        <td class="p-4 text-xs text-slate-600">
                             <div><i class="fa-solid fa-images text-slate-500 mr-1"></i> ${pc.images ? pc.images.length : 0} immagini</div>
                             <div><i class="fa-solid fa-film text-slate-500 mr-1"></i> ${pc.videos ? pc.videos.length : 0} video</div>
                         </td>
                         <td class="p-4 text-xs text-slate-400">
-                            <span class="bg-slate-800/80 px-2 py-0.5 rounded text-slate-300 font-medium">
+                            <span class="bg-blue-50 border border-blue-100 px-2 py-0.5 rounded text-slate-700 font-medium">
                                 +${pc.customSpecs ? pc.customSpecs.length : 0} Sezioni
                             </span>
                         </td>
                         <td class="p-4 text-right space-x-2">
-                            <button onclick="editListing('${pc.id}')" class="p-2 text-cyan-400 hover:text-white bg-slate-800 hover:bg-cyan-600/30 rounded-lg transition-colors" title="Modifica">
+                            <button onclick="editListing('${pc.id}')" class="p-2 text-blue-700 hover:text-white bg-blue-50 hover:bg-blue-600 rounded-lg border border-blue-100 transition-colors" title="Modifica">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </button>
-                            <button onclick="deleteListing('${pc.id}')" class="p-2 text-rose-400 hover:text-white bg-slate-800 hover:bg-rose-600/30 rounded-lg transition-colors" title="Elimina">
+                            <button onclick="deleteListing('${pc.id}')" class="p-2 text-rose-600 hover:text-white bg-rose-50 hover:bg-rose-600 rounded-lg border border-rose-100 transition-colors" title="Elimina">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
                         </td>
