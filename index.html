@@ -172,33 +172,7 @@
     <!-- PROVA GRAFICA PREMIUM HARDWARE: grafite, avorio e oro satinato. La logica del sito resta invariata. -->
     <style id="stressSellPremiumHardwareTheme">
       :root {
-        color-scheme: light;
-        --ss-bg: #e9e5dd;
-        --ss-surface: #f8f6f1;
-        --ss-surface-alt: #eee8de;
-        --ss-card: #f7f4ed;
-        --ss-card-hover: #fbf9f4;
-        --ss-text: #262420;
-        --ss-muted: #69645b;
-        --ss-subtle: #898174;
-        --ss-border: #d8d0c2;
-        --ss-input: #fffdf8;
-        --ss-image: #fffdf9;
-        --ss-accent: #c7a76c;
-        --ss-accent-hover: #d8bb83;
-        --ss-accent-dark: #806437;
-        --ss-accent-soft: #f1e7d2;
-        --ss-accent-border: #ddc89f;
-        --ss-shadow: rgba(48, 42, 32, .08);
-        --ss-success: #26764b;
-        --ss-success-bg: #e5f2e7;
-        --ss-danger: #b53e46;
-        --ss-danger-bg: #fff0ef;
-        --ss-header: #1d1e20;
-        --ss-header-text: #f6f1e7;
-      }
-      html.dark {
-        color-scheme: dark;
+        color-scheme: dark !important;
         --ss-bg: #191918;
         --ss-surface: #242321;
         --ss-surface-alt: #302d28;
@@ -278,38 +252,6 @@
         box-shadow: 0 4px 14px rgba(199,167,108,.12) !important;
       }
       body#appBody #viewToggleBtn:hover { background: #dfc58f !important; }
-      body#appBody header button[onclick="toggleTheme()"] {
-        background: #2c2b29 !important; border-color: #514a3e !important;
-        color: var(--ss-accent) !important; box-shadow: none !important;
-      }
-      body#appBody header #themeIcon { color: var(--ss-accent) !important; }
-
-      /* COLORI GENERALI DEL CONTENUTO PUBBLICO: carbone e grigi caldi, senza ereditare l'header. */
-      body#appBody #catalogView { color: var(--ss-text) !important; }
-      body#appBody #catalogView [class~="text-white"],
-      body#appBody #catalogView [class~="text-slate-100"] { color: var(--ss-text) !important; }
-      body#appBody #catalogView [class~="text-slate-200"],
-      body#appBody #catalogView [class~="text-slate-300"] { color: var(--ss-text) !important; }
-      body#appBody #catalogView [class~="text-slate-400"] { color: var(--ss-muted) !important; }
-      body#appBody #catalogView [class~="text-slate-500"],
-      body#appBody #catalogView [class~="text-slate-600"] { color: var(--ss-subtle) !important; }
-      body#appBody #catalogView [class~="text-cyan-400"],
-      body#appBody #catalogView [class~="text-cyan-300"],
-      body#appBody #catalogView [class~="text-indigo-300"],
-      body#appBody #catalogView [class~="text-indigo-400"] { color: var(--ss-accent-dark) !important; }
-      body#appBody #catalogView [class~="text-emerald-400"] { color: var(--ss-success) !important; }
-      body#appBody #catalogView [class~="text-amber-400"] { color: var(--ss-accent-dark) !important; }
-
-      /* HERO: avorio caldo e accento oro discreto. */
-      body#appBody .hero-panel {
-        background:
-          radial-gradient(ellipse at 90% 8%, rgba(199,167,108,.18), transparent 24rem),
-          linear-gradient(120deg, var(--ss-surface) 0%, var(--ss-surface-alt) 100%) !important;
-        color: var(--ss-text) !important;
-        border: 1px solid var(--ss-border) !important;
-        border-radius: 14px !important;
-        box-shadow: 0 12px 32px var(--ss-shadow), inset 0 1px 0 rgba(255,255,255,.45) !important;
-      }
       body#appBody .hero-panel::after {
         opacity: .12 !important;
         background-image:
@@ -616,11 +558,8 @@
     
 
       /* SFONDO PIU' SCURO: grafite caldo sullo sfondo esterno, mantenendo chiare le schede e i pannelli. */
-      html.light {
-        --ss-page-bg: #302e2a;
-        --ss-page-text: #f4efe5;
-      }
-      html.dark {
+      html, html.dark, html.light {
+        color-scheme: dark !important;
         --ss-page-bg: #191918;
         --ss-page-text: #f1ece3;
       }
@@ -641,6 +580,36 @@
         color: var(--ss-text) !important;
       }
 </style>
+
+    <style id="stressSellFixedDarkTheme">
+      :root, html, html.dark, html.light { color-scheme: dark !important; }
+      body#appBody {
+        background-color: #191918 !important;
+        background-image:
+          radial-gradient(ellipse at 8% 0%, rgba(199,167,108,.13), transparent 36rem),
+          radial-gradient(ellipse at 94% 24%, rgba(199,167,108,.06), transparent 32rem),
+          linear-gradient(180deg, #191918 0%, #1d1b18 55%, #191918 100%) !important;
+        color: #f1ece3 !important;
+      }
+      html.light {
+        --ss-bg: #191918; --ss-surface: #242321; --ss-surface-alt: #302d28;
+        --ss-card: #252421; --ss-card-hover: #2c2a25; --ss-text: #f1ece3;
+        --ss-muted: #beb6a8; --ss-subtle: #958b7b; --ss-border: #494236;
+        --ss-input: #252420; --ss-image: #20201e; --ss-accent: #c7a76c;
+        --ss-accent-hover: #ddc28b; --ss-accent-dark: #e0c58d; --ss-accent-soft: #3b3325;
+        --ss-accent-border: #725d38; --ss-shadow: rgba(0,0,0,.24); --ss-success: #85c89c;
+        --ss-success-bg: #203b2a; --ss-danger: #f19aa0; --ss-danger-bg: #482528;
+        --ss-header: #121212; --ss-header-text: #f6f1e7;
+      }
+      body#appBody #pcGrid .pc-card [class~="bg-purple-500/10"] { background: #33283a !important; }
+      body#appBody #pcGrid .pc-card [class~="text-purple-400"] { color: #d2b4df !important; }
+      body#appBody #pcGrid .pc-card [class~="border-purple-500/30"] { border-color: #65506d !important; }
+      body#appBody #pcGrid .pc-card [class~="border-emerald-500/30"] { border-color: #496b50 !important; }
+      body#appBody #modalContent .text-slate-600 { color: #a69d8e !important; }
+      body#appBody #adminView #adminTableBody td button[title="Elimina"] { border-color: #724044 !important; }
+      @media (prefers-color-scheme: light) { :root { color-scheme: dark !important; } }
+    </style>
+
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen transition-colors duration-300 antialiased" id="appBody">
 
@@ -664,11 +633,6 @@
                 <button id="viewToggleBtn" onclick="toggleMainView()" class="px-4 py-2.5 rounded-xl font-medium text-sm transition-all duration-200 flex items-center space-x-2 bg-gradient-to-r from-cyan-500 to-indigo-600 text-white hover:opacity-95 shadow-md shadow-cyan-500/10">
                     <i id="viewToggleIcon" class="fa-solid fa-lock"></i>
                     <span id="viewToggleText" class="hidden sm:inline">Pannello Gestione Admin</span>
-                </button>
-
-                <!-- Dark/Light Theme Toggle -->
-                <button onclick="toggleTheme()" class="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors border border-slate-700/60" title="Cambia Tema">
-                    <i id="themeIcon" class="fa-solid fa-moon"></i>
                 </button>
             </div>
         </div>
@@ -1896,19 +1860,11 @@ Continua soltanto se questa copia locale contiene i prezzi e le informazioni cor
            THEME TOGGLE
         ======================================================== */
         function toggleTheme() {
-            const html = document.documentElement;
-            const themeIcon = document.getElementById('themeIcon');
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                html.classList.add('light');
-                document.getElementById('appBody').className = 'bg-slate-100 text-slate-800 min-h-screen transition-colors duration-300 antialiased';
-                themeIcon.className = 'fa-solid fa-moon text-slate-700';
-            } else {
-                html.classList.remove('light');
-                html.classList.add('dark');
-                document.getElementById('appBody').className = 'bg-slate-950 text-slate-100 min-h-screen transition-colors duration-300 antialiased';
-                themeIcon.className = 'fa-solid fa-sun text-amber-400';
-            }
+            // Tema Premium Hardware fisso: non viene piu' consentito il passaggio al tema chiaro.
+            document.documentElement.classList.remove('light');
+            document.documentElement.classList.add('dark');
+            document.documentElement.style.colorScheme = 'dark';
+            document.getElementById('appBody').className = 'bg-slate-950 text-slate-100 min-h-screen transition-colors duration-300 antialiased';
         }
 
         /* ========================================================
