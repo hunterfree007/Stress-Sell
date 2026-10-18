@@ -156,699 +156,6 @@
                 transition-duration: .01ms !important;
             }
         }
-
-
-        /* =========================================================
-           ALIENWARE-INSPIRED ART DIRECTION — STRESS & SELL
-           Palette charcoal / ultraviolet with restrained cyan details.
-           This styles the existing UI; catalog data and behavior stay intact.
-        ========================================================= */
-        :root {
-            color-scheme: dark;
-            --ss-bg: #101013;
-            --ss-surface: #19171f;
-            --ss-purple: #8f4eff;
-            --ss-purple-bright: #b875ff;
-            --ss-lavender: #d9c9ff;
-            --ss-cyan: #45e6e8;
-        }
-        html { scroll-behavior: smooth; }
-        body#appBody {
-            background-color: var(--ss-bg) !important;
-            background-image:
-                radial-gradient(ellipse 58% 38% at 52% 108%, rgba(101, 39, 225, .55), transparent 70%),
-                radial-gradient(ellipse 42% 35% at 92% 76%, rgba(126, 56, 214, .22), transparent 73%),
-                radial-gradient(ellipse 42% 25% at 6% 0%, rgba(115, 115, 130, .07), transparent 68%),
-                linear-gradient(180deg, #111113 0%, #101013 48%, #121019 100%) !important;
-            background-attachment: fixed !important;
-            color: #f7f5fb;
-        }
-        header.sticky {
-            background: rgba(15, 15, 18, .94) !important;
-            border-bottom: 1px solid rgba(255,255,255,.075) !important;
-            box-shadow: 0 12px 38px rgba(0,0,0,.27) !important;
-            backdrop-filter: blur(18px) saturate(130%);
-        }
-        header .max-w-7xl { min-height: 76px; }
-        .brand-mark {
-            background: linear-gradient(145deg, #6d32c6, #24143f 76%) !important;
-            border-color: rgba(203, 165, 255, .42) !important;
-            border-radius: 15px !important;
-            box-shadow: 0 0 26px rgba(133, 67, 255, .27), inset 0 1px 0 rgba(255,255,255,.2) !important;
-        }
-        header .bg-gradient-to-r.from-cyan-400.via-sky-300.to-indigo-400 {
-            background-image: linear-gradient(100deg, #fff 0%, #e2d5ff 50%, #b983ff 100%) !important;
-        }
-        .bg-gradient-to-r.from-cyan-500.to-indigo-600,
-        .bg-gradient-to-tr.from-cyan-500.to-indigo-600 {
-            background-image: linear-gradient(115deg, #7138bd 0%, #8d45e7 52%, #bd74ff 100%) !important;
-        }
-        #appBody .text-cyan-400, #appBody .text-cyan-300 { color: #bfa0ff !important; }
-        #appBody .text-cyan-500 { color: #b68aff !important; }
-        #appBody .border-cyan-500\/20, #appBody .border-cyan-500\/30,
-        #appBody .border-cyan-500\/40, #appBody .border-cyan-500\/50 {
-            border-color: rgba(174, 113, 255, .28) !important;
-        }
-        #appBody .bg-cyan-500\/10 { background-color: rgba(150, 82, 255, .12) !important; }
-        #appBody .bg-cyan-500\/\[0\.06\] { background-color: rgba(150, 82, 255, .07) !important; }
-        #appBody .shadow-cyan-500\/10, #appBody .shadow-cyan-500\/20, #appBody .shadow-cyan-500\/25 {
-            --tw-shadow-color: rgba(142, 67, 255, .22) !important;
-            --tw-shadow: var(--tw-shadow-colored) !important;
-        }
-        #appBody .hover\:border-cyan-500\/50:hover { border-color: rgba(185, 129, 255, .65) !important; }
-        #appBody .focus\:border-cyan-500:focus { border-color: #ad71ff !important; }
-        #appBody .focus\:ring-cyan-500:focus { --tw-ring-color: rgba(173,113,255,.55) !important; }
-        .hero-panel {
-            min-height: 390px;
-            padding: clamp(1.5rem, 4vw, 3.3rem) !important;
-            background-color: #111014 !important;
-            background-image:
-                radial-gradient(ellipse 48% 83% at 86% 112%, rgba(120, 57, 237, .43), transparent 77%),
-                radial-gradient(ellipse 32% 72% at 100% 56%, rgba(86, 40, 141, .18), transparent 75%),
-                linear-gradient(108deg, #111113 0%, #121116 53%, #17131e 100%) !important;
-            border: 1px solid rgba(255,255,255,.09) !important;
-            border-radius: 26px !important;
-            box-shadow: 0 28px 90px rgba(0,0,0,.42), inset 0 1px 0 rgba(255,255,255,.035) !important;
-            isolation: isolate;
-        }
-        .hero-panel::after {
-            opacity: .23;
-            background-image: linear-gradient(rgba(210,194,255,.055) 1px, transparent 1px), linear-gradient(90deg, rgba(210,194,255,.055) 1px, transparent 1px) !important;
-            background-size: 42px 42px !important;
-            mask-image: linear-gradient(105deg, transparent 2%, rgba(0,0,0,.3) 45%, black 100%) !important;
-        }
-        .hero-panel::before {
-            content: "";
-            position: absolute;
-            z-index: 0;
-            width: min(47vw, 570px);
-            height: min(47vw, 570px);
-            right: -5%;
-            bottom: -64%;
-            border-radius: 50%;
-            border: 1px dashed rgba(199,160,255,.22);
-            box-shadow: 0 0 0 18px rgba(175,119,255,.025), 0 0 0 44px rgba(175,119,255,.018), inset 0 0 85px rgba(133,63,255,.15);
-            transform: rotate(-12deg);
-            pointer-events: none;
-        }
-        .hero-content-layout {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(270px, .86fr);
-            align-items: center;
-            gap: clamp(1.5rem, 4vw, 4rem);
-            min-height: 315px;
-        }
-        .hero-copy { position: relative; z-index: 2; max-width: 640px; }
-        .hero-eyebrow {
-            color: #d8c7ff !important;
-            background: rgba(132,70,221,.15) !important;
-            border: 1px solid rgba(181,129,255,.26) !important;
-            box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
-            letter-spacing: .045em;
-            text-transform: uppercase;
-        }
-        .hero-heading { letter-spacing: -.045em !important; text-wrap: balance; }
-        #heroTitleColor {
-            background-image: linear-gradient(100deg, #d8c3ff, #a06aff 68%, #7e48db) !important;
-        }
-        #heroIntro { max-width: 38rem; color: #b4b0bf !important; line-height: 1.8 !important; }
-        .hero-shipping { color: #918b9e !important; }
-        .hero-showcase {
-            position: relative;
-            min-width: 0;
-            align-self: stretch;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 14px 8px 6px;
-            isolation: isolate;
-        }
-        .hero-showcase-glow {
-            position: absolute;
-            z-index: -1;
-            width: 92%;
-            height: 73%;
-            left: 4%;
-            top: 11%;
-            background: radial-gradient(ellipse at center, rgba(130,58,255,.26), rgba(81,42,143,.09) 44%, transparent 73%);
-            filter: blur(18px);
-            pointer-events: none;
-        }
-        .hero-orbit {
-            pointer-events: none;
-            position: absolute;
-            z-index: -1;
-            border: 1px dashed rgba(195,169,255,.3);
-            border-radius: 50%;
-            transform: rotate(-12deg) scaleY(.33);
-        }
-        .hero-orbit-back { width: 112%; height: 88%; left: -6%; bottom: 16%; opacity: .58; }
-        .hero-orbit-front { width: 100%; height: 74%; left: 0; bottom: 14%; opacity: .26; transform: rotate(11deg) scaleY(.36); }
-        .hero-showcase-device {
-            position: relative;
-            min-height: 245px;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            border: 1px solid rgba(210,194,255,.12);
-            border-radius: 20px;
-            background: linear-gradient(145deg, rgba(38,32,48,.8), rgba(15,14,19,.8) 70%);
-            box-shadow: 0 20px 60px rgba(0,0,0,.27), inset 0 1px 0 rgba(255,255,255,.045);
-            backdrop-filter: blur(8px);
-        }
-        .hero-showcase-topline {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 15px 0;
-            color: #9086a6;
-            font-size: 9px;
-            font-weight: 800;
-            letter-spacing: .18em;
-        }
-        .hero-status-dot {
-            width: 6px; height: 6px; border-radius: 50%;
-            background: #b98aff; box-shadow: 0 0 13px rgba(185,138,255,.9);
-        }
-        #heroProductImage {
-            display: block;
-            width: 100%;
-            height: clamp(190px, 22vw, 278px);
-            padding: 10px 22px 0;
-            object-fit: contain;
-            filter: drop-shadow(0 14px 24px rgba(0,0,0,.38)) saturate(1.06);
-            position: relative;
-            z-index: 1;
-        }
-        .hero-image-sheen {
-            position: absolute;
-            inset: 35% -15% -36%;
-            pointer-events: none;
-            background: radial-gradient(ellipse at center, rgba(108,45,209,.25), transparent 66%);
-        }
-        .hero-showcase-caption {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 14px;
-            margin-top: 15px;
-            padding: 0 3px;
-        }
-        .hero-product-kicker { color: #aa84e9; font-size: 9px; font-weight: 800; letter-spacing: .18em; }
-        .hero-product-title { color: #faf8ff; font-size: clamp(1.05rem, 1.9vw, 1.55rem); font-weight: 850; letter-spacing: -.035em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%; }
-        .hero-product-price { color: #c3b8d9; font-size: 13px; margin-top: 2px; }
-        .hero-product-open {
-            flex: 0 0 auto; width: 43px; height: 43px; border-radius: 50%;
-            display: grid; place-items: center; color: #21122e;
-            background: linear-gradient(135deg, #eee3ff, #bb85ff);
-            box-shadow: 0 0 24px rgba(167,96,255,.25);
-        }
-        .alienware-cta {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 48px;
-            padding: 0 23px;
-            border: 1px solid rgba(221,206,255,.55);
-            border-radius: 999px;
-            color: #22152f !important;
-            background: linear-gradient(115deg, #f6f1ff 0%, #d9c2ff 58%, #bd8aff 100%) !important;
-            font-size: 12px;
-            font-weight: 850;
-            letter-spacing: .025em;
-            box-shadow: 0 9px 28px rgba(116,52,211,.22), inset 0 1px 0 rgba(255,255,255,.8);
-            transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
-        }
-        .alienware-cta:hover { transform: translateY(-2px); filter: brightness(1.045); box-shadow: 0 14px 35px rgba(116,52,211,.33); }
-        .filter-panel {
-            background: rgba(24,22,29,.86) !important;
-            border: 1px solid rgba(255,255,255,.085) !important;
-            border-radius: 17px !important;
-            box-shadow: 0 16px 48px rgba(0,0,0,.21), inset 0 1px 0 rgba(255,255,255,.025) !important;
-            backdrop-filter: blur(16px);
-        }
-        .glass-card, .glass-card-light {
-            background-color: rgba(25,23,31,.84) !important;
-            border-color: rgba(255,255,255,.08) !important;
-            box-shadow: 0 16px 45px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.025) !important;
-        }
-        .pc-card {
-            background: linear-gradient(160deg, rgba(35,29,47,.98) 0%, rgba(23,21,29,.99) 54%, rgba(18,17,22,.99) 100%) !important;
-            border: 1px solid rgba(201,177,245,.12) !important;
-            border-radius: 20px !important;
-            box-shadow: 0 18px 55px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.035) !important;
-            transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease !important;
-        }
-        .pc-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(176,119,255,.48) !important;
-            box-shadow: 0 26px 68px rgba(0,0,0,.39), 0 0 35px rgba(110,48,205,.13) !important;
-        }
-        .pc-card-image {
-            background-image:
-                radial-gradient(ellipse at 50% 48%, rgba(98,52,151,.48), rgba(49,35,70,.65) 47%, rgba(18,17,24,.98) 100%) !important;
-            border-bottom: 1px solid rgba(203,174,255,.14) !important;
-        }
-        .pc-card-image img { filter: saturate(1.04) contrast(1.04) drop-shadow(0 11px 18px rgba(0,0,0,.23)); }
-        .pc-card .bg-slate-950\/60 { background: rgba(10,9,14,.42) !important; border-color: rgba(217,201,255,.11) !important; }
-        .pc-card .border-t { border-color: rgba(217,201,255,.12) !important; }
-        .pc-card h3 { transition: color .2s ease; }
-        .pc-card:hover h3 { color: #d0b3ff !important; }
-        #listingsCount { color: #a7a0b2 !important; letter-spacing: .025em; }
-        #searchInput, #statusFilter, #priceFilter, #sortBy {
-            background-color: #16141b !important;
-            border-color: rgba(216,197,255,.13) !important;
-            color: #eeeaf5 !important;
-            border-radius: 12px !important;
-        }
-        #searchInput:focus, #statusFilter:focus, #priceFilter:focus, #sortBy:focus {
-            border-color: rgba(179,125,255,.7) !important;
-            box-shadow: 0 0 0 3px rgba(154,86,255,.11) !important;
-        }
-        #adminView .bg-slate-900\/80, #adminView .bg-slate-900\/90,
-        #adminView .bg-slate-900\/60, #adminView .bg-slate-950\/60 {
-            border-color: rgba(211,187,255,.11) !important;
-        }
-        #adminView input:not([type="checkbox"]):not([type="radio"]), #adminView select, #adminView textarea {
-            background-color: #100f14 !important;
-            border-color: rgba(211,187,255,.15) !important;
-        }
-        #adminView input:focus, #adminView select:focus, #adminView textarea:focus {
-            border-color: rgba(175,117,255,.7) !important;
-            box-shadow: 0 0 0 3px rgba(151,81,243,.12) !important;
-        }
-        #pcDetailModal > div, #adminAuthCard {
-            background: linear-gradient(145deg, #201b29, #121116 78%) !important;
-            border-color: rgba(201,177,245,.16) !important;
-            box-shadow: 0 35px 110px rgba(0,0,0,.62), 0 0 45px rgba(111,54,205,.1) !important;
-        }
-        #toastContainer > div { border: 1px solid rgba(226,209,255,.12); box-shadow: 0 14px 36px rgba(0,0,0,.4); }
-        .hero-panel .bg-cyan-500\/10, .hero-panel .border-cyan-500\/20 { border-color: rgba(185,137,255,.28) !important; }
-        .hero-panel .bg-cyan-500\/10 { background-color: rgba(145,80,239,.15) !important; }
-        .hero-panel .text-cyan-400 { color: #d2baff !important; }
-        .hero-panel > .absolute.rounded-full { opacity: .6; }
-        @media (max-width: 800px) {
-            .hero-content-layout { grid-template-columns: minmax(0,1fr); gap: 1.3rem; }
-            .hero-panel { min-height: unset; padding: 1.35rem !important; }
-            .hero-copy { max-width: none; }
-            .hero-showcase { min-height: 0; padding: 4px 0 0; }
-            .hero-showcase-device { min-height: 200px; }
-            #heroProductImage { height: 215px; padding: 6px 18px 0; }
-            .hero-orbit-back { width: 100%; height: 75%; left: 0; bottom: 20%; }
-            .hero-orbit-front { width: 95%; height: 65%; left: 2.5%; bottom: 19%; }
-            .hero-product-title { font-size: 1.05rem; }
-        }
-        @media (max-width: 480px) {
-            header .max-w-7xl { min-height: 68px; }
-            .brand-mark { width: 2.5rem !important; height: 2.5rem !important; }
-            header .text-2xl { font-size: 1.05rem !important; letter-spacing: .08em !important; }
-            .hero-heading { font-size: 2rem !important; }
-            .hero-actions { width: 100%; }
-            .alienware-cta { width: 100%; }
-            .pc-card { border-radius: 18px !important; }
-        }
-        .gallery-nav-button {
-            position: absolute;
-            top: 50%;
-            z-index: 8;
-            display: grid;
-            place-items: center;
-            width: 42px;
-            height: 42px;
-            transform: translateY(-50%);
-            border: 1px solid rgba(222,204,255,.34);
-            border-radius: 999px;
-            color: #f3eaff;
-            background: rgba(17,14,23,.76);
-            box-shadow: 0 5px 22px rgba(0,0,0,.32), 0 0 18px rgba(145,78,230,.14);
-            backdrop-filter: blur(10px);
-            transition: background .18s ease, border-color .18s ease, transform .18s ease, box-shadow .18s ease;
-        }
-        .gallery-nav-button:hover {
-            background: rgba(115,63,177,.88);
-            border-color: rgba(225,204,255,.72);
-            box-shadow: 0 0 0 3px rgba(158,96,255,.12), 0 7px 24px rgba(0,0,0,.35);
-        }
-        .gallery-nav-button:active { transform: translateY(-50%) scale(.96); }
-        .gallery-image-counter {
-            position: absolute;
-            right: 12px;
-            bottom: 12px;
-            z-index: 8;
-            padding: 5px 10px;
-            border: 1px solid rgba(221,204,255,.22);
-            border-radius: 999px;
-            color: #f2eaff;
-            background: rgba(15,12,20,.74);
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: .06em;
-            backdrop-filter: blur(10px);
-        }
-        .modal-scroll-cue {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            margin-top: 26px;
-            padding: 15px 17px;
-            border: 1px solid rgba(187,145,255,.22);
-            border-radius: 16px;
-            background: radial-gradient(ellipse at 12% 50%, rgba(121,59,196,.17), transparent 52%), linear-gradient(105deg, rgba(36,28,48,.9), rgba(19,17,24,.92));
-            box-shadow: inset 0 1px 0 rgba(255,255,255,.035);
-        }
-        .modal-scroll-cue-kicker {
-            color: #c7a8ff;
-            font-size: 10px;
-            font-weight: 850;
-            letter-spacing: .16em;
-        }
-        .modal-scroll-cue-copy { margin-top: 3px; color: #c3bdcf; font-size: 12px; line-height: 1.5; }
-        .modal-scroll-cue-button {
-            display: inline-flex;
-            flex: 0 0 auto;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            min-height: 38px;
-            padding: 0 14px;
-            border: 1px solid rgba(221,206,255,.34);
-            border-radius: 999px;
-            color: #20132e;
-            background: linear-gradient(115deg, #f6f1ff, #c99cff);
-            font-size: 11px;
-            font-weight: 850;
-            box-shadow: 0 6px 18px rgba(116,52,211,.2);
-        }
-        .modal-scroll-cue-button:hover { filter: brightness(1.06); }
-        #modalSpecsSection, #modalBenchmarksSection { scroll-margin-top: 18px; }
-        @media (max-width: 520px) {
-            .gallery-nav-button { width: 36px; height: 36px; }
-            .modal-scroll-cue { align-items: flex-start; flex-direction: column; }
-            .modal-scroll-cue-button { width: 100%; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .pc-card, .alienware-cta, .gallery-nav-button { transition: none !important; }
-        }
-
-
-        /* =========================================================
-           STARFORGE-INSPIRED PRODUCT EXPERIENCE
-           Midnight navy surfaces, crisp typography and acid-lime actions.
-           Original brand assets are retained; only the art direction changes.
-        ========================================================= */
-        :root {
-            color-scheme: dark;
-            --ss-bg: #080d19;
-            --ss-surface: #101828;
-            --ss-purple: #baff91;
-            --ss-purple-bright: #c7ff9f;
-            --ss-lavender: #e7f9db;
-            --ss-cyan: #baff91;
-            --ss-lime: #baff91;
-            --ss-line: rgba(190, 255, 153, .2);
-        }
-        body#appBody {
-            background-color: #080d19 !important;
-            background-image:
-                radial-gradient(ellipse 54% 34% at 54% 105%, rgba(105, 163, 67, .16), transparent 72%),
-                radial-gradient(ellipse 32% 28% at 2% 7%, rgba(78, 105, 141, .12), transparent 75%),
-                linear-gradient(180deg, #0b1120 0%, #080d19 62%, #0c1221 100%) !important;
-            background-attachment: fixed !important;
-            color: #f7f8fb !important;
-        }
-        header.sticky {
-            background: rgba(8, 13, 25, .94) !important;
-            border-bottom-color: rgba(211, 222, 242, .09) !important;
-            box-shadow: 0 10px 34px rgba(0,0,0,.24) !important;
-        }
-        .brand-mark {
-            background: linear-gradient(145deg, #c6ff9e, #72b84b 78%) !important;
-            border-color: rgba(208,255,177,.58) !important;
-            color: #10190c !important;
-            box-shadow: 0 0 28px rgba(174,255,119,.14), inset 0 1px 0 rgba(255,255,255,.36) !important;
-        }
-        header .text-2xl.bg-clip-text,
-        header .bg-gradient-to-r.from-cyan-400.via-sky-300.to-indigo-400 {
-            background-image: linear-gradient(95deg, #ffffff 0%, #eef6e9 63%, #bdff95 100%) !important;
-        }
-        .bg-gradient-to-r.from-cyan-500.to-indigo-600,
-        .bg-gradient-to-tr.from-cyan-500.to-indigo-600 {
-            background-image: linear-gradient(110deg, #c8ffa1 0%, #a8ef7e 100%) !important;
-            color: #101a11 !important;
-        }
-        #appBody .text-cyan-400, #appBody .text-cyan-300, #appBody .text-cyan-500,
-        #appBody .text-indigo-400, #appBody .text-indigo-300,
-        #appBody .text-purple-400, #appBody .text-purple-300, #appBody .text-purple-200 {
-            color: #c2ff9a !important;
-        }
-        #appBody .border-cyan-500\/20, #appBody .border-cyan-500\/30,
-        #appBody .border-cyan-500\/40, #appBody .border-cyan-500\/50,
-        #appBody .border-indigo-500\/25, #appBody .border-indigo-500\/30,
-        #appBody .border-indigo-500\/40, #appBody .border-purple-400\/20,
-        #appBody .border-purple-500\/20, #appBody .border-purple-500\/30 {
-            border-color: rgba(190,255,153,.24) !important;
-        }
-        #appBody .bg-cyan-500\/10, #appBody .bg-indigo-500\/10,
-        #appBody .bg-purple-400\/10, #appBody .bg-purple-500\/10,
-        #appBody .bg-indigo-500\/\[0\.04\], #appBody .bg-indigo-500\/\[0\.06\] {
-            background-color: rgba(166,224,123,.09) !important;
-        }
-        #appBody .shadow-cyan-500\/10, #appBody .shadow-cyan-500\/20, #appBody .shadow-cyan-500\/25 {
-            --tw-shadow-color: rgba(178,255,127,.15) !important;
-            --tw-shadow: var(--tw-shadow-colored) !important;
-        }
-        #appBody .hover\:border-cyan-500\/50:hover { border-color: rgba(195,255,157,.72) !important; }
-        #appBody .focus\:border-cyan-500:focus { border-color: #bdff94 !important; }
-        #appBody .focus\:ring-cyan-500:focus { --tw-ring-color: rgba(190,255,153,.48) !important; }
-        .hero-panel {
-            background-color: #0b1220 !important;
-            background-image:
-                radial-gradient(ellipse 46% 78% at 86% 112%, rgba(106,161,72,.17), transparent 76%),
-                radial-gradient(ellipse 34% 58% at 95% 38%, rgba(131,156,103,.08), transparent 74%),
-                linear-gradient(108deg, #101827 0%, #0d1525 55%, #111c2c 100%) !important;
-            border-color: rgba(208,222,244,.12) !important;
-            box-shadow: 0 25px 75px rgba(0,0,0,.36), inset 0 1px 0 rgba(255,255,255,.035) !important;
-        }
-        .hero-panel::after {
-            background-image: linear-gradient(rgba(198,255,159,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(198,255,159,.035) 1px, transparent 1px) !important;
-        }
-        .hero-panel::before {
-            border-color: rgba(199,255,165,.16) !important;
-            box-shadow: 0 0 0 18px rgba(185,255,140,.018), 0 0 0 44px rgba(185,255,140,.012), inset 0 0 85px rgba(142,206,91,.06) !important;
-        }
-        .hero-eyebrow { color: #d4ffb9 !important; background: rgba(178,236,131,.08) !important; border-color: rgba(194,255,150,.2) !important; }
-        #heroTitleColor { background-image: linear-gradient(100deg, #e8ffd9, #c4ff99 68%, #95d86b) !important; }
-        #heroIntro { color: #b9c3d1 !important; }
-        .hero-shipping { color: #9daab9 !important; }
-        .hero-showcase-glow { background: radial-gradient(ellipse at center, rgba(159,225,109,.13), rgba(81,112,63,.045) 44%, transparent 73%) !important; }
-        .hero-orbit { border-color: rgba(198,255,163,.23) !important; }
-        .hero-showcase-device { background: linear-gradient(145deg, rgba(24,37,55,.92), rgba(9,15,27,.94) 70%) !important; border-color: rgba(215,228,245,.12) !important; }
-        .hero-status-dot { background: #c0ff94 !important; box-shadow: 0 0 13px rgba(190,255,145,.7) !important; }
-        .pc-card {
-            background: linear-gradient(155deg, rgba(18,29,46,.98), rgba(9,15,27,.99)) !important;
-            border-color: rgba(202,219,238,.12) !important;
-            box-shadow: 0 18px 42px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.025) !important;
-        }
-        .pc-card:hover { border-color: rgba(190,255,153,.46) !important; box-shadow: 0 24px 52px rgba(0,0,0,.32), 0 0 0 1px rgba(190,255,153,.055) !important; }
-        .pc-card-image { background-image: radial-gradient(ellipse at center, rgba(61,82,89,.43), rgba(8,14,25,.98)) !important; border-bottom-color: rgba(204,225,241,.1) !important; }
-        .pc-card:hover h3 { color: #c8ffa3 !important; }
-        #searchInput, #statusFilter, #priceFilter, #sortBy { background-color: #111a2a !important; border-color: rgba(207,223,241,.14) !important; }
-        #adminView .bg-slate-900\/80, #adminView .bg-slate-900\/90,
-        #adminView .bg-slate-900\/60, #adminView .bg-slate-950\/60 { border-color: rgba(207,223,241,.1) !important; }
-        #adminView input:not([type="checkbox"]):not([type="radio"]), #adminView select, #adminView textarea { background-color: #0b1220 !important; border-color: rgba(207,223,241,.14) !important; }
-        #pcDetailModal > div, #adminAuthCard {
-            background: linear-gradient(140deg, #101b2c 0%, #0a1020 74%) !important;
-            border-color: rgba(194,213,235,.14) !important;
-            box-shadow: 0 34px 110px rgba(0,0,0,.7), 0 0 42px rgba(92,144,65,.06) !important;
-        }
-        /* Starforge-like product detail layout */
-        #pcDetailModal > div { max-width: min(1460px, calc(100vw - 28px)) !important; border-radius: 19px !important; }
-        #modalContent { padding: clamp(18px, 2.8vw, 40px) !important; }
-        .product-detail-layout { display: grid; grid-template-columns: minmax(0, 1.03fr) minmax(0, .88fr); gap: clamp(24px, 4vw, 58px) !important; align-items: start; }
-        .product-gallery-column { min-width: 0; position: relative; }
-        .product-main-image {
-            aspect-ratio: 1.06 / 1 !important;
-            border-radius: 8px !important;
-            border-color: rgba(208,223,240,.12) !important;
-            background: radial-gradient(ellipse at 50% 45%, #263342 0%, #121d2d 49%, #0a1120 100%) !important;
-            box-shadow: inset 0 1px 0 rgba(255,255,255,.035), 0 20px 48px rgba(0,0,0,.26) !important;
-        }
-        .product-main-image::after { content: ""; position: absolute; inset: auto 0 0; height: 27%; pointer-events:none; background: linear-gradient(transparent, rgba(5,11,20,.18)); }
-        .product-main-image > img { padding: 20px !important; filter: drop-shadow(0 22px 22px rgba(0,0,0,.35)) saturate(1.04) !important; }
-        .product-gallery-thumbnails { display: flex; gap: 12px; overflow-x: auto; padding: 6px 2px 13px; scrollbar-width: thin; }
-        .product-gallery-thumbnails button { width: 88px !important; height: 82px !important; border-radius: 7px !important; background: linear-gradient(145deg,#172337,#0c1423) !important; border-color: rgba(207,223,241,.13) !important; opacity: .76; }
-        .product-gallery-thumbnails button.active { border-color: #c0ff94 !important; opacity: 1; box-shadow: 0 3px 0 #c0ff94, 0 0 18px rgba(190,255,153,.08); transform: none !important; }
-        .product-info-panel { min-width: 0; padding: clamp(0px, .6vw, 8px) 0 0; color: #f4f7fb; }
-        .product-status-line { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; color: #c2ff9a; font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
-        .product-status-dot { width: 7px; height: 7px; border-radius: 50%; background: #c0ff94; box-shadow: 0 0 12px rgba(192,255,148,.65); }
-        .product-title { margin-top: 14px; font-size: clamp(1.85rem, 3.1vw, 3.1rem) !important; line-height: 1.08 !important; letter-spacing: -.045em !important; font-weight: 850 !important; text-wrap: balance; }
-        .product-shipping-line { display:flex; align-items:flex-start; gap:9px; margin-top: 14px; color: #c5d0df; font-size: 12px; line-height:1.65; }
-        .product-shipping-line i { color:#c0ff94; margin-top:2px; }
-        .product-price-row { display:flex; flex-wrap:wrap; align-items:end; justify-content:space-between; gap:12px; margin: 26px 0 21px; }
-        .product-price { font-size: clamp(1.8rem, 3vw, 2.45rem); line-height:1; font-weight: 850; letter-spacing:-.035em; color:#c6ff9c; }
-        .product-price-caption { color:#8491a4; font-size:10px; text-transform:uppercase; letter-spacing:.12em; font-weight:800; }
-        .product-rule { height:1px; width:100%; background:linear-gradient(90deg, rgba(199,255,159,.33), rgba(194,213,235,.13) 48%, transparent); }
-        .product-description { margin-top: 19px; color:#d4dce8; font-size:13px; line-height:1.85; white-space:pre-line; }
-        .product-quick-specs { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 18px; margin-top:20px; }
-        .product-quick-spec { display:flex; align-items:flex-start; gap:10px; padding:12px 0; border-bottom:1px solid rgba(199,216,236,.11); min-width:0; }
-        .product-quick-spec i { color:#c1ff96; width:15px; margin-top:2px; text-align:center; flex-shrink:0; }
-        .product-quick-spec-label { color:#8d9bae; font-size:9px; font-weight:850; letter-spacing:.12em; text-transform:uppercase; }
-        .product-quick-spec-value { margin-top:4px; color:#f0f3f8; font-size:11px; font-weight:650; line-height:1.5; overflow-wrap:anywhere; }
-        .product-contact-panel { margin-top:24px; padding-top:20px; border-top:1px solid rgba(199,216,236,.14); }
-        .product-contact-title { color:#d4dfec; font-size:10px; font-weight:850; text-transform:uppercase; letter-spacing:.14em; margin-bottom:12px; }
-        .product-main-cta { min-height:50px; width:100%; display:flex; align-items:center; justify-content:center; gap:10px; padding:12px 18px; border-radius:3px; background:#c4ff99; color:#0b1420 !important; font-size:12px; font-weight:950; text-transform:uppercase; letter-spacing:.105em; box-shadow:0 8px 25px rgba(178,255,126,.10); transition:background .18s ease, transform .18s ease, box-shadow .18s ease; }
-        .product-main-cta:hover { background:#d6ffbb; transform:translateY(-1px); box-shadow:0 10px 29px rgba(178,255,126,.17); }
-        .product-secondary-cta { min-height:44px; display:flex; align-items:center; justify-content:center; gap:9px; border:1px solid rgba(206,223,242,.2); background:rgba(255,255,255,.025); color:#edf3fa !important; padding:10px 14px; border-radius:3px; font-size:11px; font-weight:800; transition:border-color .18s ease, background .18s ease; }
-        .product-secondary-cta:hover { border-color:rgba(192,255,148,.55); background:rgba(192,255,148,.05); }
-        .product-trust-links { display:flex; flex-wrap:wrap; gap:10px 18px; margin-top:14px; color:#91a0b4; font-size:11px; }
-        .product-trust-links a { color:#d1ffb2 !important; text-decoration:underline; text-underline-offset:3px; }
-        .modal-scroll-cue { border-color: rgba(190,255,153,.18) !important; background:linear-gradient(100deg,rgba(22,39,49,.92),rgba(11,17,29,.95)) !important; }
-        .modal-scroll-cue-kicker { color:#caffaa !important; }
-        .modal-scroll-cue-button { color:#0b1420 !important; background:linear-gradient(110deg,#d6ffb9,#b8f68b) !important; border-color:transparent !important; }
-        #modalSpecsSection, #modalBenchmarksSection { border-color:rgba(199,216,236,.15) !important; }
-        #modalSpecsSection h4, #modalBenchmarksSection h4 { color:#c4ff9a !important; }
-        #modalSpecsSection .bg-slate-950, #modalBenchmarksSection .bg-slate-950 { background:#0b1422 !important; border-color:rgba(202,222,241,.12) !important; }
-        #modalSpecsSection .text-cyan-300, #modalBenchmarksSection .text-cyan-400 { color:#c4ff9a !important; }
-        .gallery-nav-button { border-color:rgba(213,232,248,.36) !important; color:#eff6ff !important; background:rgba(7,14,25,.78) !important; box-shadow:0 5px 22px rgba(0,0,0,.38),0 0 18px rgba(190,255,153,.08) !important; }
-        .gallery-nav-button:hover { background:rgba(189,255,145,.95) !important; color:#101a12 !important; border-color:#c8ffa4 !important; }
-        .gallery-image-counter { border-color:rgba(204,232,185,.25) !important; background:rgba(7,13,23,.78) !important; }
-        @media (max-width: 900px) {
-            .product-detail-layout { grid-template-columns:minmax(0,1fr) !important; gap:22px !important; }
-            .product-main-image { aspect-ratio: 1.18 / 1 !important; }
-            .product-info-panel { padding-top:4px; }
-        }
-        @media (max-width: 520px) {
-            #pcDetailModal > div { max-width: calc(100vw - 12px) !important; max-height: 96vh !important; border-radius:13px !important; }
-            .product-main-image { aspect-ratio: 3 / 4 !important; }
-            .product-main-image > img { padding:12px !important; }
-            .product-gallery-thumbnails button { width:72px !important; height:70px !important; }
-            .product-quick-specs { gap:0 12px; }
-            .product-title { font-size:1.8rem !important; }
-            #modalContent { padding:16px !important; }
-        }
-
-    
-
-        /* =========================================================
-           STRUTTURA DI PROVA — catalogo laterale + product rows
-           Questa sezione cambia davvero la disposizione dei componenti.
-        ========================================================= */
-        .catalog-intro-row {
-            display:flex; align-items:flex-end; justify-content:space-between; gap:24px;
-            padding: clamp(12px, 2vw, 24px) 2px 4px;
-        }
-        .catalog-eyebrow, .catalog-results-kicker, .catalog-filter-kicker {
-            margin:0 0 10px; color:#c4ff99; font-size:10px; font-weight:850; letter-spacing:.19em;
-        }
-        .catalog-eyebrow { display:flex; align-items:center; gap:9px; }
-        .catalog-eyebrow-dot { width:7px; height:7px; border-radius:50%; background:#c4ff99; box-shadow:0 0 13px rgba(196,255,153,.72); }
-        .catalog-section-title { margin:0; color:#f7f8fb; font-size:clamp(1.75rem,3.4vw,3rem); font-weight:850; line-height:1.05; letter-spacing:-.045em; }
-        .catalog-section-copy { max-width:650px; margin:12px 0 0; color:#9ca8ba; font-size:14px; line-height:1.7; }
-        .catalog-intro-link { display:inline-flex; flex:0 0 auto; align-items:center; gap:10px; padding:12px 16px; color:#c4ff99; border:1px solid rgba(196,255,153,.23); border-radius:999px; font-size:12px; font-weight:800; text-decoration:none; background:rgba(196,255,153,.045); transition:all .18s ease; }
-        .catalog-intro-link:hover { color:#10180b; background:#c4ff99; box-shadow:0 0 28px rgba(196,255,153,.12); }
-        .catalog-explorer { display:grid; grid-template-columns:minmax(220px,260px) minmax(0,1fr); gap:22px; align-items:start; }
-        .catalog-filter-rail { position:sticky; top:96px; overflow:hidden; border:1px solid rgba(196,255,153,.17); border-radius:20px; background:linear-gradient(160deg,rgba(18,28,43,.98),rgba(9,15,26,.98)); box-shadow:0 20px 54px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.035); }
-        .catalog-filter-rail-head { padding:22px 20px 18px; border-bottom:1px solid rgba(255,255,255,.07); background:radial-gradient(ellipse at 10% 0%,rgba(196,255,153,.07),transparent 70%); }
-        .catalog-filter-kicker { display:block; font-size:9px; line-height:1.5; }
-        .catalog-filter-rail-head h3 { margin:0; color:#f7f8fb; font-size:20px; font-weight:800; letter-spacing:-.035em; }
-        .catalog-filter-rail-head p { margin:8px 0 0; color:#91a0b2; font-size:12px; line-height:1.55; }
-        .catalog-filter-fields { display:flex; flex-direction:column; gap:9px; padding:18px 20px 20px; }
-        .catalog-field-label { margin-top:7px; color:#b4bfce; font-size:10px; font-weight:800; letter-spacing:.055em; }
-        .catalog-search-wrap { position:relative; }
-        .catalog-search-wrap > i { position:absolute; left:13px; top:50%; transform:translateY(-50%); color:#8491a4; font-size:12px; pointer-events:none; }
-        .catalog-search-input, .catalog-select { width:100%; min-height:43px; border:1px solid rgba(194,208,226,.13); border-radius:11px; padding:10px 12px; color:#f3f5f8; background:#0a111e; font-size:12px; outline:none; transition:border-color .18s,box-shadow .18s; }
-        .catalog-search-input { padding-left:36px; }
-        .catalog-search-input::placeholder { color:#657286; }
-        .catalog-search-input:focus, .catalog-select:focus { border-color:rgba(196,255,153,.65); box-shadow:0 0 0 3px rgba(196,255,153,.07); }
-        .catalog-reset-button { display:inline-flex; justify-content:center; align-items:center; gap:8px; min-height:40px; margin-top:7px; padding:0 13px; color:#cbd5e1; border:1px solid rgba(255,255,255,.1); border-radius:11px; background:rgba(255,255,255,.04); font-size:11px; font-weight:800; transition:all .18s; }
-        .catalog-reset-button:hover { color:#c4ff99; border-color:rgba(196,255,153,.28); background:rgba(196,255,153,.06); }
-        .catalog-filter-foot { display:flex; align-items:flex-start; gap:9px; padding:14px 20px 17px; border-top:1px solid rgba(255,255,255,.065); color:#78869a; font-size:10px; line-height:1.55; }
-        .catalog-filter-foot i { margin-top:2px; color:#c4ff99; }
-        .catalog-results-column { min-width:0; }
-        .catalog-results-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:18px; margin-bottom:17px; padding:3px 0 15px; border-bottom:1px solid rgba(255,255,255,.09); }
-        .catalog-results-kicker { margin-bottom:7px; color:#7f8da2; font-size:9px; }
-        .catalog-results-heading h3 { margin:0; color:#f7f8fb; font-size:23px; font-weight:850; letter-spacing:-.04em; }
-        .catalog-result-count { flex:0 0 auto; padding:8px 11px; color:#d9ffc5; border:1px solid rgba(196,255,153,.19); border-radius:999px; background:rgba(196,255,153,.055); font-size:10px; font-weight:850; }
-        .product-results-list { display:grid; grid-template-columns:minmax(0,1fr); gap:15px; }
-        .product-row-card { display:grid !important; grid-template-columns:minmax(200px,.78fr) minmax(0,1.5fr) minmax(150px,.58fr); align-items:stretch; gap:0; min-width:0; overflow:hidden; border:1px solid rgba(196,255,153,.13) !important; border-radius:19px !important; background:linear-gradient(108deg,rgba(19,29,44,.98),rgba(11,17,29,.99) 66%,rgba(13,20,30,.99)) !important; box-shadow:0 14px 35px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.035) !important; transition:border-color .2s,transform .2s,box-shadow .2s !important; }
-        .product-row-card:hover { transform:translateY(-2px); border-color:rgba(196,255,153,.38) !important; box-shadow:0 22px 48px rgba(0,0,0,.29),0 0 25px rgba(196,255,153,.035) !important; }
-        .product-row-media { display:block; position:relative; width:100%; min-width:0; min-height:255px; height:100%; overflow:hidden; border:0 !important; border-right:1px solid rgba(255,255,255,.075) !important; border-radius:0 !important; background:radial-gradient(ellipse at 50% 45%,rgba(94,125,79,.13),transparent 66%),#09111d !important; cursor:pointer; text-align:left; }
-        .product-row-media img { position:absolute; inset:0; width:100%; height:100%; padding:14px; object-fit:contain; transition:transform .35s ease; }
-        .product-row-card:hover .product-row-media img { transform:scale(1.035); }
-        .product-row-media::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(3,7,13,.25),transparent 28%,transparent 65%,rgba(3,7,13,.38)); pointer-events:none; }
-        .product-row-status { position:absolute; z-index:2; top:12px; left:12px; padding:6px 9px; border:1px solid rgba(196,255,153,.24); border-radius:999px; color:#e4ffd0; background:rgba(8,16,24,.82); backdrop-filter:blur(8px); font-size:9px; line-height:1; font-weight:850; letter-spacing:.04em; }
-        .product-row-status.status-new { color:#d7ffc2; border-color:rgba(196,255,153,.3); }
-        .product-row-status.status-refurbished { color:#d9ddff; border-color:rgba(150,166,255,.32); }
-        .product-row-status.status-used { color:#ffe5b4; border-color:rgba(255,196,109,.28); }
-        .product-row-media-count { position:absolute; z-index:2; bottom:12px; left:12px; display:inline-flex; align-items:center; gap:6px; padding:6px 9px; color:#e8ecf2; border:1px solid rgba(255,255,255,.12); border-radius:999px; background:rgba(6,11,19,.78); font-size:10px; font-weight:750; backdrop-filter:blur(8px); }
-        .product-row-media-count i { color:#c4ff99; }
-        .media-count-divider { color:#667488; padding:0 2px; }
-        .product-row-image-action { position:absolute; z-index:2; right:12px; bottom:12px; display:grid; place-items:center; width:32px; height:32px; color:#10180c; border-radius:50%; background:#c4ff99; box-shadow:0 0 20px rgba(196,255,153,.14); }
-        .product-row-details { display:flex; flex-direction:column; justify-content:center; min-width:0; padding:22px clamp(16px,2vw,27px); }
-        .product-row-overline { display:flex; align-items:center; gap:8px; color:#75849a; font-size:9px; font-weight:850; letter-spacing:.15em; }
-        .product-row-accent { display:inline-block; width:5px; height:5px; border-radius:50%; background:#c4ff99; box-shadow:0 0 9px rgba(196,255,153,.6); }
-        .product-row-title { margin:10px 0 0; color:#f5f7fa; font-size:clamp(16px,1.4vw,20px); line-height:1.25; font-weight:850; letter-spacing:-.035em; }
-        .product-row-title button { text-align:left; color:inherit; }
-        .product-row-title button:hover { color:#c4ff99; }
-        .product-row-description { display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; margin:10px 0 14px; color:#9da9b8; font-size:11px; line-height:1.7; }
-        .product-row-specs { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:7px; margin-top:auto; }
-        .product-row-spec { min-width:0; padding:9px 10px; border:1px solid rgba(255,255,255,.07); border-radius:9px; background:rgba(3,8,16,.43); }
-        .product-row-spec-label { display:block; overflow:hidden; color:#8190a3; font-size:9px; font-weight:750; line-height:1.4; text-overflow:ellipsis; white-space:nowrap; }
-        .product-row-spec-label i { margin-right:4px; color:#c4ff99; }
-        .product-row-spec strong { display:block; overflow:hidden; margin-top:4px; color:#e4eaf1; font-size:10px; font-weight:750; text-overflow:ellipsis; white-space:nowrap; }
-        .product-row-buy { display:flex; flex-direction:column; justify-content:center; align-items:stretch; gap:12px; min-width:0; padding:22px 17px; border-left:1px solid rgba(255,255,255,.075); background:linear-gradient(180deg,rgba(196,255,153,.025),rgba(0,0,0,.09)); }
-        .product-row-price-label { color:#8090a2; font-size:9px; font-weight:850; letter-spacing:.14em; }
-        .product-row-price { margin-top:7px; color:#d0ffad; font-size:clamp(20px,2vw,29px); line-height:1.05; font-weight:900; letter-spacing:-.045em; white-space:nowrap; }
-        .product-row-cta { display:flex; align-items:center; justify-content:center; gap:9px; min-height:43px; padding:10px 12px; color:#14200d; border-radius:8px; background:linear-gradient(110deg,#cfffaa,#aef27f); font-size:10px; font-weight:900; letter-spacing:.02em; box-shadow:0 7px 19px rgba(178,244,124,.09); transition:filter .18s,transform .18s; }
-        .product-row-cta:hover { filter:brightness(1.06); transform:translateY(-1px); }
-        .product-row-buy-note { color:#718096; font-size:9px; line-height:1.45; text-align:center; }
-        .product-row-buy-note i { color:#c4ff99; margin-right:4px; }
-        .catalog-empty-state { padding:60px 24px; text-align:center; border:1px dashed rgba(196,255,153,.2); border-radius:20px; background:rgba(8,15,25,.62); }
-        .catalog-empty-state > i { display:block; margin-bottom:15px; color:#8b9aab; font-size:36px; }
-        .catalog-empty-state h3 { margin:0; color:#f0f4f8; font-size:20px; font-weight:850; }
-        .catalog-empty-state p { max-width:420px; margin:9px auto 18px; color:#8a97a9; font-size:12px; line-height:1.65; }
-        #catalogExplorer, #pcGrid { scroll-margin-top:100px; }
-        @media (max-width: 1120px) {
-            .catalog-explorer { grid-template-columns:minmax(190px,220px) minmax(0,1fr); gap:16px; }
-            .product-row-card { grid-template-columns:minmax(160px,.68fr) minmax(0,1.35fr) minmax(132px,.55fr); }
-            .product-row-details { padding:18px 16px; }
-            .product-row-buy { padding:18px 13px; }
-            .product-row-specs { gap:6px; }
-        }
-        @media (max-width: 900px) {
-            .catalog-explorer { grid-template-columns:minmax(0,1fr); }
-            .catalog-filter-rail { position:static; }
-            .catalog-filter-fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); align-items:end; }
-            .catalog-filter-fields .catalog-field-label { margin-top:2px; }
-            .catalog-filter-fields .catalog-search-wrap { grid-column:1/-1; }
-            .catalog-filter-fields .catalog-reset-button { min-height:43px; margin-top:0; }
-            .catalog-filter-foot { display:none; }
-        }
-        @media (max-width: 680px) {
-            .catalog-intro-row { flex-direction:column; align-items:flex-start; gap:17px; padding-top:4px; }
-            .catalog-section-title { font-size:2rem; }
-            .catalog-section-copy { font-size:12px; }
-            .catalog-intro-link { min-height:41px; }
-            .catalog-filter-rail-head { padding:17px 16px 13px; }
-            .catalog-filter-rail-head h3 { font-size:18px; }
-            .catalog-filter-fields { padding:14px 16px 16px; gap:8px; }
-            .catalog-results-heading { align-items:flex-start; flex-direction:column; gap:10px; }
-            .catalog-results-heading h3 { font-size:22px; }
-            .product-row-card { grid-template-columns:minmax(0,1fr); border-radius:16px !important; }
-            .product-row-media { min-height:0; height:auto; aspect-ratio:3/4; border-right:0 !important; border-bottom:1px solid rgba(255,255,255,.075) !important; }
-            .product-row-media img { padding:18px; }
-            .product-row-details { padding:18px 17px 14px; }
-            .product-row-description { -webkit-line-clamp:4; }
-            .product-row-buy { display:grid; grid-template-columns:minmax(0,1fr) minmax(130px,.9fr); align-items:center; gap:9px 12px; padding:14px 17px 16px; border-top:1px solid rgba(255,255,255,.075); border-left:0; }
-            .product-row-price-label { font-size:8px; }
-            .product-row-price { font-size:24px; }
-            .product-row-cta { grid-column:2; grid-row:1/3; width:100%; min-height:46px; }
-            .product-row-buy-note { grid-column:1; text-align:left; }
-            .catalog-filter-fields { grid-template-columns:minmax(0,1fr); }
-            .catalog-filter-fields .catalog-search-wrap { grid-column:auto; }
-        }
-
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen transition-colors duration-300 antialiased" id="appBody">
@@ -895,120 +202,74 @@
                 <div class="absolute -right-10 -bottom-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
                 <div class="absolute -left-10 -top-10 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
                 
-                <div class="hero-content-layout relative z-10">
-                    <div class="hero-copy space-y-4">
-                        <span class="hero-eyebrow inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold">
-                            <i id="heroBadgeIcon" class="fa-solid fa-bolt text-xs"></i> <span id="heroBadgeText">Pronta consegna</span>
-                        </span>
-                        <h1 class="hero-heading text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-                            <span id="heroTitleWhite">Li costruisco, li testo</span> <span id="heroTitleColor" class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-indigo-400">e poi li vendo</span>
-                        </h1>
-                        <p id="heroIntro" class="text-slate-400 text-sm sm:text-base leading-relaxed"></p>
-                        <p class="hero-shipping text-xs text-slate-500 flex flex-wrap items-center gap-x-1.5 gap-y-1">
-                            <i class="fa-solid fa-truck-fast"></i>
-                            <span id="heroShipping"></span>
-                            <a id="subitoHeroLink" href="#" target="_blank" rel="noopener" class="hidden text-cyan-400 hover:underline font-semibold">Guarda le mie recensioni su Subito</a>
-                        </p>
-                        <div class="hero-actions flex flex-wrap items-center gap-3 pt-2">
-                            <button type="button" class="alienware-cta" onclick="document.getElementById('pcGrid').scrollIntoView({behavior:'smooth',block:'start'})">
-                                Scopri i PC disponibili <i class="fa-solid fa-arrow-right ml-2"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="hero-showcase" aria-label="Anteprima del PC disponibile">
-                        <div class="hero-orbit hero-orbit-back"></div>
-                        <div class="hero-orbit hero-orbit-front"></div>
-                        <div class="hero-showcase-glow"></div>
-                        <div class="hero-showcase-device">
-                            <div class="hero-showcase-topline"><span>STRESS &amp; SELL / IN VETRINA</span><span class="hero-status-dot"></span></div>
-                            <img id="heroProductImage" src="https://placehold.co/700x650/201632/e9ddff?text=PC+GAMING" alt="PC disponibile in vetrina" loading="eager" onerror="this.onerror=null;this.src='https://placehold.co/700x650/201632/e9ddff?text=PC+GAMING'">
-                            <div class="hero-image-sheen"></div>
-                        </div>
-                        <div class="hero-showcase-caption">
-                            <div class="min-w-0">
-                                <span id="heroProductStatus" class="hero-product-kicker">BUILD IN EVIDENZA</span>
-                                <h2 id="heroProductTitle" class="hero-product-title">Scopri le configurazioni</h2>
-                                <p id="heroProductPrice" class="hero-product-price">PC disponibili in vetrina</p>
-                            </div>
-                            <button type="button" class="hero-product-open" onclick="openHeroFeaturedListing()" aria-label="Apri i dettagli del PC in evidenza"><i class="fa-solid fa-arrow-up-right-from-square"></i></button>
-                        </div>
-                    </div>
+                <div class="relative z-10 max-w-3xl space-y-4">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                        <i id="heroBadgeIcon" class="fa-solid fa-bolt text-xs"></i> <span id="heroBadgeText">Pronta consegna</span>
+                    </span>
+                    <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+                        <span id="heroTitleWhite">Li costruisco, li testo</span> <span id="heroTitleColor" class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-indigo-400">e poi li vendo</span>
+                    </h1>
+                    <p id="heroIntro" class="text-slate-400 text-sm sm:text-base leading-relaxed"></p>
+                    <p class="text-xs text-slate-500 flex flex-wrap items-center gap-x-1.5 gap-y-1">
+                        <i class="fa-solid fa-truck-fast"></i>
+                        <span id="heroShipping"></span>
+                        <a id="subitoHeroLink" href="#" target="_blank" rel="noopener" class="hidden text-cyan-400 hover:underline font-semibold">Guarda le mie recensioni su Subito</a>
+                    </p>
                 </div>
             </div>
 
-            <!-- PROVA STRUTTURALE: catalogo organizzato con barra filtri laterale e lista prodotto -->
-            <section class="catalog-intro-row" aria-labelledby="catalogSectionTitle">
-                <div>
-                    <p class="catalog-eyebrow"><span class="catalog-eyebrow-dot"></span> STRESS &amp; SELL / COLLEZIONE</p>
-                    <h2 id="catalogSectionTitle" class="catalog-section-title">Trova la tua prossima build.</h2>
-                    <p class="catalog-section-copy">Esplora le configurazioni, confronta i componenti e apri la scheda per tutti i dettagli.</p>
+            <!-- Search, Filter & Sorting Bar -->
+            <div class="filter-panel p-4 rounded-2xl glass-card flex flex-col md:flex-row gap-4 items-center justify-between">
+                <!-- Search Box -->
+                <div class="relative w-full md:w-80">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input type="text" id="searchInput" oninput="applyFilters()" placeholder="Cerca CPU, GPU, titolo..." class="w-full pl-10 pr-4 py-2.5 bg-slate-900/90 border border-slate-700/80 rounded-xl text-sm focus:outline-none focus:border-cyan-500 transition-colors placeholder-slate-500 text-white">
                 </div>
-                <a href="#catalogExplorer" class="catalog-intro-link" onclick="document.getElementById('catalogExplorer').scrollIntoView({behavior:'smooth',block:'start'});return false;">Esplora il catalogo <i class="fa-solid fa-arrow-down-long"></i></a>
-            </section>
 
-            <div id="catalogExplorer" class="catalog-explorer">
-                <aside class="catalog-filter-rail" aria-label="Filtri catalogo">
-                    <div class="catalog-filter-rail-head">
-                        <span class="catalog-filter-kicker">PERSONALIZZA LA RICERCA</span>
-                        <h3>Trova il PC giusto</h3>
-                        <p>Filtra gli annunci in base al prezzo o alla condizione.</p>
-                    </div>
-                    <div class="catalog-filter-fields">
-                        <label class="catalog-field-label" for="searchInput">Cerca configurazione</label>
-                        <div class="catalog-search-wrap">
-                            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-                            <input type="text" id="searchInput" oninput="applyFilters()" placeholder="CPU, GPU, titolo..." class="catalog-search-input">
-                        </div>
+                <!-- Filters & Sort -->
+                <div class="flex flex-wrap items-center gap-3 w-full md:w-auto justify-between md:justify-end">
+                    <!-- Condition Filter -->
+                    <select id="statusFilter" onchange="applyFilters()" class="bg-slate-900/90 border border-slate-700/80 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-cyan-500 text-slate-200">
+                        <option value="ALL">Tutti gli stati</option>
+                        <option value="Nuovo">Nuovo</option>
+                        <option value="Usato Garantito">Usato Garantito</option>
+                        <option value="Ricondizionato">Ricondizionato</option>
+                    </select>
 
-                        <label class="catalog-field-label" for="statusFilter">Condizione</label>
-                        <select id="statusFilter" onchange="applyFilters()" class="catalog-select">
-                            <option value="ALL">Tutte le condizioni</option>
-                            <option value="Nuovo">Nuovo</option>
-                            <option value="Usato Garantito">Usato garantito</option>
-                            <option value="Ricondizionato">Ricondizionato</option>
-                        </select>
+                    <!-- Price Range Filter -->
+                    <select id="priceFilter" onchange="applyFilters()" class="bg-slate-900/90 border border-slate-700/80 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-cyan-500 text-slate-200">
+                        <option value="ALL">Qualsiasi prezzo</option>
+                        <option value="0-800">Fino a €800</option>
+                        <option value="800-1500">€800 - €1.500</option>
+                        <option value="1500-2500">€1.500 - €2.500</option>
+                        <option value="2500+">Oltre €2.500</option>
+                    </select>
 
-                        <label class="catalog-field-label" for="priceFilter">Budget</label>
-                        <select id="priceFilter" onchange="applyFilters()" class="catalog-select">
-                            <option value="ALL">Qualsiasi prezzo</option>
-                            <option value="0-800">Fino a €800</option>
-                            <option value="800-1500">€800 – €1.500</option>
-                            <option value="1500-2500">€1.500 – €2.500</option>
-                            <option value="2500+">Oltre €2.500</option>
-                        </select>
-
-                        <label class="catalog-field-label" for="sortBy">Ordina per</label>
-                        <select id="sortBy" onchange="applyFilters()" class="catalog-select">
-                            <option value="newest">Più recenti</option>
-                            <option value="price-asc">Prezzo crescente</option>
-                            <option value="price-desc">Prezzo decrescente</option>
-                        </select>
-
-                        <button type="button" onclick="resetFilters()" class="catalog-reset-button"><i class="fa-solid fa-arrow-rotate-left"></i> Azzera filtri</button>
-                    </div>
-                    <div class="catalog-filter-foot"><i class="fa-solid fa-circle-check"></i><span>Prezzi e specifiche sono quelli indicati nella scheda di ogni annuncio.</span></div>
-                </aside>
-
-                <div class="catalog-results-column">
-                    <div class="catalog-results-heading">
-                        <div>
-                            <p class="catalog-results-kicker">CONFIGURAZIONI DISPONIBILI</p>
-                            <h3>PC in vetrina</h3>
-                        </div>
-                        <span id="listingsCount" class="catalog-result-count" aria-live="polite">Caricamento annunci...</span>
-                    </div>
-
-                    <div id="pcGrid" class="product-results-list">
-                        <!-- Dynamically populated product rows -->
-                    </div>
-
-                    <div id="emptyCatalogState" class="hidden catalog-empty-state">
-                        <i class="fa-solid fa-desktop" aria-hidden="true"></i>
-                        <h3>Nessun PC trovato</h3>
-                        <p>Nessun annuncio corrisponde ai filtri impostati. Prova a modificare il budget o la ricerca.</p>
-                        <button onclick="resetFilters()" class="catalog-reset-button"><i class="fa-solid fa-arrow-rotate-left"></i> Ripristina filtri</button>
-                    </div>
+                    <!-- Sort -->
+                    <select id="sortBy" onchange="applyFilters()" class="bg-slate-900/90 border border-slate-700/80 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-cyan-500 text-slate-200">
+                        <option value="newest">Più recenti</option>
+                        <option value="price-asc">Prezzo: Crescente</option>
+                        <option value="price-desc">Prezzo: Decrescente</option>
+                    </select>
                 </div>
+            </div>
+
+            <!-- Active Listings Count -->
+            <div class="flex justify-between items-center px-1">
+                <span id="listingsCount" class="text-slate-400 text-sm font-medium">Caricamento annunci...</span>
+            </div>
+
+            <!-- Listings Grid -->
+            <div id="pcGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamically Populated Cards -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyCatalogState" class="hidden text-center py-16 bg-slate-900/40 rounded-3xl border border-dashed border-slate-800">
+                <i class="fa-solid fa-desktop text-5xl text-slate-600 mb-4 block"></i>
+                <h3 class="text-lg font-bold text-slate-300">Nessun PC Trovato</h3>
+                <p class="text-slate-500 text-sm mt-1">Nessun annuncio corrisponde ai criteri di ricerca impostati.</p>
+                <button onclick="resetFilters()" class="mt-4 px-4 py-2 bg-slate-800 text-cyan-400 rounded-xl text-sm font-medium hover:bg-slate-700 transition-colors">Ripristina Filtri</button>
             </div>
         </section>
 
@@ -2087,18 +1348,6 @@ Continua soltanto se questa copia locale contiene i prezzi e le informazioni cor
             }
         });
 
-        // Nel dettaglio PC, le frecce sinistra/destra della tastiera sfogliano la galleria.
-        window.addEventListener('keydown', (e) => {
-            const detailModal = document.getElementById('pcDetailModal');
-            if (!detailModal || detailModal.classList.contains('hidden')) return;
-            if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
-            const target = e.target;
-            const tag = (target && target.tagName ? target.tagName : '').toLowerCase();
-            if (['input', 'textarea', 'select'].includes(tag) || (target && target.isContentEditable)) return;
-            e.preventDefault();
-            changeModalGallery(e.key === 'ArrowLeft' ? -1 : 1);
-        });
-
         function loadListingsFromStorage() {
             const data = localStorage.getItem(STORAGE_KEY);
             if (data) {
@@ -2285,49 +1534,13 @@ Continua soltanto se questa copia locale contiene i prezzi e le informazioni cor
             });
         }
 
-        let heroFeaturedListingId = '';
-
-        function renderHeroShowcase() {
-            const imageEl = document.getElementById('heroProductImage');
-            const titleEl = document.getElementById('heroProductTitle');
-            const priceEl = document.getElementById('heroProductPrice');
-            const statusEl = document.getElementById('heroProductStatus');
-            if (!imageEl || !titleEl || !priceEl || !statusEl) return;
-            const featured = (Array.isArray(pcListings) ? pcListings : []).find(item => item && item.showOnHomepage !== false) || null;
-            if (!featured) {
-                heroFeaturedListingId = '';
-                imageEl.src = 'https://placehold.co/700x650/201632/e9ddff?text=PC+GAMING';
-                imageEl.alt = 'Scopri i PC disponibili';
-                titleEl.textContent = 'Scopri le configurazioni';
-                priceEl.textContent = 'Consulta il catalogo';
-                statusEl.textContent = 'IN VETRINA';
-                return;
-            }
-            heroFeaturedListingId = String(featured.id || '');
-            const cover = featured.previewImage || (Array.isArray(featured.images) && featured.images[0]) || 'https://placehold.co/700x650/201632/e9ddff?text=PC+GAMING';
-            if (imageEl.src !== cover) imageEl.src = cover;
-            imageEl.alt = String(featured.previewTitle || featured.title || 'PC disponibile');
-            titleEl.textContent = String(featured.previewTitle || featured.title || 'PC disponibile');
-            priceEl.textContent = '€ ' + (Number(featured.price) || 0).toLocaleString('it-IT', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
-            statusEl.textContent = String(featured.status || 'IN VETRINA').toUpperCase();
-        }
-
-        function openHeroFeaturedListing() {
-            if (heroFeaturedListingId) {
-                openDetailModal(heroFeaturedListingId);
-            } else {
-                document.getElementById('pcGrid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }
-
         function renderCatalog() {
             const grid = document.getElementById('pcGrid');
             const emptyState = document.getElementById('emptyCatalogState');
             const listingsCount = document.getElementById('listingsCount');
             const filtered = getFilteredListings();
-            renderHeroShowcase();
 
-            listingsCount.innerText = `${filtered.length} PC ${filtered.length === 1 ? 'disponibile' : 'disponibili'}`;
+            listingsCount.innerText = `${filtered.length} computer disponibil${filtered.length === 1 ? 'e' : 'i'} in vetrina`;
 
             if (filtered.length === 0) {
                 grid.innerHTML = '';
@@ -2337,57 +1550,67 @@ Continua soltanto se questa copia locale contiene i prezzi e le informazioni cor
 
             emptyState.classList.add('hidden');
             grid.innerHTML = filtered.map(pc => {
-                const coverImage = pc.previewImage || (pc.images && pc.images.length > 0
-                    ? pc.images[0]
-                    : 'https://placehold.co/700x600/101828/c4ff99?text=PC+GAMING');
+                const coverImage = pc.previewImage || (pc.images && pc.images.length > 0 
+                    ? pc.images[0] 
+                    : 'https://placehold.co/600x400/1e293b/0ea5e9?text=Nessuna+Immagine');
                 const previewTitle = String(pc.previewTitle || '').trim() || pc.title;
-                const badgeClass = pc.status === 'Nuovo'
-                    ? 'status-new'
-                    : pc.status === 'Ricondizionato'
-                    ? 'status-refurbished'
-                    : 'status-used';
-                const allTiles = getPreviewTilesForListing(pc).slice(0, 4);
-                const description = String(pc.description || '').trim();
-                const shortDescription = description.length > 185 ? description.slice(0, 182).trimEnd() + '…' : description;
-                const priceValue = Number.parseFloat(pc.price);
-                const priceText = Number.isFinite(priceValue)
-                    ? priceValue.toLocaleString('it-IT', { minimumFractionDigits: 0, maximumFractionDigits: 2 })
-                    : String(pc.price || 'Da concordare');
-                const imageCount = Array.isArray(pc.images) ? pc.images.length : 0;
-                const videoCount = Array.isArray(pc.videos) ? pc.videos.length : 0;
+
+                const badgeColor = pc.status === 'Nuovo' 
+                    ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' 
+                    : pc.status === 'Ricondizionato' 
+                    ? 'bg-purple-500/10 text-purple-400 border-purple-500/30' 
+                    : 'bg-amber-500/10 text-amber-400 border-amber-500/30';
 
                 return `
-                    <article class="pc-card product-row-card">
-                        <button type="button" class="product-row-media pc-card-image pc-card-image-frame" onclick="openDetailModal('${escapeHtml(pc.id)}')" aria-label="Apri ${escapeHtml(previewTitle)}">
-                            <img src="${escapeHtml(coverImage)}" alt="${escapeHtml(previewTitle)}" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/700x600/101828/c4ff99?text=PC+GAMING'">
-                            <span class="product-row-status ${badgeClass}">${escapeHtml(pc.status || 'Disponibile')}</span>
-                            <span class="product-row-media-count"><i class="fa-regular fa-images"></i> ${imageCount}${videoCount ? ` <span class="media-count-divider">/</span> <i class="fa-solid fa-play"></i> ${videoCount}` : ''}</span>
-                            <span class="product-row-image-action"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-                        </button>
+                    <div class="pc-card glass-card rounded-3xl overflow-hidden hover:border-cyan-500/50 transition-all duration-300 flex flex-col group hover:-translate-y-1 shadow-lg">
+                        <!-- Card Image Header -->
+                        <div class="pc-card-image pc-card-image-frame relative bg-slate-950 overflow-hidden cursor-pointer" onclick="openDetailModal('${pc.id}')">
+                            <img src="${escapeHtml(coverImage)}" alt="${escapeHtml(previewTitle)}" class="w-full h-full object-contain" onerror="this.src='https://placehold.co/600x400/1e293b/0ea5e9?text=Immagine+Non+Disponibile'">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80"></div>
+                            
+                            <!-- Badges -->
+                            <div class="absolute top-3 left-3 flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-full text-xs font-bold border ${badgeColor} backdrop-blur-md">
+                                    ${escapeHtml(pc.status)}
+                                </span>
+                            </div>
 
-                        <div class="product-row-details">
-                            <div class="product-row-overline"><span class="product-row-accent"></span> STRESS &amp; SELL / BUILD</div>
-                            <h3 class="product-row-title"><button type="button" onclick="openDetailModal('${escapeHtml(pc.id)}')">${escapeHtml(previewTitle)}</button></h3>
-                            <p class="product-row-description">${escapeHtml(shortDescription || 'Apri la scheda completa per consultare componenti e dettagli della configurazione.')}</p>
-                            <div class="product-row-specs">
-                                ${allTiles.map(tile => `
-                                    <div class="product-row-spec" title="${escapeHtml(tile.rawValue || tile.value)}">
-                                        <span class="product-row-spec-label"><i class="fa-solid ${escapeHtml(tile.icon || 'fa-microchip')} ${escapeHtml(tile.color || '')}"></i> ${escapeHtml(tile.label)}</span>
-                                        <strong>${escapeHtml(tile.value)}</strong>
-                                    </div>
-                                `).join('')}
+                            <!-- Media Indicators -->
+                            <div class="absolute bottom-3 right-3 flex items-center gap-2 text-xs font-medium text-slate-300 bg-slate-950/70 px-2.5 py-1 rounded-full backdrop-blur-md border border-slate-800">
+                                ${pc.images ? `<span><i class="fa-solid fa-image text-cyan-400"></i> ${pc.images.length}</span>` : ''}
+                                ${pc.videos && pc.videos.length > 0 ? `<span><i class="fa-solid fa-video text-indigo-400"></i> ${pc.videos.length}</span>` : ''}
                             </div>
                         </div>
 
-                        <aside class="product-row-buy">
-                            <div>
-                                <span class="product-row-price-label">PREZZO ANNUNCIO</span>
-                                <div class="product-row-price">€ ${priceText}</div>
+                        <!-- Card Body -->
+                        <div class="p-4 flex-1 flex flex-col justify-between gap-3">
+                            <div class="space-y-3">
+                                <h3 class="font-bold text-lg text-white group-hover:text-cyan-400 transition-colors line-clamp-1 cursor-pointer" onclick="openDetailModal('${pc.id}')">
+                                    ${escapeHtml(previewTitle)}
+                                </h3>
+
+                                <!-- Riquadri anteprima configurabili dal pannello amministratore -->
+                                <div class="grid grid-cols-2 gap-2">
+                                    ${getPreviewTilesForListing(pc).map(tile => `
+                                        <div class="bg-slate-950/60 border border-slate-800/70 rounded-xl px-2.5 py-2 min-w-0" title="${escapeHtml(tile.rawValue || tile.value)}">
+                                            <div class="flex items-center gap-1.5 text-[10px] font-semibold text-slate-500">
+                                                <i class="fa-solid ${tile.icon} ${tile.color}"></i> ${escapeHtml(tile.label)}
+                                            </div>
+                                            <div class="text-xs text-slate-200 font-medium truncate mt-0.5">${escapeHtml(tile.value)}</div>
+                                        </div>
+                                    `).join('')}
+                                </div>
                             </div>
-                            <button type="button" class="product-row-cta" onclick="openDetailModal('${escapeHtml(pc.id)}')">Scopri la build <i class="fa-solid fa-arrow-right"></i></button>
-                            <span class="product-row-buy-note"><i class="fa-solid fa-circle-info"></i> Scheda tecnica completa</span>
-                        </aside>
-                    </article>
+
+                            <!-- Card Footer -->
+                            <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between">
+                                <span class="text-lg font-extrabold text-cyan-400">€ ${parseFloat(pc.price).toLocaleString('it-IT')}</span>
+                                <button onclick="openDetailModal('${pc.id}')" class="text-[11px] font-semibold text-slate-400 hover:text-cyan-400 transition-colors flex items-center gap-1">
+                                    Scheda completa <i class="fa-solid fa-arrow-right text-[9px]"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 `;
             }).join('');
         }
@@ -3067,31 +2290,8 @@ Continua soltanto se questa copia locale contiene i prezzi e le informazioni cor
         }
 
         function setModalActiveGalleryIndex(index) {
-            if (!activeModalPc) return;
-            const images = Array.isArray(activeModalPc.images) ? activeModalPc.images : [];
-            if (!images.length) return;
-            activeModalGalleryIndex = Math.max(0, Math.min(index, images.length - 1));
+            activeModalGalleryIndex = index;
             renderModalContent();
-        }
-
-        function changeModalGallery(direction) {
-            if (!activeModalPc) return;
-            const images = Array.isArray(activeModalPc.images) && activeModalPc.images.length
-                ? activeModalPc.images
-                : ['https://placehold.co/800x500/1e293b/0ea5e9?text=Nessuna+Immagine'];
-            if (images.length < 2) return;
-            activeModalGalleryIndex = (activeModalGalleryIndex + direction + images.length) % images.length;
-            renderModalContent();
-        }
-
-        function scrollModalToBenchmarks() {
-            const hasVideos = !!(activeModalPc && Array.isArray(activeModalPc.videos) && activeModalPc.videos.length);
-            const target = document.getElementById(hasVideos ? 'modalBenchmarksSection' : 'modalSpecsSection')
-                || document.getElementById('modalSpecsSection');
-            const scrollContainer = document.querySelector('#pcDetailModal > div');
-            if (!target || !scrollContainer) return;
-            const targetOffset = target.getBoundingClientRect().top - scrollContainer.getBoundingClientRect().top;
-            scrollContainer.scrollTo({ top: scrollContainer.scrollTop + targetOffset - 18, behavior: 'smooth' });
         }
 
         function renderModalContent() {
@@ -3132,13 +2332,10 @@ Continua soltanto se questa copia locale contiene i prezzi e le informazioni cor
             let videoSectionHtml = '';
             if (pc.videos && pc.videos.length > 0) {
                 videoSectionHtml = `
-                    <div id="modalBenchmarksSection" class="mt-8 border-t border-slate-800 pt-6">
-                        <div class="mb-4 flex flex-wrap items-center justify-between gap-2">
-                            <h4 class="text-xs uppercase font-bold text-cyan-400 tracking-wider flex items-center gap-2">
-                                <i class="fa-solid fa-circle-play"></i> Benchmark e video di test
-                            </h4>
-                            <span class="rounded-full border border-purple-400/20 bg-purple-400/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-purple-200">${pc.videos.length} ${pc.videos.length === 1 ? 'video disponibile' : 'video disponibili'}</span>
-                        </div>
+                    <div class="mt-8 border-t border-slate-800 pt-6">
+                        <h4 class="text-xs uppercase font-bold text-cyan-400 tracking-wider mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-circle-play"></i> Video Benchmark & Configuration Test
+                        </h4>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                             ${pc.videos.map(v => {
                                 if (v.type === 'youtube') {
@@ -3181,121 +2378,68 @@ Continua soltanto se questa copia locale contiene i prezzi e le informazioni cor
                 `;
             }
 
-            const hasBenchmarkVideos = Array.isArray(pc.videos) && pc.videos.length > 0;
-            const modalScrollCueHtml = `
-                <div class="modal-scroll-cue" aria-label="Navigazione dettagli annuncio">
-                    <div>
-                        <div class="modal-scroll-cue-kicker"><i class="fa-solid fa-arrow-down mr-1.5"></i> CONTINUA A SCORRERE</div>
-                        <p class="modal-scroll-cue-copy">${hasBenchmarkVideos ? 'Consulta componenti, specifiche aggiuntive e benchmark video del PC.' : 'Consulta tutte le componenti e le specifiche aggiuntive del PC.'}</p>
-                    </div>
-                    <button type="button" class="modal-scroll-cue-button" onclick="scrollModalToBenchmarks()">
-                        ${hasBenchmarkVideos ? 'Vai ai benchmark e ai video' : 'Vai ai dettagli tecnici'} <i class="fa-solid fa-chevron-down"></i>
-                    </button>
-                </div>`;
-
-            const quickSpecCandidates = [
-                { label: 'Processore', value: pc.specs && pc.specs.cpu, icon: 'fa-microchip' },
-                { label: 'Scheda video', value: pc.specs && pc.specs.gpu, icon: 'fa-vr-cardboard' },
-                { label: 'Memoria RAM', value: pc.specs && pc.specs.ram, icon: 'fa-memory' },
-                { label: 'Archiviazione', value: pc.specs && pc.specs.storage, icon: 'fa-hard-drive' }
-            ].filter(item => String(item.value || '').trim());
-            const quickSpecsHtml = quickSpecCandidates.map(item => `
-                <div class="product-quick-spec">
-                    <i class="fa-solid ${item.icon}"></i>
-                    <div class="min-w-0">
-                        <div class="product-quick-spec-label">${escapeHtml(item.label)}</div>
-                        <div class="product-quick-spec-value">${escapeHtml(item.value)}</div>
-                    </div>
-                </div>
-            `).join('');
-            const configuredWhatsApp = waNumber();
-            const configuredTelegram = tgLink();
-            const whatsappMessage = encodeURIComponent('Salve, sarei interessato all\'annuncio: ' + pc.title + ' (Prezzo: €' + pc.price + '). Potrei avere maggiori informazioni?');
-            const formatPrice = Number.isFinite(parseFloat(pc.price))
-                ? parseFloat(pc.price).toLocaleString('it-IT', { minimumFractionDigits: 0, maximumFractionDigits: 2 })
-                : String(pc.price || 'Da concordare');
-
             container.innerHTML = `
-                <div class="product-detail-layout grid grid-cols-1 lg:grid-cols-12 gap-8">
-                    <!-- Galleria prodotto: foto grande + miniature, ispirata alla pagina prodotto Starforge -->
-                    <section class="product-gallery-column space-y-4" aria-label="Galleria immagini del PC">
-                        <div class="pc-detail-image-frame product-main-image relative w-full rounded-xl overflow-hidden border flex items-center justify-center">
-                            <img src="${escapeHtml(activeImg)}" alt="${escapeHtml(pc.title)} — foto ${activeModalGalleryIndex + 1}" class="w-full h-full object-contain" onerror="this.src='https://placehold.co/800x700/111c2c/c4ff99?text=Immagine+Non+Disponibile'">
-                            <span class="absolute top-3 left-3 z-[8] px-3 py-1.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider border ${badgeColor} backdrop-blur-md">${escapeHtml(pc.status)}</span>
-                            ${images.length > 1 ? `
-                                <button type="button" class="gallery-nav-button left-3" onclick="changeModalGallery(-1)" aria-label="Mostra la foto precedente" title="Foto precedente (←)"><i class="fa-solid fa-chevron-left"></i></button>
-                                <button type="button" class="gallery-nav-button right-3" onclick="changeModalGallery(1)" aria-label="Mostra la foto successiva" title="Foto successiva (→)"><i class="fa-solid fa-chevron-right"></i></button>
-                                <span class="gallery-image-counter" aria-live="polite">${activeModalGalleryIndex + 1} / ${images.length}</span>
-                            ` : ''}
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <!-- Left Column: Interactive Image Gallery -->
+                    <div class="lg:col-span-7 space-y-4">
+                        <!-- Main Preview Image -->
+                        <div class="pc-detail-image-frame relative w-full bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 shadow-inner flex items-center justify-center">
+                            <img src="${escapeHtml(activeImg)}" alt="${escapeHtml(pc.title)}" class="w-full h-full object-contain" onerror="this.src='https://placehold.co/800x500/1e293b/0ea5e9?text=Immagine+Non+Disponibile'">
+                            <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold border ${badgeColor} backdrop-blur-md">
+                                ${escapeHtml(pc.status)}
+                            </span>
                         </div>
+
+                        <!-- Thumbnails Row -->
                         ${images.length > 1 ? `
-                            <div class="product-gallery-thumbnails" aria-label="Scegli una foto">
+                            <div class="flex items-center gap-2 overflow-x-auto pb-2">
                                 ${images.map((img, idx) => `
-                                    <button type="button" onclick="setModalActiveGalleryIndex(${idx})" class="${idx === activeModalGalleryIndex ? 'active' : ''}" aria-label="Mostra foto ${idx + 1}" aria-pressed="${idx === activeModalGalleryIndex ? 'true' : 'false'}">
-                                        <img src="${escapeHtml(img)}" alt="" class="w-full h-full object-contain p-1.5">
+                                    <button onclick="setModalActiveGalleryIndex(${idx})" class="relative w-20 h-16 flex-shrink-0 rounded-xl overflow-hidden border-2 transition-all ${idx === activeModalGalleryIndex ? 'border-cyan-500 scale-105' : 'border-slate-800 opacity-60 hover:opacity-100'} bg-slate-950">
+                                        <img src="${escapeHtml(img)}" class="w-full h-full object-contain">
                                     </button>
                                 `).join('')}
                             </div>
                         ` : ''}
-                        <div class="flex items-center justify-between gap-3 px-1 text-[10px] uppercase tracking-[.14em] text-slate-500">
-                            <span><i class="fa-regular fa-images mr-1.5"></i>Foto del prodotto</span>
-                            <span>${images.length} ${images.length === 1 ? 'immagine' : 'immagini'}</span>
-                        </div>
-                    </section>
+                    </div>
 
-                    <!-- Informazioni prodotto, prezzo e contatto -->
-                    <section class="product-info-panel flex flex-col" aria-label="Informazioni e prezzo del PC">
-                        <div class="product-status-line"><span class="product-status-dot"></span><span>Annuncio · ${escapeHtml(pc.status || 'Disponibile')}</span></div>
-                        <h2 class="product-title">${escapeHtml(pc.title)}</h2>
-                        <div class="product-shipping-line">
-                            <i class="fa-solid fa-truck-fast"></i>
-                            <span>${escapeHtml(siteSettings.shippingNote || 'Contattami per informazioni su consegna e spedizione.')}</span>
-                        </div>
-
-                        <div class="product-price-row">
+                    <!-- Right Column: Specs & Info -->
+                    <div class="lg:col-span-5 flex flex-col justify-between space-y-6">
+                        <div class="space-y-4">
                             <div>
-                                <div class="product-price">€ ${formatPrice}</div>
-                                <div class="mt-2 text-[10px] uppercase tracking-[.13em] text-slate-500">Prezzo dell'annuncio</div>
+                                <h2 class="text-2xl font-black text-white leading-snug">${escapeHtml(pc.title)}</h2>
+                                <div class="mt-3 flex items-baseline gap-2">
+                                    <span class="text-3xl font-black text-cyan-400">€ ${parseFloat(pc.price).toLocaleString('it-IT')}</span>
+                                    <span class="text-xs text-slate-500">IVA inclusa</span>
+                                </div>
                             </div>
-                            <div class="product-price-caption">Stress &amp; Sell</div>
-                        </div>
-                        <div class="product-rule"></div>
 
-                        <p class="product-description">${escapeHtml(pc.description || 'Contattami per ricevere maggiori informazioni su questa configurazione.')}</p>
+                            <p class="text-xs text-slate-300 leading-relaxed bg-slate-950/60 p-4 rounded-2xl border border-slate-800">
+                                ${escapeHtml(pc.description)}
+                            </p>
 
-                        ${quickSpecsHtml ? `
-                            <div class="product-quick-specs" aria-label="Riepilogo componenti principali">${quickSpecsHtml}</div>
-                        ` : ''}
-
-                        <div class="product-contact-panel">
-                            <div class="product-contact-title">Ti interessa questa configurazione?</div>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                                ${configuredWhatsApp ? `
-                                    <a href="https://wa.me/${configuredWhatsApp}?text=${whatsappMessage}" target="_blank" rel="noopener noreferrer" class="product-main-cta">
-                                        <i class="fa-brands fa-whatsapp text-lg"></i> Chiedi su WhatsApp
+                            <!-- Direct Contact Options -->
+                            <div class="p-4 rounded-2xl bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 border border-slate-800 space-y-3">
+                                <span class="text-xs font-bold text-slate-300 block">Ti interessa questa configurazione?</span>
+                                <div class="grid ${tgLink() ? 'grid-cols-2' : 'grid-cols-1'} gap-2">
+                                    <a href="https://wa.me/${waNumber()}?text=${encodeURIComponent('Salve, sarei interessato all\'acquisto del PC: ' + pc.title + ' (Prezzo: €' + pc.price + ')')}" target="_blank" class="py-2.5 px-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold transition-colors flex items-center justify-center gap-2">
+                                        <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
                                     </a>
-                                ` : `
-                                    <div class="product-secondary-cta sm:col-span-2" title="Configura il numero dal pannello amministratore"><i class="fa-brands fa-whatsapp"></i> WhatsApp da configurare nel pannello Admin</div>
-                                `}
-                                ${configuredTelegram ? `
-                                    <a href="${escapeHtml(configuredTelegram)}" target="_blank" rel="noopener noreferrer" class="product-secondary-cta ${configuredWhatsApp ? '' : 'sm:col-span-2'}">
-                                        <i class="fa-brands fa-telegram text-lg"></i> Scrivimi su Telegram
-                                    </a>
-                                ` : ''}
-                            </div>
-                            <div class="product-trust-links">
-                                ${siteSettings.subitoUrl ? `<a href="${escapeHtml(siteSettings.subitoUrl)}" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>Leggi le recensioni su Subito</a>` : ''}
-                                <span><i class="fa-solid fa-circle-check mr-1" style="color:#c4ff99"></i>Dettagli e componenti qui sotto</span>
+                                    ${tgLink() ? `
+                                    <a href="${escapeHtml(tgLink())}" target="_blank" rel="noopener" class="py-2.5 px-3 bg-sky-600 hover:bg-sky-500 text-white rounded-xl text-xs font-bold transition-colors flex items-center justify-center gap-2">
+                                        <i class="fa-brands fa-telegram text-sm"></i> Telegram
+                                    </a>` : ''}
+                                </div>
+                                <p class="text-[11px] text-slate-500 leading-snug">
+                                    ${escapeHtml(siteSettings.shippingNote)}
+                                    ${siteSettings.subitoUrl ? `<a href="${escapeHtml(siteSettings.subitoUrl)}" target="_blank" rel="noopener" class="text-cyan-400 hover:underline font-semibold">Guarda le mie recensioni su Subito</a>` : ''}
+                                </p>
                             </div>
                         </div>
-                    </section>
+                    </div>
                 </div>
 
-                ${modalScrollCueHtml}
-
                 <!-- Standard Specs Grid -->
-
-                <div id="modalSpecsSection" class="mt-8 border-t border-slate-800 pt-6">
+                <div class="mt-8 border-t border-slate-800 pt-6">
                     <h4 class="text-xs uppercase font-bold text-cyan-400 tracking-wider mb-4 flex items-center gap-2">
                         <i class="fa-solid fa-microchip"></i> Componenti PC
                     </h4>
