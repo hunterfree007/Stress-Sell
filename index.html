@@ -1346,6 +1346,21 @@ Continua soltanto se questa copia locale contiene i prezzi e le informazioni cor
                     closeDetailModal();
                 }
             }
+
+            // Navigazione immagini con frecce della tastiera mentre la scheda è aperta.
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                const detailModal = document.getElementById('pcDetailModal');
+                const target = e.target;
+                const isTyping = target && (
+                    ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName) || target.isContentEditable
+                );
+                const imageCount = activeModalPc && Array.isArray(activeModalPc.images)
+                    ? activeModalPc.images.length : 0;
+                if (detailModal && !detailModal.classList.contains('hidden') && !isTyping && imageCount > 1) {
+                    e.preventDefault();
+                    moveModalGallery(e.key === 'ArrowLeft' ? -1 : 1);
+                }
+            }
         });
 
         function loadListingsFromStorage() {
@@ -2290,8 +2305,38 @@ Continua soltanto se questa copia locale contiene i prezzi e le informazioni cor
         }
 
         function setModalActiveGalleryIndex(index) {
-            activeModalGalleryIndex = index;
-            renderModalContent();
+            if (!activeModalPc) return;
+            const images = Array.isArray(activeModalPc.images) && activeModalPc.images.length
+                ? activeModalPc.images
+                : ['https://placehold.co/800x500/1e293b/0ea5e9?text=Nessuna+Immagine'];
+            activeModalGalleryIndex = ((Number(index) || 0) % images.length + images.length) % images.length;
+
+            // Aggiorna soltanto la galleria: non ricostruisce la scheda e non interrompe i video.
+            const mainImage = document.getElementById('modalMainImage');
+            if (mainImage) {
+                mainImage.src = images[activeModalGalleryIndex];
+                mainImage.alt = `${activeModalPc.title || 'PC'} - immagine ${activeModalGalleryIndex + 1}`;
+            }
+            const counter = document.getElementById('modalGalleryCounter');
+            if (counter) counter.textContent = `${activeModalGalleryIndex + 1} / ${images.length}`;
+
+            images.forEach((_, idx) => {
+                const thumb = document.getElementById(`modalGalleryThumb-${idx}`);
+                if (!thumb) return;
+                const isActive = idx === activeModalGalleryIndex;
+                thumb.classList.toggle('border-cyan-500', isActive);
+                thumb.classList.toggle('scale-105', isActive);
+                thumb.classList.toggle('border-slate-800', !isActive);
+                thumb.classList.toggle('opacity-60', !isActive);
+                thumb.setAttribute('aria-current', isActive ? 'true' : 'false');
+            });
+        }
+
+        function moveModalGallery(step) {
+            if (!activeModalPc) return;
+            const images = Array.isArray(activeModalPc.images) ? activeModalPc.images : [];
+            if (images.length <= 1) return;
+            setModalActiveGalleryIndex(activeModalGalleryIndex + step);
         }
 
         function renderModalContent() {
@@ -2383,19 +2428,28 @@ Continua soltanto se questa copia locale contiene i prezzi e le informazioni cor
                     <!-- Left Column: Interactive Image Gallery -->
                     <div class="lg:col-span-7 space-y-4">
                         <!-- Main Preview Image -->
-                        <div class="pc-detail-image-frame relative w-full bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 shadow-inner flex items-center justify-center">
-                            <img src="${escapeHtml(activeImg)}" alt="${escapeHtml(pc.title)}" class="w-full h-full object-contain" onerror="this.src='https://placehold.co/800x500/1e293b/0ea5e9?text=Immagine+Non+Disponibile'">
-                            <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold border ${badgeColor} backdrop-blur-md">
+                        <div class="pc-detail-image-frame relative w-full bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 shadow-inner flex items-center justify-center group">
+                            <img id="modalMainImage" src="${escapeHtml(activeImg)}" alt="${escapeHtml(pc.title)} - immagine ${activeModalGalleryIndex + 1}" class="w-full h-full object-contain" onerror="this.src='https://placehold.co/800x500/1e293b/0ea5e9?text=Immagine+Non+Disponibile'">
+                            <span class="absolute top-3 left-3 z-10 px-3 py-1 rounded-full text-xs font-bold border ${badgeColor} backdrop-blur-md">
                                 ${escapeHtml(pc.status)}
                             </span>
+                            ${images.length > 1 ? `
+                                <button type="button" onclick="moveModalGallery(-1)" aria-label="Mostra immagine precedente" title="Immagine precedente" class="absolute left-3 top-1/2 z-20 -translate-y-1/2 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-white/20 bg-slate-950/80 text-white shadow-xl backdrop-blur-md transition-all hover:scale-105 hover:border-cyan-400 hover:bg-cyan-500 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-cyan-400">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </button>
+                                <button type="button" onclick="moveModalGallery(1)" aria-label="Mostra immagine successiva" title="Immagine successiva" class="absolute right-3 top-1/2 z-20 -translate-y-1/2 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-white/20 bg-slate-950/80 text-white shadow-xl backdrop-blur-md transition-all hover:scale-105 hover:border-cyan-400 hover:bg-cyan-500 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-cyan-400">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </button>
+                                <span id="modalGalleryCounter" class="absolute bottom-3 right-3 z-10 rounded-full border border-white/15 bg-slate-950/85 px-3 py-1.5 text-xs font-bold text-white backdrop-blur-md">${activeModalGalleryIndex + 1} / ${images.length}</span>
+                            ` : ''}
                         </div>
 
                         <!-- Thumbnails Row -->
                         ${images.length > 1 ? `
-                            <div class="flex items-center gap-2 overflow-x-auto pb-2">
+                            <div class="flex items-center gap-2 overflow-x-auto pb-2" aria-label="Miniature immagini del PC">
                                 ${images.map((img, idx) => `
-                                    <button onclick="setModalActiveGalleryIndex(${idx})" class="relative w-20 h-16 flex-shrink-0 rounded-xl overflow-hidden border-2 transition-all ${idx === activeModalGalleryIndex ? 'border-cyan-500 scale-105' : 'border-slate-800 opacity-60 hover:opacity-100'} bg-slate-950">
-                                        <img src="${escapeHtml(img)}" class="w-full h-full object-contain">
+                                    <button id="modalGalleryThumb-${idx}" type="button" aria-label="Mostra immagine ${idx + 1}" aria-current="${idx === activeModalGalleryIndex ? 'true' : 'false'}" onclick="setModalActiveGalleryIndex(${idx})" class="relative w-20 h-16 flex-shrink-0 rounded-xl overflow-hidden border-2 transition-all ${idx === activeModalGalleryIndex ? 'border-cyan-500 scale-105' : 'border-slate-800 opacity-60 hover:opacity-100'} bg-slate-950">
+                                        <img src="${escapeHtml(img)}" alt="Miniatura ${idx + 1}" class="w-full h-full object-contain">
                                     </button>
                                 `).join('')}
                             </div>
