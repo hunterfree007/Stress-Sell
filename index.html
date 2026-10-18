@@ -613,7 +613,34 @@
           animation-duration: .01ms !important; transition-duration: .01ms !important;
         }
       }
-    </style>
+    
+
+      /* SFONDO PIU' SCURO: grafite caldo sullo sfondo esterno, mantenendo chiare le schede e i pannelli. */
+      html.light {
+        --ss-page-bg: #302e2a;
+        --ss-page-text: #f4efe5;
+      }
+      html.dark {
+        --ss-page-bg: #191918;
+        --ss-page-text: #f1ece3;
+      }
+      body#appBody {
+        background-color: var(--ss-page-bg) !important;
+        background-image:
+          radial-gradient(ellipse at 8% 0%, rgba(199,167,108,.16), transparent 36rem),
+          radial-gradient(ellipse at 94% 24%, rgba(199,167,108,.08), transparent 32rem),
+          linear-gradient(180deg, var(--ss-page-bg) 0%, var(--ss-page-bg) 100%) !important;
+        background-attachment: fixed !important;
+        color: var(--ss-page-text) !important;
+      }
+      /* Il contenitore esterno può essere scuro; le superfici prodotto restano crema. */
+      body#appBody #catalogView { color: var(--ss-page-text) !important; }
+      body#appBody #catalogView #listingsCount { color: #f4efe5 !important; }
+      body#appBody #catalogView #emptyCatalogState {
+        background: var(--ss-surface) !important;
+        color: var(--ss-text) !important;
+      }
+</style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen transition-colors duration-300 antialiased" id="appBody">
 
