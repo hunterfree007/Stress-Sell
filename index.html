@@ -211,7 +211,7 @@
             <details id="siteSettingsCard" class="bg-slate-900/80 rounded-2xl border border-slate-800">
                 <summary class="cursor-pointer select-none p-5 flex items-center gap-2 text-white font-bold">
                     <i class="fa-solid fa-pen-to-square text-cyan-400"></i> Testi e contatti del sito
-                    <span class="text-xs font-normal text-slate-500">titolo, testo di benvenuto, spedizione, Subito, WhatsApp, email</span>
+                    <span class="text-xs font-normal text-slate-500">titolo, testo di benvenuto, spedizione, Subito, WhatsApp, Telegram</span>
                 </summary>
                 <div class="px-5 pb-5 space-y-4 border-t border-slate-800 pt-4">
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -259,8 +259,8 @@
                             <input id="setWhatsapp" type="text" inputmode="tel" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500">
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold text-slate-300 mb-1">Email di contatto</label>
-                            <input id="setEmail" type="email" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500">
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Telegram <span class="font-normal text-slate-500">(username, es. @tuonome)</span></label>
+                            <input id="setTelegram" type="text" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500">
                         </div>
                     </div>
                     <div class="flex flex-wrap items-center gap-2 pt-1">
@@ -585,7 +585,7 @@
             "shippingNote": "Spedizione tramite Subito oppure consegna a mano in zona.",
             "subitoUrl": "https://www.subito.it/utente/102544535",
             "whatsapp": "",
-            "email": "info@techrigstudio.it"
+            "telegram": ""
         };
         /*SITE_SETTINGS_END*/
         const SETTINGS_KEY = 'stresssell_site_settings_v1';
@@ -1653,13 +1653,14 @@
                             <!-- Direct Contact Options -->
                             <div class="p-4 rounded-2xl bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 border border-slate-800 space-y-3">
                                 <span class="text-xs font-bold text-slate-300 block">Ti interessa questa configurazione?</span>
-                                <div class="grid grid-cols-2 gap-2">
+                                <div class="grid ${tgLink() ? 'grid-cols-2' : 'grid-cols-1'} gap-2">
                                     <a href="https://wa.me/${waNumber()}?text=${encodeURIComponent('Salve, sarei interessato all\'acquisto del PC: ' + pc.title + ' (Prezzo: €' + pc.price + ')')}" target="_blank" class="py-2.5 px-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold transition-colors flex items-center justify-center gap-2">
                                         <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
                                     </a>
-                                    <a href="mailto:${escapeHtml(siteSettings.email)}?subject=${encodeURIComponent('Info Acquisto PC: ' + pc.title)}" class="py-2.5 px-3 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-bold transition-colors flex items-center justify-center gap-2 border border-slate-700">
-                                        <i class="fa-solid fa-envelope text-sm"></i> Contatta
-                                    </a>
+                                    ${tgLink() ? `
+                                    <a href="${escapeHtml(tgLink())}" target="_blank" rel="noopener" class="py-2.5 px-3 bg-sky-600 hover:bg-sky-500 text-white rounded-xl text-xs font-bold transition-colors flex items-center justify-center gap-2">
+                                        <i class="fa-brands fa-telegram text-sm"></i> Telegram
+                                    </a>` : ''}
                                 </div>
                                 <p class="text-[11px] text-slate-500 leading-snug">
                                     ${escapeHtml(siteSettings.shippingNote)}
@@ -1775,6 +1776,14 @@
             return n;
         }
 
+        function tgLink() {
+            const t = String(siteSettings.telegram || '').trim();
+            if (!t) return '';
+            if (/^https?:\/\//i.test(t)) return t;
+            const user = t.replace(/^@/, '').replace(/^(https?:\/\/)?t\.me\//i, '').replace(/[^A-Za-z0-9_]/g, '');
+            return user ? 'https://t.me/' + user : '';
+        }
+
         function applySiteSettings() {
             const set = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
             set('heroBadgeText', siteSettings.badgeText);
@@ -1801,7 +1810,7 @@
             val('setIntro', siteSettings.intro);
             val('setSubito', siteSettings.subitoUrl);
             val('setWhatsapp', siteSettings.whatsapp);
-            val('setEmail', siteSettings.email);
+            val('setTelegram', siteSettings.telegram);
         }
 
         function readSettingsForm() {
@@ -1815,7 +1824,7 @@
                 shippingNote: get('setShipping'),
                 subitoUrl: get('setSubito'),
                 whatsapp: get('setWhatsapp'),
-                email: get('setEmail')
+                telegram: get('setTelegram')
             };
         }
 
